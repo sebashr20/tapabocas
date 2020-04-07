@@ -6,7 +6,7 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/paper-kit.scss";
 
 // pages
-import { Landing, Terms, DataPolicy, Checkout } from "views";
+import { Landing } from "views";
 
 const App = () => {
   return (
