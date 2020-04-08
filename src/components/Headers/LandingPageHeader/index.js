@@ -2,11 +2,11 @@ import React, { Fragment, createRef, useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
 
 // reactstrap components
-import { Button, Container } from "reactstrap";
+import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
 const backgroundImage =
-  "https://res.cloudinary.com/sebashr20/image/upload/q_auto/v1585011811/seed/ymrhkcpfdsqih25jkohn.jpg";
+  "https://res.cloudinary.com/sebashr20/image/upload/v1586315564/v64l83ia2uqap5cwhkxg.jpg";
 
 const LandingPageHeader = () => {
   let pageHeader = createRef();
@@ -29,7 +29,7 @@ const LandingPageHeader = () => {
     <Fragment>
       <div
         style={{
-          backgroundImage: `url(${backgroundImage})`
+          backgroundImage: `url(${backgroundImage})`,
         }}
         className="page-header"
         data-parallax={true}
@@ -37,14 +37,14 @@ const LandingPageHeader = () => {
       >
         <div className="filter" />
         <Container>
-          <div className="motto text-center">
+          <div className="motto text-left">
             <span className="text-shadow">
-              <h1>¡Entrega tus trabajos a tiempo!</h1>
-              <h3>
-                En Workorona somos expertos en darte la asesoría que necesitas
-                para resolver tus tareas de colegio o talleres de universidad y
-                en la solución de ejercicios para preparar tus exámenes.
-              </h3>
+              <Row>
+                <Col xs="12" md="7">
+                  <h1>Proteje tu vida y la de tu familia en todo momento</h1>
+                  <h3>Usa solo tapabocas de alta calidad</h3>
+                </Col>
+              </Row>
             </span>
             <Button
               className="btn-round mt-4"
@@ -54,7 +54,7 @@ const LandingPageHeader = () => {
               smooth
               to="#como-funciona"
             >
-              Comenzar
+              Conoce nuestros productos
             </Button>
           </div>
         </Container>

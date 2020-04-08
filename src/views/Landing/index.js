@@ -1,7 +1,17 @@
 import React, { Fragment, useEffect } from "react";
 
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardBody,
+  CardImg,
+  CardTitle,
+  CardText,
+  Button,
+} from "reactstrap";
 
 // core components
 import { Navbar, LandingPageHeader, Footer } from "components";
@@ -20,13 +30,13 @@ const LandingPage = () => {
     <Fragment>
       <Navbar />
       <LandingPageHeader />
-      <span id="como-funciona" />
+      <span id="garantia" />
       <div className="main">
         <div className="section text-center">
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title">¿Cómo funciona?</h2>
+                <h2 className="title">Nuestra Garantía</h2>
                 <h5 className="description">Usar Workorona es muy simple.</h5>
                 <br />
               </Col>
@@ -94,66 +104,64 @@ const LandingPage = () => {
             </Row>
           </Container>
         </div>
-        <div
-          className="section section-dark section-nucleo-icons"
-          id="servicios"
-        >
-          <Container className="mt-5 mb-5">
+        <span id="productos" />
+        <div className="section section-dark text-center">
+          <Container>
+            <h2 className="title">Nuestros Productos</h2>
+            <h5 className="description">Usar Workorona es muy simple.</h5>
+            <br />
+            <br />
             <Row>
-              <Col lg="6" md="12">
-                <h2 className="title">Servicios</h2>
-                <p className="description">
-                  El equipo de Workorona es experto en resolver talleres y
-                  trabajos, y en dar asesorías personalizadas y grupales para
-                  estudiantes de primaria, secundaria y universidad, en
-                  múltiples áreas del conocimiento:
-                </p>
-                <br />
-                <Row className="description">
-                  <Col>
-                    <p>·Matemáticas</p>
-                    <p>·Geometría</p>
-                    <p>·Química</p>
-                    <p>·Física</p>
-                    <p>·Cálculo</p>
-                    <p>·Biología</p>
-                  </Col>
-                  <Col>
-                    <p>·Historia</p>
-                    <p>·Geografía</p>
-                    <p>·Filosofía</p>
-                    <p>·Política</p>
-                    <p>·Español</p>
-                    <p>·Inglés</p>
-                  </Col>
-                  <Col>
-                    <p>·Alemán</p>
-                    <p>·Redacción</p>
-                    <p>·Ortografía</p>
-                    <p>·Diseño</p>
-                    <p>·Adobe</p>
-                    <p>·Javascript</p>
-                  </Col>
-                </Row>
+              <Col md="4">
+                <Card style={{ width: "20rem" }}>
+                  <CardImg
+                    top
+                    src={require("assets/img/qr-test.jpeg")}
+                    alt="..."
+                  />
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardText>
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </CardText>
+                    <Button color="primary">Go somewhere</Button>
+                  </CardBody>
+                </Card>
               </Col>
-              <Col lg="6" md="12">
-                <div className="icons-container mt-4 mb-4">
-                  <i className="nc-icon nc-chat-33" />
-                  <i className="nc-icon nc-chart-bar-32" />
-                  <i className="nc-icon nc-book-bookmark" />
-                  <i className="nc-icon nc-sound-wave" />
-                  <i className="nc-icon nc-chart-pie-36" />
-                  <i className="nc-icon nc-hat-3" />
-                  <i className="nc-icon nc-zoom-split" />
-                  <i className="nc-icon nc-layout-11" />
-                  <i className="nc-icon nc-atom" />
-                  <i className="nc-icon nc-single-copy-04" />
-                  <i className="nc-icon nc-glasses-2" />
-                  <i className="nc-icon nc-planet" />
-                  <i className="nc-icon nc-globe-2" />
-                  <i className="nc-icon nc-caps-small" />
-                  <i className="nc-icon nc-bulb-63" />
-                </div>
+              <Col md="4">
+                <Card style={{ width: "20rem" }}>
+                  <CardImg
+                    top
+                    src={require("assets/img/qr-test.jpeg")}
+                    alt="..."
+                  />
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardText>
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </CardText>
+                    <Button color="primary">Go somewhere</Button>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col md="4">
+                <Card style={{ width: "20rem" }}>
+                  <CardImg
+                    top
+                    src={require("assets/img/qr-test.jpeg")}
+                    alt="..."
+                  />
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardText>
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </CardText>
+                    <Button color="primary">Go somewhere</Button>
+                  </CardBody>
+                </Card>
               </Col>
             </Row>
           </Container>

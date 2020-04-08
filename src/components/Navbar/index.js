@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import classnames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 // reactstrap components
 import {
@@ -13,7 +15,7 @@ import {
   Nav,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 // core components
@@ -93,58 +95,45 @@ function MainNavbar() {
           <Nav navbar>
             <NavItem>
               <NavLink
-                to="#como-funciona"
+                to="#garantia"
                 tag={HashLink}
                 smooth
                 style={{ color: "rgb(30, 25, 75)" }}
               >
-                ¿Cómo funciona?
+                Garantía
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                to="#servicios"
+                to="#productos"
                 tag={HashLink}
                 smooth
                 style={{ color: "rgb(30, 25, 75)" }}
               >
-                Servicios
+                Productos
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                to="#contacto"
+                to="#institucionales"
                 tag={HashLink}
                 smooth
                 style={{ color: "rgb(30, 25, 75)" }}
               >
-                Contáctanos
+                Ventas Institucionales
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                data-placement="bottom"
-                href="https://www.facebook.com/workorona"
-                target="_blank"
-                title="Follow us on Facebook"
+                to="/checkout"
+                tag={Link}
+                title="Cart"
                 rel="noopener"
                 style={{ color: "rgb(30, 25, 75)" }}
+                className="mb-3"
               >
-                <i className="fa fa-facebook" />
-                <p className="d-lg-none">Facebook</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement="bottom"
-                href="https://www.instagram.com/workorona"
-                target="_blank"
-                title="Follow us on Instagram"
-                rel="noopener"
-                style={{ color: "rgb(30, 25, 75)" }}
-              >
-                <i className="fa fa-instagram" />
-                <p className="d-lg-none">Instagram</p>
+                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                <p className="d-lg-none">Carrito</p>
               </NavLink>
             </NavItem>
           </Nav>

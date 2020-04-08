@@ -11,7 +11,7 @@ import {
   Container,
   Row,
   Col,
-  FormText
+  FormText,
 } from "reactstrap";
 
 const FormSchema = Yup.object().shape({
@@ -19,13 +19,11 @@ const FormSchema = Yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
   text: Yup.string()
     .min(2, "Too Short!")
     .max(500, "Too Long!")
-    .required("Required")
+    .required("Required"),
 });
 
 const FormSection = () => {
@@ -33,20 +31,20 @@ const FormSection = () => {
     initialValues: {
       name: "",
       email: "",
-      text: ""
+      text: "",
     },
     validationSchema: FormSchema,
-    onSubmit: values => {
+    onSubmit: (values) => {
       const { name, email, text } = values;
       const newName = replaceSpace(name);
       const newText = replaceSpace(text);
       sendMsg(newName, email, newText);
-    }
+    },
   });
 
   const { name, email, text } = values;
 
-  const replaceSpace = text => {
+  const replaceSpace = (text) => {
     return text.replace(/ /g, "%20");
   };
 
@@ -57,11 +55,11 @@ const FormSection = () => {
 
   return (
     <Fragment>
-      <div className="section landing-section" id="contacto">
+      <div className="section landing-section" id="institucionales">
         <Container>
           <Row>
             <Col className="ml-auto mr-auto" md="8">
-              <h2 className="title text-center">Contáctanos</h2>
+              <h2 className="title text-center">Ventas Institucionales</h2>
               <Form className="contact-form" onSubmit={handleSubmit}>
                 <Row>
                   <Col md="6">
