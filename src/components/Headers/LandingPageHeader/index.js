@@ -32,7 +32,7 @@ const LandingPageHeader = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
         className="page-header"
-        data-parallax={true}
+        // data-parallax={true}
         ref={pageHeader}
       >
         <div className="filter" />

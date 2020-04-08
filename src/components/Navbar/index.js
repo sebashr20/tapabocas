@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 
 // reactstrap components
 import {
@@ -129,10 +129,10 @@ function MainNavbar() {
                 tag={Link}
                 title="Cart"
                 rel="noopener"
-                style={{ color: "rgb(30, 25, 75)" }}
-                className="mb-3"
+                style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
+                className="my-0 mx-0 mt-1"
               >
-                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
                 <p className="d-lg-none">Carrito</p>
               </NavLink>
             </NavItem>
