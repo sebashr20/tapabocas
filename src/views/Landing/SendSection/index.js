@@ -20,6 +20,7 @@ const FormSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
+  phone: Yup.number().required("Required"),
   text: Yup.string()
     .min(2, "Too Short!")
     .max(500, "Too Long!")
@@ -31,6 +32,7 @@ const FormSection = () => {
     initialValues: {
       name: "",
       email: "",
+      phone: "",
       text: "",
     },
     validationSchema: FormSchema,
@@ -42,14 +44,14 @@ const FormSection = () => {
     },
   });
 
-  const { name, email, text } = values;
+  const { name, email, phone, text } = values;
 
   const replaceSpace = (text) => {
     return text.replace(/ /g, "%20");
   };
 
   const sendMsg = (name, email, text) => {
-    const url = `https://api.whatsapp.com/send?phone=573053736984&text=Hola%20Workorona!%20Estoy%20interesad@%20en%20tus%20servicios.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
+    const url = `https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!%20Estoy%20interesad@%20en%20tus%20servicios.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
     window.open(url, "_blank");
   };
 
@@ -58,11 +60,11 @@ const FormSection = () => {
       <div className="section landing-section" id="institucionales">
         <Container>
           <Row>
-            <Col className="ml-auto mr-auto" md="8">
+            <Col className="ml-auto mr-auto" md="9">
               <h2 className="title text-center">Ventas Institucionales</h2>
               <Form className="contact-form" onSubmit={handleSubmit}>
                 <Row>
-                  <Col md="6">
+                  <Col md="4">
                     <label>Nombre</label>
                     <InputGroup>
                       <Input
@@ -77,7 +79,7 @@ const FormSection = () => {
                     </InputGroup>
                     <FormText className="text-danger">{errors.name}</FormText>
                   </Col>
-                  <Col md="6">
+                  <Col md="4">
                     <label>Email</label>
                     <InputGroup>
                       <Input
@@ -92,6 +94,21 @@ const FormSection = () => {
                     </InputGroup>
                     <FormText className="text-danger">{errors.email}</FormText>
                   </Col>
+                  <Col md="4">
+                    <label>Celular</label>
+                    <InputGroup>
+                      <Input
+                        placeholder="Celular"
+                        id="phone"
+                        name="phone"
+                        type="text"
+                        onChange={handleChange}
+                        value={phone}
+                        invalid={errors.phone && touched.phone ? true : false}
+                      />
+                    </InputGroup>
+                    <FormText className="text-danger">{errors.phone}</FormText>
+                  </Col>
                 </Row>
                 <label>Mensaje</label>
                 <Input
@@ -104,12 +121,12 @@ const FormSection = () => {
                   value={text}
                   invalid={errors.text && touched.text ? true : false}
                 />
+                <FormText className="text-danger">{errors.text}</FormText>
                 <p className="mt-3">
                   Al enviarnos tu solicitud estás aceptando nuestros{" "}
                   <Link to="/terminos">términos y condiciones</Link> y{" "}
                   <Link to="/privacidad">políticas de privacidad.</Link>
                 </p>
-                <FormText className="text-danger">{errors.text}</FormText>
                 <Row>
                   <Col className="ml-auto mr-auto text-center">
                     <Button

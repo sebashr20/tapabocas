@@ -26,8 +26,7 @@ const MainFooter = () => {
             </nav>
             <div className="credits ml-auto">
               <span className="copyright">
-                © {new Date().getFullYear()}, hecho con{" "}
-                <i className="fa fa-heart heart" /> por Workorona
+                © {new Date().getFullYear()}, TapabocasYa
               </span>
             </div>
           </Row>

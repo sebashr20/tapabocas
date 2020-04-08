@@ -67,7 +67,7 @@ function MainNavbar() {
             className="py-0"
           >
             <Row xs="2">
-              <Col>
+              <Col className="px-0">
                 <img
                   alt="..."
                   style={{ width: "230px" }}
