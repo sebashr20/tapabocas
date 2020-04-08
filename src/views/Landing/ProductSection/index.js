@@ -31,7 +31,7 @@ const ProductSection = () => {
           <br />
           <Row>
             {products.map((product) => (
-              <Col md="4" key={product.id}>
+              <Col md="4" key={product.id} className="mb-2">
                 <Card style={{ width: "20rem" }} className="my-auto mx-auto">
                   <CardImg top src={product.img} alt="..." />
                   <CardBody>

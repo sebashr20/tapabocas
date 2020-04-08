@@ -1,4 +1,4 @@
-import React, { Fragment, createRef, useEffect } from "react";
+import React, { Fragment } from "react";
 import { HashLink } from "react-router-hash-link";
 
 // reactstrap components
@@ -6,25 +6,9 @@ import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
 const backgroundImage =
-  "https://res.cloudinary.com/sebashr20/image/upload/v1586315564/v64l83ia2uqap5cwhkxg.jpg";
+  "https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586315564/v64l83ia2uqap5cwhkxg.jpg";
 
 const LandingPageHeader = () => {
-  let pageHeader = createRef();
-
-  useEffect(() => {
-    if (window.innerWidth < 991) {
-      const updateScroll = () => {
-        let windowScrollTop = window.pageYOffset / 3;
-        pageHeader.current.style.transform =
-          "translate3d(0," + windowScrollTop + "px,0)";
-      };
-      window.addEventListener("scroll", updateScroll);
-      return function cleanup() {
-        window.removeEventListener("scroll", updateScroll);
-      };
-    }
-  });
-
   return (
     <Fragment>
       <div
@@ -32,8 +16,6 @@ const LandingPageHeader = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
         className="page-header"
-        // data-parallax={true}
-        ref={pageHeader}
       >
         <div className="filter" />
         <Container>
@@ -52,7 +34,7 @@ const LandingPageHeader = () => {
               type="button"
               tag={HashLink}
               smooth
-              to="#como-funciona"
+              to="#garantia"
             >
               Conoce nuestros productos
             </Button>

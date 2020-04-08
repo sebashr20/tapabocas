@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import classnames from "classnames";
@@ -24,14 +24,8 @@ const logo =
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
-  const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
-  const toggleNavbarCollapse = () => {
-    setNavbarCollapse(!navbarCollapse);
-    document.documentElement.classList.toggle("nav-open");
-  };
-
-  React.useEffect(() => {
+  useEffect(() => {
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 49 ||
@@ -77,21 +71,18 @@ function MainNavbar() {
               </Col>
             </Row>
           </NavbarBrand>
-          <button
-            aria-expanded={navbarCollapse}
-            className="navbar-toggler navbar-toggler"
-            onClick={toggleNavbarCollapse}
+          <NavLink
+            to="/checkout"
+            tag={Link}
+            title="Cart"
+            rel="noopener"
+            style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
+            className="navbar-toggler my-0 mx-0 mt-1"
           >
-            <span className="navbar-toggler-bar bar1" />
-            <span className="navbar-toggler-bar bar2" />
-            <span className="navbar-toggler-bar bar3" />
-          </button>
+            <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
+          </NavLink>
         </div>
-        <Collapse
-          className="justify-content-end"
-          navbar
-          isOpen={navbarCollapse}
-        >
+        <Collapse className="justify-content-end" navbar>
           <Nav navbar>
             <NavItem>
               <NavLink
@@ -127,13 +118,10 @@ function MainNavbar() {
               <NavLink
                 to="/checkout"
                 tag={Link}
-                title="Cart"
-                rel="noopener"
                 style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
-                className="my-0 mx-0 mt-1"
+                className="my-0 mx-0 mt-2"
               >
                 <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
-                <p className="d-lg-none">Carrito</p>
               </NavLink>
             </NavItem>
           </Nav>
