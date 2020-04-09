@@ -11,7 +11,6 @@ import {
   Col,
   Card,
   CardBody,
-  CardImg,
   CardTitle,
   CardText,
   Button,
@@ -20,6 +19,7 @@ import {
 } from "reactstrap";
 
 // core components
+import { Carousel } from "../../../components";
 
 const ProductSection = ({ cartItemNumber }) => {
   const { cart, products, skus, addProductToCart } = useContext(ShopContext);
@@ -39,9 +39,9 @@ const ProductSection = ({ cartItemNumber }) => {
             {products.map((product) => (
               <Col md="4" key={product.type} className="mb-3">
                 <Card style={{ width: "100%" }} className="my-auto mx-auto">
-                  <CardImg top src={product.img} alt="..." />
+                  <Carousel />
                   <CardBody className="pt-0">
-                    <CardTitle className="my-0 mb-2">
+                    <CardTitle className="my-0 mb-3 mt-4">
                       <h4 className="my-0">{product.title}</h4>
                     </CardTitle>
                     <CardBody
