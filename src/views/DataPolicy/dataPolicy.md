@@ -1,6 +1,6 @@
 ### Sección 1 - ¿Qué hacemos con tu información?
 
-Cuando compras en Workorona, como parte del proceso de compra venta, nosotros recolectamos la información personal que nos das como nombre, dirección y correo electrónico.
+Cuando compras en TapabocasYa, como parte del proceso de compra venta, nosotros recolectamos la información personal que nos das como nombre, dirección y correo electrónico.
 
 Email marketing (si aplica): Con tu permiso, podremos enviarte correos electrónicos acerca de nuestra tienda, nuevos productos y otras actualizaciones
 
@@ -14,7 +14,7 @@ Si te pedimos tu información personal por una razón secundaria, como marketing
 
 ##### ¿Cómo puedo anular mi consentimiento?
 
-Si luego de haber aceptado cambias de opinión, puedes anular tu consentimiento para que te contactemos, por la recolección, uso o divulgación de tu información, en cualquier momento, contactándonos a workorona.com@gmail.com.
+Si luego de haber aceptado cambias de opinión, puedes anular tu consentimiento para que te contactemos, por la recolección, uso o divulgación de tu información, en cualquier momento, contactándonos a Tapabocasaya@gmail.com.
 
 ### Sección 3 - Divulgación
 
@@ -54,11 +54,11 @@ Si nos proporcionas la información de tu tarjeta de crédito, dicha informació
 
 ### Sección 7 - Menores de edad
 
-Workorona no se dirige a niños menores de 13 años. Workorona tampoco se ofrece a menores cuando, por razón de su edad, sea ilegal tratar sus datos personales o se requiera el consentimiento paterno para el tratamiento de dichos datos personales con arreglo al RGPD o la legislación nacional.
+TapabocasYa no se dirige a niños menores de 13 años. TapabocasYa tampoco se ofrece a menores cuando, por razón de su edad, sea ilegal tratar sus datos personales o se requiera el consentimiento paterno para el tratamiento de dichos datos personales con arreglo al RGPD o la legislación nacional.
 
-No recopilamos a sabiendas datos personales de niños menores de 13 años o que no hayan cumplido el límite de edad. Si usted no ha cumplido el Límite de Edad, le rogamos que no utilice Workorona y no nos facilite datos personales.
+No recopilamos a sabiendas datos personales de niños menores de 13 años o que no hayan cumplido el límite de edad. Si usted no ha cumplido el Límite de Edad, le rogamos que no utilice TapabocasYa y no nos facilite datos personales.
 
-Si detectamos que hemos recopilado datos personales de un niño menor de 13 años, adoptaremos las medidas razonables para suprimir dichos datos personales. Para ello, puede ser necesario cancelar la cuenta Workorona de ese menor.
+Si detectamos que hemos recopilado datos personales de un niño menor de 13 años, adoptaremos las medidas razonables para suprimir dichos datos personales. Para ello, puede ser necesario cancelar la cuenta TapabocasYa de ese menor.
 
 ### Sección 8 - Cambios a esta política de privacidad
 
@@ -68,7 +68,7 @@ Si nuestra tienda es adquirida o fusionada con otra empresa, tu información pue
 
 ### Preguntas e información de contacto
 
-Si quieres: acceder, corregir, enmendar o borrar cualquier información personal que poseamos sobre ti, registrar una queja, o simplemente quieres más información contacta a nuestro Oficial de Cumplimiento de Privacidad workorona.com@gmail.com.
+Si quieres: acceder, corregir, enmendar o borrar cualquier información personal que poseamos sobre ti, registrar una queja, o simplemente quieres más información contacta a nuestro Oficial de Cumplimiento de Privacidad TapabocasYa.com@gmail.com.
 
 ---
 

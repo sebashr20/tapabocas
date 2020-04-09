@@ -35,7 +35,7 @@ const HeroSection = () => {
                   <FontAwesomeIcon icon={faUserMd} className="mr-2" />{" "}
                 </div>
                 <div className="description">
-                  <h4 className="info-title mt-1 mb-2">Insumos Quirúrjicos</h4>
+                  <h4 className="info-title mt-1 mb-2">Seguridad</h4>
                   <p className="description">
                     Usamos únicamente insumos quirúrgicos de alta durabilidad,
                     no tejidos, anti-fluidos.

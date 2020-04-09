@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import { Row, Container, Button } from "reactstrap";
 
+const url =
+  "https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!";
+
 const MainFooter = () => {
   return (
     <Fragment>
@@ -20,6 +23,16 @@ const MainFooter = () => {
                 <li>
                   <Button color="link" tag={Link} to="/privacidad">
                     Privacidad
+                  </Button>
+                </li>
+                <li>
+                  <Button
+                    color="link"
+                    href={url}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Contáctanos
                   </Button>
                 </li>
               </ul>

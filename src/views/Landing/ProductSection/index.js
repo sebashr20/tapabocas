@@ -15,6 +15,8 @@ import {
   CardTitle,
   CardText,
   Button,
+  ListGroup,
+  ListGroupItem,
 } from "reactstrap";
 
 // core components
@@ -26,26 +28,60 @@ const ProductSection = () => {
       <div className="section section-dark text-center" id="productos">
         <Container>
           <h2 className="title">Nuestros Productos</h2>
-          <h5 className="description">Usar Workorona es muy simple.</h5>
+          <h5 className="description">
+            Contamos con 3 referencias de tapabocas, en presentaciones de caja
+            x20 y x50 unidades.
+          </h5>
           <br />
           <br />
           <Row>
             {products.map((product) => (
-              <Col md="4" key={product.id} className="mb-2">
-                <Card style={{ width: "20rem" }} className="my-auto mx-auto">
+              <Col md="4" key={product.id} className="mb-3">
+                <Card style={{ width: "100%" }} className="my-auto mx-auto">
                   <CardImg top src={product.img} alt="..." />
-                  <CardBody>
-                    <CardTitle className="mb-1">
-                      <h4 className="my-0 mb-1">{product.title}</h4>
+                  <CardBody className="pt-0">
+                    <CardTitle className="my-0 mb-2">
+                      <h4 className="my-0">{product.title}</h4>
                     </CardTitle>
-                    <CardText>{product.description}</CardText>
-                    <CardText>{product.price}</CardText>
-                    <Button
-                      color="primary"
-                      onClick={addProductToCart.bind(this, product)}
+                    <CardText
+                      className="py-0 my-0 mb-2"
+                      style={{ height: "300px" }}
                     >
-                      Añadir al carrito
-                    </Button>
+                      {product.description}
+                    </CardText>
+                    <ListGroup flush>
+                      <ListGroupItem>
+                        <CardText className="py-0 my-0">
+                          Caja x20 und: $
+                          <strong>
+                            {Intl.NumberFormat().format(product.price)}
+                          </strong>
+                        </CardText>
+                        <Button
+                          color="info"
+                          size="lg"
+                          onClick={addProductToCart.bind(this, product)}
+                          className="mb-2"
+                        >
+                          Añadir al carrito
+                        </Button>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <CardText className="py-0 my-0">
+                          Caja x50 und: $
+                          <strong>
+                            {Intl.NumberFormat().format(product.price)}
+                          </strong>
+                        </CardText>
+                        <Button
+                          color="info"
+                          size="lg"
+                          onClick={addProductToCart.bind(this, product)}
+                        >
+                          Añadir al carrito
+                        </Button>
+                      </ListGroupItem>
+                    </ListGroup>
                   </CardBody>
                 </Card>
               </Col>

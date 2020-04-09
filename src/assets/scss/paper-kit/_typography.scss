@@ -32,12 +32,21 @@ textarea {
 h1,
 .h1,
 h2,
-.h2,
+.h2 {
+  font-family: $font-family-zwizz;
+  margin: $margin-large-vertical 0 0;
+}
+
 h3,
 .h3,
 h4,
-.h4 {
-  font-family: $font-family-zwizz;
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+p {
+  font-family: $font-family-aileron;
   margin: $margin-large-vertical 0 0;
 }
 h1,
@@ -74,7 +83,6 @@ h6,
 .h6 {
   font-size: $font-size-h6;
   font-weight: $font-weight-bold;
-  text-transform: uppercase;
   line-height: 1.5em;
   font-weight: normal;
 }

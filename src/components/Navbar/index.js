@@ -20,7 +20,9 @@ import {
 
 // core components
 const logo =
-  "https://res.cloudinary.com/sebashr20/image/upload/v1584997849/seed/xtxux3aexfhvd8nophkm.png";
+  "https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png";
+const url =
+  "https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -66,7 +68,7 @@ function MainNavbar() {
                   alt="..."
                   style={{ width: "230px" }}
                   src={logo}
-                  className="pb-2"
+                  className="mt-2"
                 />
               </Col>
             </Row>
@@ -116,10 +118,20 @@ function MainNavbar() {
             </NavItem>
             <NavItem>
               <NavLink
+                href={url}
+                target="_blank"
+                rel="noopener"
+                style={{ color: "rgb(30, 25, 75)" }}
+              >
+                Contáctanos
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
                 to="/checkout"
                 tag={Link}
                 style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
-                className="my-0 mx-0 mt-2"
+                className="my-0 mx-0 mt-2 pt-3"
               >
                 <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
               </NavLink>

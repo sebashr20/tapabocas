@@ -6,7 +6,7 @@ import { NavbarBrand, Navbar, Container, Col, Row } from "reactstrap";
 
 // core components
 const logo =
-  "https://res.cloudinary.com/sebashr20/image/upload/v1584997849/seed/xtxux3aexfhvd8nophkm.png";
+  "https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png";
 
 const SimpleNavbar = () => {
   return (
@@ -22,7 +22,12 @@ const SimpleNavbar = () => {
             >
               <Row xs="2">
                 <Col>
-                  <img alt="..." style={{ width: "200px" }} src={logo} />
+                  <img
+                    alt="..."
+                    style={{ width: "230px" }}
+                    src={logo}
+                    className="my-3"
+                  />
                 </Col>
               </Row>
             </NavbarBrand>
