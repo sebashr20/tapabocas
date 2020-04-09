@@ -4,4 +4,3 @@ export { default as ProfilePageHeader } from "./Headers/ProfilePageHeader";
 export { default as Navbar } from "./Navbar";
 export { default as SimpleNavbar } from "./Navbar/SimpleNavbar";
 export { default as MarkdownText } from "./MarkdownText";
-export { default as Carousel } from "./Corousel";
