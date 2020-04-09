@@ -77,12 +77,15 @@ function MainNavbar({ cartItemNumber }) {
           <NavLink
             to="/checkout"
             tag={Link}
-            title="Cart"
-            rel="noopener"
             style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
             className="navbar-toggler my-0 mx-0 mt-1"
           >
             <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
+            {cartItemNumber > 0 ? (
+              <Badge color="danger">
+                <strong>{cartItemNumber}</strong>
+              </Badge>
+            ) : null}
           </NavLink>
         </div>
         <Collapse className="justify-content-end" navbar>

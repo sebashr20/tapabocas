@@ -4,8 +4,8 @@ import ShopContext from "context/shop-context";
 // reactstrap components
 import {
   Container,
-  // Row,
-  // Col,
+  Row,
+  Col,
   // Card,
   // CardBody,
   // CardImg,
@@ -40,54 +40,76 @@ const Checkout = () => {
   return (
     <Fragment>
       <SimpleNavbar />
-      <div>
-        <Container>
-          <main>
-            {cart.length <= 0 && <p>No Item in the Cart!</p>}
-            <ul>
-              {cart.map((cartItem) => (
-                <li key={cartItem.id}>
-                  <div>
-                    <strong>{cartItem.title}</strong> - ${cartItem.price} (
-                    {cartItem.quantity}) = ${cartItem.price * cartItem.quantity}
-                  </div>
-                  <div>
-                    <button onClick={addProductToCart.bind(this, cartItem)}>
-                      +
-                    </button>
-                    <button
-                      onClick={removeProductFromCart.bind(this, cartItem.id)}
-                    >
-                      -
-                    </button>
-                    <button
-                      onClick={clearProductFromCart.bind(this, cartItem.id)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <h5>Total amount: {totalAmount}</h5>
-            <h5>Total qty: {totalQuantity}</h5>
-          </main>
-          <form method="GET" action={url} target="_blank">
-            <input type="hidden" name="public-key" value={publicKey} />
-            <input type="hidden" name="currency" value={currency} />
-            <input type="hidden" name="amount-in-cents" value={value} />
-            <input type="hidden" name="reference" value={reference} />
-            <input type="hidden" name="redirect-url" value={redirectUrl} />
-            <Button
-              color="primary"
-              type="submit"
-              disabled={cart.length === 0 ? true : false}
-            >
-              Pagar
-            </Button>
-          </form>
-        </Container>
-      </div>
+      <Container>
+        {cart.length <= 0 ? (
+          <p>No Item in the Cart!</p>
+        ) : (
+          <Fragment>
+            <Row md="12" className="mt-4">
+              <Col md="9">
+                {cart.map((cartItem) => (
+                  <Row md="12" key={cartItem.id}>
+                    <Col md="4">
+                      <img
+                        alt="..."
+                        style={{ width: "170px" }}
+                        src={cartItem.img}
+                      />
+                    </Col>
+                    <Col md="3">{cartItem.title}</Col>
+                    <Col md="2">${cartItem.price}</Col>
+                    <Col md="2">
+                      <div>
+                        <button onClick={addProductToCart.bind(this, cartItem)}>
+                          +
+                        </button>{" "}
+                        {cartItem.quantity}{" "}
+                        <button
+                          onClick={removeProductFromCart.bind(
+                            this,
+                            cartItem.id
+                          )}
+                        >
+                          -
+                        </button>
+                      </div>
+                    </Col>
+                    <Col md="1">
+                      <button
+                        onClick={clearProductFromCart.bind(this, cartItem.id)}
+                      >
+                        X
+                      </button>
+                    </Col>
+                  </Row>
+                ))}
+              </Col>
+              <Col md="3">
+                <form method="GET" action={url} target="_blank">
+                  <input type="hidden" name="public-key" value={publicKey} />
+                  <input type="hidden" name="currency" value={currency} />
+                  <input type="hidden" name="amount-in-cents" value={value} />
+                  <input type="hidden" name="reference" value={reference} />
+                  <input
+                    type="hidden"
+                    name="redirect-url"
+                    value={redirectUrl}
+                  />
+                  <h5 className="my-0">Total amount: {totalAmount}</h5>
+                  <h5 className="my-0">Total qty: {totalQuantity}</h5>
+                  <Button
+                    color="primary"
+                    type="submit"
+                    disabled={cart.length === 0 ? true : false}
+                  >
+                    Pagar
+                  </Button>
+                </form>
+              </Col>
+            </Row>
+          </Fragment>
+        )}
+      </Container>
     </Fragment>
   );
 };

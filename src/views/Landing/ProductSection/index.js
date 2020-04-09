@@ -44,12 +44,12 @@ const ProductSection = ({ cartItemNumber }) => {
                     <CardTitle className="my-0 mb-2">
                       <h4 className="my-0">{product.title}</h4>
                     </CardTitle>
-                    <CardText
+                    <CardBody
                       className="py-0 my-0 mb-2"
-                      style={{ height: "310px" }}
+                      style={{ height: "340px" }}
                     >
                       {product.description}
-                    </CardText>
+                    </CardBody>
                     <ListGroup flush>
                       {skus.map((sku) =>
                         product.type === sku.type ? (

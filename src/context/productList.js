@@ -7,6 +7,7 @@ export const skus = [
     title: "Tapabocas Tipo 1 x20",
     size: "x20",
     price: 10000,
+    img: require("assets/img/qr-test.jpeg"),
   },
   {
     id: "t1_50,",
@@ -14,6 +15,7 @@ export const skus = [
     title: "Tapabocas Tipo 1 x50",
     size: "x50",
     price: 20000,
+    img: require("assets/img/qr-test.jpeg"),
   },
   {
     id: "t2_20,",
@@ -21,6 +23,7 @@ export const skus = [
     title: "Tapabocas Tipo 2 x20",
     size: "x20",
     price: 30000,
+    img: require("assets/img/qr-test.jpeg"),
   },
   {
     id: "t2_50,",
@@ -28,6 +31,7 @@ export const skus = [
     title: "Tapabocas Tipo 2 x50",
     size: "x50",
     price: 40000,
+    img: require("assets/img/qr-test.jpeg"),
   },
   {
     id: "t3_20,",
@@ -35,6 +39,7 @@ export const skus = [
     title: "Tapabocas Tipo 3 x20",
     size: "x20",
     price: 50000,
+    img: require("assets/img/qr-test.jpeg"),
   },
   {
     id: "t3_50,",
@@ -42,6 +47,7 @@ export const skus = [
     title: "Tapabocas Tipo 3 x50",
     size: "x50",
     price: 60000,
+    img: require("assets/img/qr-test.jpeg"),
   },
 ];
 
@@ -51,17 +57,19 @@ export const products = [
     title: "Tapabocas Tipo 1",
     price: 10000,
     description: (
-      <ul className="text-left pl-4">
-        <li>Cintas elásticas: elastómero color blanco.</li>
-        <li>
+      <div className="text-left">
+        <p className="my-0 mb-2">Cintas elásticas: elastómero color blanco.</p>
+        <p className="my-0 mb-2">
           Tela interna: 100% filamento de poliéster, con secado rápido y
           absorción.
-        </li>
-        <li>Tela externa: tela no tejida 100% poliéster.</li>
-        <li>Color: blanco.</li>
-        <li>Tamaño: 20x9cm.</li>
-        <li>Lavable (hasta 3 veces).</li>
-      </ul>
+        </p>
+        <p className="my-0 mb-2">
+          Tela externa: tela no tejida 100% poliéster.
+        </p>
+        <p className="my-0 mb-2">Color: blanco.</p>
+        <p className="my-0 mb-2">Tamaño: 20x9cm.</p>
+        <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
+      </div>
     ),
     button: "Comprar",
     img: require("assets/img/qr-test.jpeg"),
@@ -71,19 +79,24 @@ export const products = [
     title: "Tapabocas Tipo 2",
     price: 20000,
     description: (
-      <ul className="text-left pl-4">
-        <li>
+      <div className="text-left">
+        <p className="my-0 mb-2">
           Dos capas de tela quirúrgica antifluida de 60gr c/u, ecológica,
           antialérgica, impermeable, antiestática, no-tóxica.
-        </li>
-        <li>Tipo de agarre: elástico plano para ajustar en la oreja.</li>
-        <li>
+        </p>
+        <p className="my-0 mb-2">
+          Tipo de agarre: elástico plano para ajustar en la oreja.
+        </p>
+        <p className="my-0 mb-2">
           Las medidas de corte: 18x16cm. Medidas del producto terminado:
           15,5x7,5cm.
-        </li>
-        <li>Con tres pliegues y terminación de dobles y fileteado.</li>
-        <li>Lavable (hasta 3 veces).</li>
-      </ul>
+        </p>
+        <p className="my-0 mb-2">
+          Con tres pliegues y terminación de dobles y fileteado.
+        </p>
+
+        <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
+      </div>
     ),
     button: "Comprar",
     img: require("assets/img/qr-test.jpeg"),
@@ -93,15 +106,17 @@ export const products = [
     title: "Tapabocas Tipo 3",
     price: 30000,
     description: (
-      <ul className="text-left pl-4">
-        <li>
+      <div className="text-left">
+        <p className="my-0 mb-2">
           Tela no tejida producida con fibras continuas de 100% polipropileno
           por proceso spundond, generando multifilamentos.
-        </li>
-        <li>Tipo de agarre: elástico para ajustar en la oreja.</li>
-        <li>Tipo copa, terminación con filete.</li>
-        <li>Un solo uso</li>
-      </ul>
+        </p>
+        <p className="my-0 mb-2">
+          Tipo de agarre: elástico para ajustar en la oreja.
+        </p>
+        <p className="my-0 mb-2">Tipo copa, terminación con filete.</p>
+        <p className="my-0 mb-2">Un solo uso.</p>
+      </div>
     ),
     button: "Comprar",
     img: require("assets/img/qr-test.jpeg"),
