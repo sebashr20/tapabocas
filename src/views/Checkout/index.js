@@ -1,23 +1,34 @@
 import React, { Fragment, useContext } from "react";
+import randomCode from "crypto-random-string";
 import ShopContext from "context/shop-context";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 // reactstrap components
 import {
   Container,
   Row,
   Col,
-  // Card,
-  // CardBody,
-  // CardImg,
-  // CardTitle,
-  // CardText,
   Button,
+  InputGroup,
+  Input,
+  Form,
+  FormText,
 } from "reactstrap";
 
 // core components
 import { SimpleNavbar } from "components";
 
+// formik schema
+const CheckoutSchema = Yup.object().shape({
+  address: Yup.string()
+    .min(10, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Requerido"),
+});
+
 const Checkout = () => {
+  // global contex
   const {
     cart,
     totalAmount,
@@ -27,25 +38,42 @@ const Checkout = () => {
     clearProductFromCart,
   } = useContext(ShopContext);
 
+  // wompi parameters
   const formData = {
-    url: "https://checkout.wompi.co/p/",
     publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAez7HgGORGf",
+    // publicKey: "pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O",
     currency: "COP",
     value: totalAmount * 100,
-    reference: "0314d652-8f8d-48aa-81ba-434fae2998ed",
-    redirectUrl: "http://localhost:3000/",
+    reference: randomCode({ length: 6 }),
+    redirectUrl: "http://localhost:3000/checkout/status",
   };
-  const { url, publicKey, currency, value, reference, redirectUrl } = formData;
+  const { publicKey, currency, value, reference, redirectUrl } = formData;
+  const newRedirectUrl = redirectUrl.replace(/:/g, "%3A").replace(/\//g, "%2F");
+  const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
+
+  // fromik config
+  const { values, handleSubmit, handleChange, errors, touched } = useFormik({
+    initialValues: {
+      address: "",
+    },
+    validationSchema: CheckoutSchema,
+    onSubmit: (values) => {
+      const { address } = values;
+      console.log("ADR", address);
+      window.open(url, "_blank");
+    },
+  });
+  const { address } = values;
 
   return (
     <Fragment>
       <SimpleNavbar />
       <Container>
         {cart.length <= 0 ? (
-          <p>No Item in the Cart!</p>
+          <p>No hay productos en el carrtio.</p>
         ) : (
           <Fragment>
-            <Row md="12" className="mt-4">
+            <Row className="mt-4">
               <Col md="9">
                 {cart.map((cartItem) => (
                   <Row md="12" key={cartItem.id}>
@@ -85,16 +113,20 @@ const Checkout = () => {
                 ))}
               </Col>
               <Col md="3">
-                <form method="GET" action={url} target="_blank">
-                  <input type="hidden" name="public-key" value={publicKey} />
-                  <input type="hidden" name="currency" value={currency} />
-                  <input type="hidden" name="amount-in-cents" value={value} />
-                  <input type="hidden" name="reference" value={reference} />
-                  <input
-                    type="hidden"
-                    name="redirect-url"
-                    value={redirectUrl}
-                  />
+                <Form onSubmit={handleSubmit}>
+                  <label>Dirección</label>
+                  <InputGroup>
+                    <Input
+                      placeholder="Dirección"
+                      type="text"
+                      id="address"
+                      name="address"
+                      onChange={handleChange}
+                      value={address}
+                      invalid={errors.address && touched.address ? true : false}
+                    />
+                  </InputGroup>
+                  <FormText className="text-danger">{errors.address}</FormText>
                   <h5 className="my-0">Total amount: {totalAmount}</h5>
                   <h5 className="my-0">Total qty: {totalQuantity}</h5>
                   <Button
@@ -104,7 +136,7 @@ const Checkout = () => {
                   >
                     Pagar
                   </Button>
-                </form>
+                </Form>
               </Col>
             </Row>
           </Fragment>

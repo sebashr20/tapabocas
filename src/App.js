@@ -7,17 +7,24 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/paper-kit.scss";
 
 // pages
-import { Landing, Checkout } from "views";
+import { Landing, Checkout, Terms, DataPolicy, PayStatus } from "views";
 
 const App = () => {
   return (
     <BrowserRouter>
       <GlobalState>
         <Switch>
+          <Route path="/terminos" render={(props) => <Terms {...props} />} />
+          <Route
+            path="/privacidad"
+            render={(props) => <DataPolicy {...props} />}
+          />
+          <Route
+            path="/checkout/status"
+            render={(props) => <PayStatus {...props} />}
+          />
           <Route path="/checkout" render={(props) => <Checkout {...props} />} />
           <Route path="/" render={(props) => <Landing {...props} />} />
-          {/* <Route path="/terminos" render={props => <Terms {...props} />} />
-        <Route path="/privacidad" render={props => <DataPolicy {...props} />} /> */}
           <Redirect to="/" />
         </Switch>
       </GlobalState>
