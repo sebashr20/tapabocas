@@ -51,7 +51,7 @@ const FormSection = () => {
   };
 
   const sendMsg = (name, email, text) => {
-    const url = `https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!%20Estoy%20interesad@%20en%20tus%20servicios.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
+    const url = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
     window.open(url, "_blank");
   };
 
@@ -112,7 +112,7 @@ const FormSection = () => {
                 </Row>
                 <label>Mensaje</label>
                 <Input
-                  placeholder="Cuéntanos detalladamente de qué es el trabajo o asesoría que necesitas..."
+                  placeholder="Dinos el nombre de tu empresa y el requerimiento que tienes..."
                   type="textarea"
                   rows="4"
                   id="text"

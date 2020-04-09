@@ -22,8 +22,7 @@ import {
 // core components
 const logo =
   "https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png";
-const url =
-  "https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!";
+const url = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
 
 function MainNavbar({ cartItemNumber }) {
   const [navbarColor, setNavbarColor] = useState("navbar-transparent");
