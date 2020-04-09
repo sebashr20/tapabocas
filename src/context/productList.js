@@ -72,7 +72,26 @@ export const products = [
       </div>
     ),
     button: "Comprar",
-    img: require("assets/img/qr-test.jpeg"),
+    carousel: [
+      {
+        src: require("assets/img/t1_i1.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t1_i1",
+      },
+      {
+        src: require("assets/img/t1_i2.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t1_i2",
+      },
+      // {
+      //   src: require("assets/img/qr-test.jpeg"),
+      //   altText: "",
+      //   caption: "",
+      //   key: "t1_i3",
+      // },
+    ],
   },
   {
     type: "t2",
@@ -99,7 +118,26 @@ export const products = [
       </div>
     ),
     button: "Comprar",
-    img: require("assets/img/qr-test.jpeg"),
+    carousel: [
+      {
+        src: require("assets/img/t2_i1.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t2_i1",
+      },
+      {
+        src: require("assets/img/t2_i2.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t2_i2",
+      },
+      // {
+      //   src: require("assets/img/qr-test.jpeg"),
+      //   altText: "",
+      //   caption: "",
+      //   key: "t2_i3",
+      // },
+    ],
   },
   {
     type: "t3",
@@ -119,6 +157,25 @@ export const products = [
       </div>
     ),
     button: "Comprar",
-    img: require("assets/img/qr-test.jpeg"),
+    carousel: [
+      {
+        src: require("assets/img/t3_i1.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t3_i1",
+      },
+      {
+        src: require("assets/img/t3_i2.jpeg"),
+        altText: "",
+        caption: "",
+        key: "t3_i2",
+      },
+      // {
+      //   src: require("assets/img/qr-test.jpeg"),
+      //   altText: "",
+      //   caption: "",
+      //   key: "t3_i3",
+      // },
+    ],
   },
 ];
