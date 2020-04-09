@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-
 import ShopContext from "./shop-context";
+import { products, skus } from "./productList";
 import {
   shopReducer,
   ADD_PRODUCT,
@@ -9,69 +9,6 @@ import {
 } from "./reducers";
 
 const GlobalState = (props) => {
-  const products = [
-    {
-      id: "p1",
-      title: "Tapabocas Tipo 1",
-      price: 10000,
-      description: (
-        <ul className="text-left pl-4">
-          <li>Cintas elásticas: elastómero color blanco.</li>
-          <li>
-            Tela interna: 100% filamento de poliéster, con secado rápido y
-            absorción.
-          </li>
-          <li>Tela externa: tela no tejida 100% poliéster.</li>
-          <li>Color: blanco.</li>
-          <li>Tamaño: 20x9cm.</li>
-          <li>Lavable (hasta 3 veces).</li>
-        </ul>
-      ),
-      button: "Comprar",
-      img: require("assets/img/qr-test.jpeg"),
-    },
-    {
-      id: "p2",
-      title: "Tapabocas Tipo 2",
-      price: 20000,
-      description: (
-        <ul className="text-left pl-4">
-          <li>
-            Dos capas de tela quirúrgica antifluida de 60gr c/u, ecológica,
-            antialérgica, impermeable, antiestática, no-tóxica.
-          </li>
-          <li>Tipo de agarre: elástico plano para ajustar en la oreja.</li>
-          <li>
-            Las medidas de corte: 18x16cm. Medidas del producto terminado:
-            15,5x7,5cm.
-          </li>
-          <li>Con tres pliegues y terminación de dobles y fileteado.</li>
-          <li>Lavable (hasta 3 veces).</li>
-        </ul>
-      ),
-      button: "Comprar",
-      img: require("assets/img/qr-test.jpeg"),
-    },
-    {
-      id: "p3",
-      title: "Tapabocas Tipo 3",
-      price: 30000,
-      description: (
-        <ul className="text-left pl-4">
-          <li>
-            Tela no tejida producida con fibras continuas de 100% polipropileno
-            por proceso spundond, generando multifilamentos.
-          </li>
-          <li>Tipo de agarre: elástico para ajustar en la oreja.</li>
-          <li>Tipo copa, terminación con filete.</li>
-          <li>Un solo uso</li>
-        </ul>
-      ),
-      button: "Comprar",
-      img: require("assets/img/qr-test.jpeg"),
-    },
-  ];
-
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
   const addProductToCart = (product) => {
@@ -116,6 +53,7 @@ const GlobalState = (props) => {
     <ShopContext.Provider
       value={{
         products: products,
+        skus: skus,
         cart: cartState.cart,
         totalAmount: totals(cartState.cart).amount,
         totalQuantity: totals(cartState.cart).qty,

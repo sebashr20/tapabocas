@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useContext } from "react";
+import ShopContext from "context/shop-context";
 
 // reactstrap components
 
@@ -9,21 +10,19 @@ import HeroSection from "./HeroSection";
 import ProductSection from "./ProductSection";
 
 const LandingPage = () => {
-  document.documentElement.classList.remove("nav-open");
-  useEffect(() => {
-    document.body.classList.add("profile-page");
-    return function cleanup() {
-      document.body.classList.remove("profile-page");
-    };
-  });
+  const { cart } = useContext(ShopContext);
+
+  const itemCounter = cart.reduce((count, curItem) => {
+    return count + curItem.quantity;
+  }, 0);
 
   return (
     <Fragment>
-      <Navbar />
+      <Navbar cartItemNumber={itemCounter} />
       <div className="main">
         <LandingPageHeader />
         <HeroSection />
-        <ProductSection />
+        <ProductSection cartItemNumber={itemCounter} />
         <FormSection />
       </div>
       <Footer />

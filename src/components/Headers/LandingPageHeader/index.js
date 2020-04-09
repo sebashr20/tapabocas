@@ -15,6 +15,7 @@ const LandingPageHeader = () => {
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
+        alt="Foto de Médico creado por freepik - www.freepik.es"
         className="page-header"
       >
         <div className="filter" />

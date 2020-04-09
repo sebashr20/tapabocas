@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import classnames from "classnames";
@@ -16,6 +16,7 @@ import {
   Container,
   Row,
   Col,
+  Badge,
 } from "reactstrap";
 
 // core components
@@ -24,8 +25,8 @@ const logo =
 const url =
   "https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!";
 
-function MainNavbar() {
-  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
+function MainNavbar({ cartItemNumber }) {
+  const [navbarColor, setNavbarColor] = useState("navbar-transparent");
 
   useEffect(() => {
     const updateNavbarColor = () => {
@@ -130,10 +131,18 @@ function MainNavbar() {
               <NavLink
                 to="/checkout"
                 tag={Link}
-                style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
-                className="my-0 mx-0 mt-2 pt-3"
+                style={{
+                  color: "rgb(30, 25, 75)",
+                  fontSize: "20px",
+                }}
+                className="mt-2"
               >
                 <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
+                {cartItemNumber > 0 ? (
+                  <Badge color="danger">
+                    <strong>{cartItemNumber}</strong>
+                  </Badge>
+                ) : null}
               </NavLink>
             </NavItem>
           </Nav>

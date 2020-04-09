@@ -21,8 +21,9 @@ import {
 
 // core components
 
-const ProductSection = () => {
-  const { cart, products, addProductToCart } = useContext(ShopContext);
+const ProductSection = ({ cartItemNumber }) => {
+  const { cart, products, skus, addProductToCart } = useContext(ShopContext);
+
   return (
     <Fragment>
       <div className="section section-dark text-center" id="productos">
@@ -36,7 +37,7 @@ const ProductSection = () => {
           <br />
           <Row>
             {products.map((product) => (
-              <Col md="4" key={product.id} className="mb-3">
+              <Col md="4" key={product.type} className="mb-3">
                 <Card style={{ width: "100%" }} className="my-auto mx-auto">
                   <CardImg top src={product.img} alt="..." />
                   <CardBody className="pt-0">
@@ -45,42 +46,31 @@ const ProductSection = () => {
                     </CardTitle>
                     <CardText
                       className="py-0 my-0 mb-2"
-                      style={{ height: "300px" }}
+                      style={{ height: "310px" }}
                     >
                       {product.description}
                     </CardText>
                     <ListGroup flush>
-                      <ListGroupItem>
-                        <CardText className="py-0 my-0">
-                          Caja x20 und: $
-                          <strong>
-                            {Intl.NumberFormat().format(product.price)}
-                          </strong>
-                        </CardText>
-                        <Button
-                          color="info"
-                          size="lg"
-                          onClick={addProductToCart.bind(this, product)}
-                          className="mb-2"
-                        >
-                          Añadir al carrito
-                        </Button>
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        <CardText className="py-0 my-0">
-                          Caja x50 und: $
-                          <strong>
-                            {Intl.NumberFormat().format(product.price)}
-                          </strong>
-                        </CardText>
-                        <Button
-                          color="info"
-                          size="lg"
-                          onClick={addProductToCart.bind(this, product)}
-                        >
-                          Añadir al carrito
-                        </Button>
-                      </ListGroupItem>
+                      {skus.map((sku) =>
+                        product.type === sku.type ? (
+                          <ListGroupItem key={sku.id}>
+                            <CardText className="py-0 my-0">
+                              Caja {sku.size} und: $
+                              <strong>
+                                {Intl.NumberFormat().format(sku.price)}
+                              </strong>
+                            </CardText>
+                            <Button
+                              color="info"
+                              size="lg"
+                              onClick={addProductToCart.bind(this, sku)}
+                              className="mb-2"
+                            >
+                              Agregar al carrito
+                            </Button>
+                          </ListGroupItem>
+                        ) : null
+                      )}
                     </ListGroup>
                   </CardBody>
                 </Card>
@@ -92,7 +82,7 @@ const ProductSection = () => {
           <div className="mt-4">
             <Button color="danger" to="/checkout" tag={Link}>
               <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
-              Ir al carrito
+              Ir al carrito <strong>{`[ ${cartItemNumber} ]`}</strong>
             </Button>
           </div>
         ) : null}
