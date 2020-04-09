@@ -39,7 +39,7 @@ const Checkout = () => {
   } = useContext(ShopContext);
 
   // wompi parameters
-  const formData = {
+  const wompiData = {
     publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAez7HgGORGf",
     // publicKey: "pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O",
     currency: "COP",
@@ -47,7 +47,7 @@ const Checkout = () => {
     reference: randomCode({ length: 6 }),
     redirectUrl: "http://localhost:3000/checkout/status",
   };
-  const { publicKey, currency, value, reference, redirectUrl } = formData;
+  const { publicKey, currency, value, reference, redirectUrl } = wompiData;
   const newRedirectUrl = redirectUrl.replace(/:/g, "%3A").replace(/\//g, "%2F");
   const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
 
@@ -57,9 +57,17 @@ const Checkout = () => {
       address: "",
     },
     validationSchema: CheckoutSchema,
-    onSubmit: (values) => {
-      const { address } = values;
-      console.log("ADR", address);
+    onSubmit: async ({ address }) => {
+      const delivery = [];
+      await cart.map((item) => {
+        return delivery.push({
+          id: item.id,
+          quantity: item.quantity,
+        });
+      });
+      const formData = { ref: reference, cart: delivery, address: address };
+      // to firebase
+      console.log("ADR", formData);
       window.open(url, "_blank");
     },
   });
