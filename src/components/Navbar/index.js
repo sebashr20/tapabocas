@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 // reactstrap components
 import {
@@ -79,7 +79,7 @@ function MainNavbar({ cartItemNumber }) {
             style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
             className="navbar-toggler my-0 mx-0 mt-1"
           >
-            <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
+            <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
             {cartItemNumber > 0 ? (
               <Badge color="danger">
                 <strong>{cartItemNumber}</strong>
@@ -139,7 +139,7 @@ function MainNavbar({ cartItemNumber }) {
                 }}
                 className="mt-2"
               >
-                <FontAwesomeIcon icon={faShoppingBag} className="mr-2" />
+                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
                 {cartItemNumber > 0 ? (
                   <Badge color="danger">
                     <strong>{cartItemNumber}</strong>

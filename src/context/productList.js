@@ -6,8 +6,8 @@ export const skus = [
     type: "t1",
     title: "Tapabocas Tipo 1 x20",
     size: "x20",
-    price: 10000,
-    img: require("assets/img/qr-test.jpeg"),
+    price: 1500,
+    img: require("assets/img/t1_i1.jpeg"),
   },
   {
     id: "t1_50,",
@@ -15,7 +15,7 @@ export const skus = [
     title: "Tapabocas Tipo 1 x50",
     size: "x50",
     price: 20000,
-    img: require("assets/img/qr-test.jpeg"),
+    img: require("assets/img/t1_i1.jpeg"),
   },
   {
     id: "t2_20,",
@@ -23,7 +23,7 @@ export const skus = [
     title: "Tapabocas Tipo 2 x20",
     size: "x20",
     price: 30000,
-    img: require("assets/img/qr-test.jpeg"),
+    img: require("assets/img/t2_i1.jpeg"),
   },
   {
     id: "t2_50,",
@@ -31,7 +31,7 @@ export const skus = [
     title: "Tapabocas Tipo 2 x50",
     size: "x50",
     price: 40000,
-    img: require("assets/img/qr-test.jpeg"),
+    img: require("assets/img/t2_i1.jpeg"),
   },
   {
     id: "t3_20,",
@@ -39,7 +39,7 @@ export const skus = [
     title: "Tapabocas Tipo 3 x20",
     size: "x20",
     price: 50000,
-    img: require("assets/img/qr-test.jpeg"),
+    img: require("assets/img/t3_i1.jpeg"),
   },
   {
     id: "t3_50,",
@@ -47,7 +47,7 @@ export const skus = [
     title: "Tapabocas Tipo 3 x50",
     size: "x50",
     price: 60000,
-    img: require("assets/img/qr-test.jpeg"),
+    img: require("assets/img/t3_i1.jpeg"),
   },
 ];
 

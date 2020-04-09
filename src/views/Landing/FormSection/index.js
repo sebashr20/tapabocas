@@ -101,7 +101,7 @@ const FormSection = () => {
                         placeholder="Celular"
                         id="phone"
                         name="phone"
-                        type="text"
+                        type="number"
                         onChange={handleChange}
                         value={phone}
                         invalid={errors.phone && touched.phone ? true : false}
