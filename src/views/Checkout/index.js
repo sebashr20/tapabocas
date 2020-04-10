@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import randomCode from 'crypto-random-string';
@@ -23,6 +23,7 @@ import {
   FormText,
   ListGroup,
   ListGroupItem,
+  CardImg,
 } from 'reactstrap';
 
 // core components
@@ -68,6 +69,21 @@ const Checkout = () => {
   const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
   const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
 
+  // show QR logic
+  const [state, setState] = useState({
+    payQR: false,
+    showQR: false,
+  });
+  const { payQR, showQR } = state;
+
+  const handleShowQR = (click) => {
+    if (click === 'other') {
+      setState({ ...state, payQR: false });
+    } else {
+      setState({ ...state, payQR: true });
+    }
+  };
+
   // fromik config
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
@@ -93,7 +109,12 @@ const Checkout = () => {
       };
       // to data base
       await createOrder(formData);
-      window.open(url, '_blank');
+      if (payQR) {
+        setState({ ...state, showQR: true });
+      } else {
+        setState({ payQR: false, showQR: false });
+        window.open(url, '_blank');
+      }
     },
   });
   const { address, city, phone } = values;
@@ -301,10 +322,26 @@ const Checkout = () => {
                         type="submit"
                         style={{ width: '100%' }}
                         className="mb-4"
-                        disabled={cart.length === 0 ? true : false}
+                        onClick={() => handleShowQR('other')}
                       >
-                        Pagar
+                        Otros medios de pago
                       </Button>
+                      <Button
+                        color="info"
+                        type="submit"
+                        style={{ width: '100%' }}
+                        className="mb-4"
+                        onClick={() => handleShowQR('qr')}
+                      >
+                        Pagar con código QR
+                      </Button>
+                      {showQR ? (
+                        <CardImg
+                          src="https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586541323/tapabocasya/qr.png"
+                          alt="..."
+                          style={{ maxWidth: '20rem' }}
+                        />
+                      ) : null}
                     </Form>
                   </Col>
                 </Row>

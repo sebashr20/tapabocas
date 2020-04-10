@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const skus = [
   {
@@ -84,6 +85,16 @@ export const products = [
         <p className="my-0 mb-2">Color: blanco.</p>
         <p className="my-0 mb-2">Tamaño: 20x9cm.</p>
         <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">
+          <Link
+            to="https://res.cloudinary.com/sebashr20/image/upload/v1586540710/tapabocasya/product-data-sheet/ud1eqq4n2lku4vcnmd9v.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#51bcda' }}
+          >
+            Descargar ficha técnica.
+          </Link>
+        </p>
       </div>
     ),
     button: 'Comprar',
@@ -127,8 +138,17 @@ export const products = [
         <p className="my-0 mb-2">
           Con tres pliegues y terminación de dobles y fileteado.
         </p>
-
         <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">
+          <Link
+            to="https://res.cloudinary.com/sebashr20/image/upload/v1586540710/tapabocasya/product-data-sheet/ud1eqq4n2lku4vcnmd9v.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#51bcda' }}
+          >
+            Descargar ficha técnica.
+          </Link>
+        </p>
       </div>
     ),
     button: 'Comprar',
@@ -205,6 +225,16 @@ export const products = [
         </p>
         <p className="my-0 mb-2">Tipo copa, terminación con filete.</p>
         <p className="my-0 mb-2">Un solo uso.</p>
+        <p className="my-0 mb-2">
+          <Link
+            to="https://res.cloudinary.com/sebashr20/image/upload/v1586540710/tapabocasya/product-data-sheet/ud1eqq4n2lku4vcnmd9v.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#51bcda' }}
+          >
+            Descargar ficha técnica.
+          </Link>
+        </p>
       </div>
     ),
     button: 'Comprar',

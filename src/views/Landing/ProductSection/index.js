@@ -49,7 +49,7 @@ const ProductSection = ({ cartItemNumber }) => {
                     </CardTitle>
                     <CardBody
                       className="py-0 my-0 mb-2"
-                      style={{ height: '340px' }}
+                      style={{ height: '380px' }}
                     >
                       {product.description}
                       {product.type === 't1' ? (
