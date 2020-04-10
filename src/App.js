@@ -9,6 +9,9 @@ import 'assets/scss/paper-kit.scss';
 // pages
 import { Landing, Checkout, Terms, DataPolicy, PayStatus, Admin } from 'views';
 
+// .evn
+require('dotenv-flow').config();
+
 const App = () => {
   return (
     <BrowserRouter>

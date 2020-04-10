@@ -1,0 +1,11 @@
+{
+  "build": {
+    "env": {
+      "REACT_APP_API_BASE_URL": "@api-base-url",
+      "REACT_APP_WOMPI_BASE_URL": "@wompi-api-url",
+      "REACT_APP_WOMPI_PUBLIC_KEY": "@wompi-public-key",
+      "REACT_APP_WOMPI_REDIRECT_URL": "@wompi-redirect-url",
+      "REACT_APP_WAPP_NUMBER": "@wapp-number"
+    }
+  }
+}

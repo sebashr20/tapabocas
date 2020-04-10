@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export const server = axios.create({
-  // baseURL: 'https://api.tapabocasya.com/api/',
-  baseURL: 'http://localhost:5000/api/',
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 export const wompi = axios.create({
-  baseURL: 'https://production.wompi.co/v1/transactions/',
+  baseURL: process.env.REACT_APP_WOMPI_BASE_URL,
 });

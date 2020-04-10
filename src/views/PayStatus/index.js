@@ -12,7 +12,8 @@ import { getWompi, updateOrder } from 'actions/orders';
 
 const PayStatus = (props) => {
   const { location } = props;
-  const { id } = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const { id, env } = qs.parse(location.search, { ignoreQueryPrefix: true });
+
   const [state, setState] = useState({
     status: '',
     ref: '',
@@ -20,13 +21,15 @@ const PayStatus = (props) => {
   const { status, ref } = state;
 
   useEffect(() => {
-    async function fetchData() {
-      const { reference: ref, status, created_at } = await getWompi(id);
-      await updateOrder('094e49', { status: status, createdAt: created_at });
-      await setState({ status: status, ref: ref });
+    if (!env) {
+      async function fetchData() {
+        const { reference: ref, status, created_at } = await getWompi(id);
+        await updateOrder(ref, { status: status, createdAt: created_at });
+        await setState({ status: status, ref: ref });
+      }
+      fetchData();
     }
-    fetchData();
-  }, [id]);
+  }, [id, env]);
 
   const approved = () => {
     return (
@@ -41,6 +44,7 @@ const PayStatus = (props) => {
       </Fragment>
     );
   };
+
   const declined = () => {
     return (
       <Fragment>
