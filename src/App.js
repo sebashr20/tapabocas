@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import GlobalState from "context/GlobalState";
+import React from 'react';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import GlobalState from 'context/GlobalState';
 
 // styles
-import "assets/css/bootstrap.min.css";
-import "assets/scss/paper-kit.scss";
+import 'assets/css/bootstrap.min.css';
+import 'assets/scss/paper-kit.scss';
 
 // pages
-import { Landing, Checkout, Terms, DataPolicy, PayStatus } from "views";
+import { Landing, Checkout, Terms, DataPolicy, PayStatus, Admin } from 'views';
 
 const App = () => {
   return (
@@ -19,6 +19,7 @@ const App = () => {
             path="/privacidad"
             render={(props) => <DataPolicy {...props} />}
           />
+          <Route path="/admin" render={(props) => <Admin {...props} />} />
           <Route
             path="/checkout/status"
             render={(props) => <PayStatus {...props} />}
