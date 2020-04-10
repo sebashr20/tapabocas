@@ -24,7 +24,9 @@ const LandingPageHeader = () => {
             <span style={{ color: "rgb(30, 25, 75)" }}>
               <Row>
                 <Col xs="12" md="7">
-                  <h1>Proteje tu vida y la de tu familia en todo momento.</h1>
+                  <h1 style={{ marginTop: "1.8em" }}>
+                    Proteje tu vida y la de tu familia en todo momento.
+                  </h1>
                   <h3>Usa solo tapabocas de alta calidad.</h3>
                 </Col>
               </Row>

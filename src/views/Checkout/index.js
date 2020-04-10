@@ -107,121 +107,128 @@ const Checkout = () => {
           ) : (
             <Fragment>
               <Container>
-                <Row className="mt-4">
-                  <Col md="9">
+                <Row className="">
+                  <Col xs="12" md="9" className="px-2 my-2">
                     {cart.map((cartItem) => (
                       <ListGroup flush key={cartItem.id}>
-                        <ListGroupItem>
-                          <Row md="12" className="">
-                            <Col md="3">
-                              <img
-                                alt="..."
-                                style={{ width: "170px" }}
-                                src={cartItem.img}
-                              />
+                        <ListGroupItem className="px-0">
+                          <Row>
+                            <Col xs="3">
+                              <Row>
+                                <Col>
+                                  <img
+                                    alt="..."
+                                    style={{ width: "100%" }}
+                                    src={cartItem.img}
+                                  />
+                                </Col>
+                              </Row>
                             </Col>
-                            <Col md="4">
-                              <h5 className="my-0 mx-0">
-                                <strong>{cartItem.title}</strong>
-                              </h5>
-                            </Col>
-                            <Col md="2">
-                              <h5 className="my-0 mx-0">
-                                ${Intl.NumberFormat().format(cartItem.price)}
-                              </h5>
-                            </Col>
-                            <Col md="2">
-                              <div>
-                                <Row>
-                                  <Col md="4">
-                                    <Button
-                                      color="neutral"
-                                      className="px-0 py-0 mx-0 my-0"
-                                      onClick={addProductToCart.bind(
-                                        this,
-                                        cartItem
-                                      )}
-                                    >
-                                      <FontAwesomeIcon
-                                        icon={faPlus}
-                                        style={{ color: "#51bcda" }}
-                                      />
-                                    </Button>
-                                  </Col>
-                                  <Col md="4">
-                                    <h5 className="my-0 mx-0">
-                                      {cartItem.quantity}
-                                    </h5>
-                                  </Col>
-                                  <Col md="4">
-                                    <Button
-                                      color="neutral"
-                                      className="px-0 py-0 mx-0 my-0"
-                                      onClick={removeProductFromCart.bind(
-                                        this,
-                                        cartItem.id
-                                      )}
-                                    >
-                                      <FontAwesomeIcon
-                                        icon={faMinus}
-                                        style={{ color: "#51bcda" }}
-                                      />
-                                    </Button>
-                                  </Col>
-                                </Row>
-                              </div>
-                            </Col>
-                            <Col md="1">
-                              <Button
-                                color="neutral"
-                                className="px-0 py-0 mx-0 my-0 ml-2"
-                                onClick={clearProductFromCart.bind(
-                                  this,
-                                  cartItem.id
-                                )}
-                              >
-                                <FontAwesomeIcon
-                                  icon={faTimes}
-                                  style={{ color: "#51bcda" }}
-                                />
-                              </Button>
+                            <Col xs="9">
+                              <Row>
+                                <Col xs="12" md="5">
+                                  <h5 className="my-0 mx-0">
+                                    <strong>{cartItem.title}</strong>
+                                  </h5>
+                                </Col>
+                                <Col xs="12" md="3">
+                                  <h5 className="my-0 mx-0">
+                                    $
+                                    {Intl.NumberFormat().format(cartItem.price)}
+                                  </h5>
+                                </Col>
+                                <Col xs="12" md="4">
+                                  <Row>
+                                    <Col xs="3">
+                                      <Button
+                                        color="neutral"
+                                        className="px-0 py-0 mx-0 my-0"
+                                        onClick={addProductToCart.bind(
+                                          this,
+                                          cartItem
+                                        )}
+                                      >
+                                        <FontAwesomeIcon
+                                          icon={faPlus}
+                                          style={{ color: "#51bcda" }}
+                                        />
+                                      </Button>
+                                    </Col>
+                                    <Col xs="3">
+                                      <h5 className="my-0 mx-0">
+                                        {cartItem.quantity}
+                                      </h5>
+                                    </Col>
+                                    <Col xs="3">
+                                      <Button
+                                        color="neutral"
+                                        className="px-0 py-0 mx-0 my-0"
+                                        onClick={removeProductFromCart.bind(
+                                          this,
+                                          cartItem.id
+                                        )}
+                                      >
+                                        <FontAwesomeIcon
+                                          icon={faMinus}
+                                          style={{ color: "#51bcda" }}
+                                        />
+                                      </Button>
+                                    </Col>
+                                    <Col xs="3">
+                                      <Button
+                                        color="neutral"
+                                        className="px-0 py-0 mx-0 my-0"
+                                        onClick={clearProductFromCart.bind(
+                                          this,
+                                          cartItem.id
+                                        )}
+                                      >
+                                        <FontAwesomeIcon
+                                          icon={faTimes}
+                                          style={{ color: "#51bcda" }}
+                                        />
+                                      </Button>
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
                             </Col>
                           </Row>
                         </ListGroupItem>
                       </ListGroup>
                     ))}
                   </Col>
-                  <Col md="3" className="shadow" style={{ height: "430px" }}>
-                    <Form onSubmit={handleSubmit}>
+                  <Col xs="12" md="3" className="px-0">
+                    <Form onSubmit={handleSubmit} className="px-4 py-1 shadow">
                       <h3 className="mb-4">
                         <strong>Resumen</strong>
                       </h3>
                       <div className="mb-4">
                         <Row>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0">{totalQuantity} items</p>
                           </Col>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0 text-right">
                               ${Intl.NumberFormat().format(totalAmount)}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0">Envío*</p>
                           </Col>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0 text-right">
                               ${Intl.NumberFormat().format(deliveryCost)}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0">Costo total</p>
                           </Col>
-                          <Col md="6">
+                          <Col xs="6">
                             <p className="my-0 text-right">
                               ${Intl.NumberFormat().format(totalCost)}
                             </p>
@@ -268,6 +275,7 @@ const Checkout = () => {
                         color="info"
                         type="submit"
                         style={{ width: "100%" }}
+                        className="mb-4"
                         disabled={cart.length === 0 ? true : false}
                       >
                         Pagar
