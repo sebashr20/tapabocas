@@ -1,11 +1,10 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 // reactstrap components
-import { Row, Container, Button } from "reactstrap";
+import { Row, Container, Button } from 'reactstrap';
 
-const url =
-  "https://api.whatsapp.com/send?phone=573103769786&text=Hola%20Workorona!";
+const url = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
 
 const MainFooter = () => {
   return (

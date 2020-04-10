@@ -1,24 +1,24 @@
 @font-face {
-  font-family: "Zwizz Regular";
+  font-family: 'Zwizz Regular';
   font-style: normal;
   font-weight: normal;
-  src: local("Zwizz Regular"),
-    url("../fonts/Zwizz/Zwizz-Regular.woff") format("woff");
+  src: local('Zwizz Regular'),
+    url('../fonts/Zwizz/Zwizz-Regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: "Aileron Regular";
+  font-family: 'Aileron Regular';
   font-style: normal;
   font-weight: normal;
-  src: local("Aileron Regular"),
-    url("../fonts/Aileron/Aileron-Regular.woff") format("woff");
+  src: local('Aileron Regular'),
+    url('../fonts/Aileron/Aileron-Regular.woff') format('woff');
 }
 
 $font-color: #66615b !default;
 $fill-font-color: rgba(255, 255, 255, 0.8);
-$font-family-sans-serif: "Helvetica", Arial, sans-serif;
-$font-family-zwizz: "Zwizz Regular", Arial, sans-serif;
-$font-family-aileron: "Aileron Regular", Arial, sans-serif;
+$font-family-sans-serif: 'Helvetica', Arial, sans-serif;
+$font-family-zwizz: 'Zwizz Regular', Arial, sans-serif;
+$font-family-aileron: 'Aileron Regular', Arial, sans-serif;
 
 $none: 0 !default;
 $border-thin: 1px !default;
@@ -144,12 +144,12 @@ $btn-round-radius: 30px !default;
 $height-base: 40px !default;
 
 $font-size-base: 14px !default;
-$font-size-small: 16px !default;
+$font-size-small: 12.5px !default;
 $font-size-medium: 16px !default;
 $font-size-large: 20px !default;
 $font-size-large-navbar: 22px !default;
 
-$font-size-h1: 4em !default;
+$font-size-h1: 3.3em !default;
 $font-size-h2: 2.8em !default;
 $font-size-h3: 1.82em !default;
 $font-size-h4: 1.6em !default;

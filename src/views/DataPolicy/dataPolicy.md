@@ -22,7 +22,7 @@ Podemos divulgar tu información personal solo si se nos requiere por ley o si v
 
 ### Sección 4 - Pagos
 
-Si eliges una pasarela de pago directo para completar tu compra, entonces se almacenan datos de tu tarjeta de crédito. Está cifrada a través de la Seguridad Standard de Datos de la Industria de Tarjetas de Pago (PCI-DSS). Tus datos de transacción de compra se almacenan sólo en la medida en que sea necesario para completar la transacción de compra. Después de que se haya completado, se borra la información de su transacción de compra.
+Si eliges una pasarela de pago directo para completar tu compra, entonces se almacenan datos de tu tarjeta de crédito. Esta información la almacena Wompi, una pasarela de pagos de Bancolombia. Está cifrada a través de la Seguridad Standard de Datos de la Industria de Tarjetas de Pago (PCI-DSS). Tus datos de transacción de compra se almacenan sólo en la medida en que sea necesario para completar la transacción de compra. Después de que se haya completado, se borra la información de su transacción de compra.
 
 Todas las pasarelas de pago directo se adhieren a los estándares establecidos por PCI-DSS como lo indicado por el Consejo de Normas de Seguridad de PCI, que es un esfuerzo conjunto de marcas como Visa, MasterCard, American Express y Discover.
 

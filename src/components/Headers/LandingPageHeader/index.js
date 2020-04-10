@@ -32,9 +32,8 @@ const LandingPageHeader = () => {
               </Row>
             </span>
             <Button
-              className="btn-round mt-4"
+              className="my-4"
               color="info"
-              type="button"
               tag={HashLink}
               smooth
               to="#garantia"

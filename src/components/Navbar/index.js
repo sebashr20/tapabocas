@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import classnames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import classnames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 // reactstrap components
 import {
@@ -17,15 +17,17 @@ import {
   Row,
   Col,
   Badge,
-} from "reactstrap";
+} from 'reactstrap';
 
 // core components
 const logo =
-  "https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png";
-const url = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
+  'https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png';
+
+const urlContact = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
+const urlSupplier = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20para%20ser%20proveedor.%20Gracias!`;
 
 function MainNavbar({ cartItemNumber }) {
-  const [navbarColor, setNavbarColor] = useState("navbar-transparent");
+  const [navbarColor, setNavbarColor] = useState('navbar-transparent');
 
   useEffect(() => {
     const updateNavbarColor = () => {
@@ -33,24 +35,24 @@ function MainNavbar({ cartItemNumber }) {
         document.documentElement.scrollTop > 49 ||
         document.body.scrollTop > 49
       ) {
-        setNavbarColor("");
+        setNavbarColor('');
       } else if (
         document.documentElement.scrollTop < 50 ||
         document.body.scrollTop < 50
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor('navbar-transparent');
       }
     };
 
-    window.addEventListener("scroll", updateNavbarColor);
+    window.addEventListener('scroll', updateNavbarColor);
 
     return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
+      window.removeEventListener('scroll', updateNavbarColor);
     };
   });
   return (
     <Navbar
-      className={classnames("fixed-top", navbarColor)}
+      className={classnames('fixed-top', navbarColor)}
       color-on-scroll="300"
       expand="lg"
     >
@@ -64,24 +66,19 @@ function MainNavbar({ cartItemNumber }) {
           >
             <Row xs="2">
               <Col className="px-0">
-                <img
-                  alt="..."
-                  style={{ width: "230px" }}
-                  src={logo}
-                  className="mt-2"
-                />
+                <img alt="..." style={{ width: '210px' }} src={logo} />
               </Col>
             </Row>
           </NavbarBrand>
           <NavLink
             to="/checkout"
             tag={Link}
-            style={{ color: "rgb(30, 25, 75)", fontSize: "20px" }}
+            style={{ color: 'rgb(30, 25, 75)', fontSize: '20px' }}
             className="navbar-toggler my-0 mx-0 mt-1"
           >
             <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
             {cartItemNumber > 0 ? (
-              <Badge color="danger">
+              <Badge color="danger" className="px-2">
                 <strong>{cartItemNumber}</strong>
               </Badge>
             ) : null}
@@ -89,12 +86,12 @@ function MainNavbar({ cartItemNumber }) {
         </div>
         <Collapse className="justify-content-end" navbar>
           <Nav navbar>
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 to="#garantia"
                 tag={HashLink}
                 smooth
-                style={{ color: "rgb(30, 25, 75)" }}
+                style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Garantía
               </NavLink>
@@ -104,27 +101,37 @@ function MainNavbar({ cartItemNumber }) {
                 to="#productos"
                 tag={HashLink}
                 smooth
-                style={{ color: "rgb(30, 25, 75)" }}
+                style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Productos
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink
                 to="#institucionales"
                 tag={HashLink}
                 smooth
-                style={{ color: "rgb(30, 25, 75)" }}
+                style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Ventas Institucionales
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                href={url}
+                href={urlSupplier}
                 target="_blank"
                 rel="noopener"
-                style={{ color: "rgb(30, 25, 75)" }}
+                style={{ color: 'rgb(30, 25, 75)' }}
+              >
+                Conviértete en proveedor
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                href={urlContact}
+                target="_blank"
+                rel="noopener"
+                style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Contáctanos
               </NavLink>
@@ -134,14 +141,14 @@ function MainNavbar({ cartItemNumber }) {
                 to="/checkout"
                 tag={Link}
                 style={{
-                  color: "rgb(30, 25, 75)",
-                  fontSize: "20px",
+                  color: 'rgb(30, 25, 75)',
+                  fontSize: '20px',
                 }}
                 className="mt-2"
               >
                 <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
                 {cartItemNumber > 0 ? (
-                  <Badge color="danger">
+                  <Badge color="danger" className="px-2">
                     <strong>{cartItemNumber}</strong>
                   </Badge>
                 ) : null}

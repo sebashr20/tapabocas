@@ -1,11 +1,12 @@
-import React, { Fragment, useContext } from "react";
-import { HashLink } from "react-router-hash-link";
-import randomCode from "crypto-random-string";
-import ShopContext from "context/shop-context";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { Fragment, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import randomCode from 'crypto-random-string';
+import ShopContext from 'context/shop-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 // reactstrap components
 import {
@@ -19,18 +20,18 @@ import {
   FormText,
   ListGroup,
   ListGroupItem,
-} from "reactstrap";
+} from 'reactstrap';
 
 // core components
-import { SimpleNavbar, Footer } from "components";
+import { SimpleNavbar, Footer } from 'components';
 
 // formik schema
 const CheckoutSchema = Yup.object().shape({
   address: Yup.string()
-    .min(10, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Requerido"),
-  phone: Yup.number().required("Required"),
+    .min(10, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Requerido'),
+  phone: Yup.number().required('Required'),
 });
 
 const Checkout = () => {
@@ -51,22 +52,22 @@ const Checkout = () => {
   // wompi parameters
   const wompiData = {
     // publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAez7HgGORGf",
-    publicKey: "pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O",
-    currency: "COP",
+    publicKey: 'pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O',
+    currency: 'COP',
     value: totalCost * 100,
     reference: randomCode({ length: 6 }),
     // redirectUrl: "http://localhost:3000/checkout/status",
-    redirectUrl: "https://tapabocasya.com/checkout/status",
+    redirectUrl: 'https://tapabocasya.com/checkout/status',
   };
   const { publicKey, currency, value, reference, redirectUrl } = wompiData;
-  const newRedirectUrl = redirectUrl.replace(/:/g, "%3A").replace(/\//g, "%2F");
+  const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
   const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
 
   // fromik config
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
-      address: "",
-      phone: "",
+      address: '',
+      phone: '',
     },
     validationSchema: CheckoutSchema,
     onSubmit: async ({ address, phone }) => {
@@ -84,8 +85,8 @@ const Checkout = () => {
         phone: phone,
       };
       // to firebase
-      console.log("ADR", formData);
-      window.open(url, "_blank");
+      console.log('ADR', formData);
+      window.open(url, '_blank');
     },
   });
   const { address, phone } = values;
@@ -118,7 +119,7 @@ const Checkout = () => {
                                 <Col>
                                   <img
                                     alt="..."
-                                    style={{ width: "100%" }}
+                                    style={{ width: '100%' }}
                                     src={cartItem.img}
                                   />
                                 </Col>
@@ -150,7 +151,7 @@ const Checkout = () => {
                                       >
                                         <FontAwesomeIcon
                                           icon={faPlus}
-                                          style={{ color: "#51bcda" }}
+                                          style={{ color: '#51bcda' }}
                                         />
                                       </Button>
                                     </Col>
@@ -170,7 +171,7 @@ const Checkout = () => {
                                       >
                                         <FontAwesomeIcon
                                           icon={faMinus}
-                                          style={{ color: "#51bcda" }}
+                                          style={{ color: '#51bcda' }}
                                         />
                                       </Button>
                                     </Col>
@@ -185,7 +186,7 @@ const Checkout = () => {
                                       >
                                         <FontAwesomeIcon
                                           icon={faTimes}
-                                          style={{ color: "#51bcda" }}
+                                          style={{ color: '#51bcda' }}
                                         />
                                       </Button>
                                     </Col>
@@ -268,13 +269,17 @@ const Checkout = () => {
                         {errors.address}
                       </FormText>
                       <h6 className="my-0 mb-4">
-                        *Aplica para direcciones en Medellín, Envigado, Sabanta
-                        e Itaguí.
+                        *A todo el país (aplican restricciones).
+                      </h6>
+                      <h6 className="my-0 mb-4">
+                        Al enviarnos tu solicitud estás aceptando nuestros{' '}
+                        <Link to="/terminos">términos y condiciones</Link> y{' '}
+                        <Link to="/privacidad">políticas de privacidad.</Link>
                       </h6>
                       <Button
                         color="info"
                         type="submit"
-                        style={{ width: "100%" }}
+                        style={{ width: '100%' }}
                         className="mb-4"
                         disabled={cart.length === 0 ? true : false}
                       >

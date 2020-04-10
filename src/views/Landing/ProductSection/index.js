@@ -1,8 +1,8 @@
-import React, { Fragment, useContext } from "react";
-import { Link } from "react-router-dom";
-import ShopContext from "context/shop-context";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import React, { Fragment, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ShopContext from 'context/shop-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 // reactstrap components
 import {
@@ -17,7 +17,8 @@ import {
   ListGroup,
   ListGroupItem,
   UncontrolledCarousel,
-} from "reactstrap";
+  Alert,
+} from 'reactstrap';
 
 // core components
 
@@ -38,17 +39,22 @@ const ProductSection = ({ cartItemNumber }) => {
           <Row>
             {products.map((product) => (
               <Col md="4" key={product.type} className="mb-3">
-                <Card style={{ width: "100%" }} className="my-auto mx-auto">
+                <Card style={{ width: '100%' }} className="my-auto mx-auto">
                   <UncontrolledCarousel items={product.carousel} />
                   <CardBody className="pt-0">
                     <CardTitle className="my-0 mb-3 mt-4">
-                      <h4 className="my-0">{product.title}</h4>
+                      <h4 className="my-0">
+                        <strong>{product.title}</strong>
+                      </h4>
                     </CardTitle>
                     <CardBody
                       className="py-0 my-0 mb-2"
-                      style={{ height: "340px" }}
+                      style={{ height: '340px' }}
                     >
                       {product.description}
+                      {product.type === 't1' ? (
+                        <Alert color="danger">Agotado</Alert>
+                      ) : null}
                     </CardBody>
                     <ListGroup flush>
                       {skus.map((sku) =>
@@ -65,6 +71,7 @@ const ProductSection = ({ cartItemNumber }) => {
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
+                              disabled={product.type === 't1' ? true : false}
                             >
                               Agregar al carrito
                             </Button>

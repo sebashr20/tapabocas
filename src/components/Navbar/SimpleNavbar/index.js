@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 // reactstrap components
-import { NavbarBrand, Navbar, Container, Col, Row } from "reactstrap";
+import { NavbarBrand, Navbar, Container, Col, Row } from 'reactstrap';
 
 // core components
 const logo =
-  "https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png";
+  'https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png';
 
 const SimpleNavbar = () => {
   return (
@@ -24,7 +24,7 @@ const SimpleNavbar = () => {
                 <Col>
                   <img
                     alt="..."
-                    style={{ width: "230px" }}
+                    style={{ width: '210px' }}
                     src={logo}
                     className="my-3"
                   />

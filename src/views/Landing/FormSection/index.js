@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import {
   Button,
@@ -12,28 +12,28 @@ import {
   Row,
   Col,
   FormText,
-} from "reactstrap";
+} from 'reactstrap';
 
 const FormSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  phone: Yup.number().required("Required"),
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  phone: Yup.number().required('Required'),
   text: Yup.string()
-    .min(2, "Too Short!")
-    .max(500, "Too Long!")
-    .required("Required"),
+    .min(2, 'Too Short!')
+    .max(500, 'Too Long!')
+    .required('Required'),
 });
 
 const FormSection = () => {
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      text: "",
+      name: '',
+      email: '',
+      phone: '',
+      text: '',
     },
     validationSchema: FormSchema,
     onSubmit: (values) => {
@@ -47,12 +47,12 @@ const FormSection = () => {
   const { name, email, phone, text } = values;
 
   const replaceSpace = (text) => {
-    return text.replace(/ /g, "%20");
+    return text.replace(/ /g, '%20');
   };
 
   const sendMsg = (name, email, text) => {
     const url = `https://api.whatsapp.com/send?phone=573225421993&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   };
 
   return (
@@ -112,7 +112,7 @@ const FormSection = () => {
                 </Row>
                 <label>Mensaje</label>
                 <Input
-                  placeholder="Dinos el nombre de tu empresa y el requerimiento que tienes..."
+                  placeholder="Cuéntanos el requerimiento que tienes..."
                   type="textarea"
                   rows="4"
                   id="text"
@@ -123,8 +123,8 @@ const FormSection = () => {
                 />
                 <FormText className="text-danger">{errors.text}</FormText>
                 <p className="mt-3">
-                  Al enviarnos tu solicitud estás aceptando nuestros{" "}
-                  <Link to="/terminos">términos y condiciones</Link> y{" "}
+                  Al enviarnos tu solicitud estás aceptando nuestros{' '}
+                  <Link to="/terminos">términos y condiciones</Link> y{' '}
                   <Link to="/privacidad">políticas de privacidad.</Link>
                 </p>
                 <Row>
