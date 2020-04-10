@@ -2,12 +2,7 @@ import React, { Fragment } from 'react';
 import qs from 'query-string';
 
 // reactstrap components
-// import {
-//   Container,
-//   Row,
-//   Col,
-//   Button,
-// } from "reactstrap";
+import { Container } from 'reactstrap';
 
 // core components
 import { SimpleNavbar } from 'components';
@@ -19,8 +14,9 @@ const PayStatus = (props) => {
   return (
     <Fragment>
       <SimpleNavbar />
-      <h3>Compra exitos{id}</h3>
-      <h4>Ref: {id}</h4>
+      <Container>
+        <h3>Compra exitosa. Ref: {id}</h3>
+      </Container>
     </Fragment>
   );
 };
