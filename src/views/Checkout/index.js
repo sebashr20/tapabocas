@@ -34,6 +34,10 @@ const CheckoutSchema = Yup.object().shape({
     .min(10, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Requerido'),
+  city: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Requerido'),
   phone: Yup.number().required('Required'),
 });
 
@@ -70,10 +74,11 @@ const Checkout = () => {
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
       address: '',
+      city: '',
       phone: '',
     },
     validationSchema: CheckoutSchema,
-    onSubmit: async ({ address, phone }) => {
+    onSubmit: async ({ address, city, phone }) => {
       const delivery = [];
       await cart.map((item) => {
         return delivery.push({
@@ -85,6 +90,7 @@ const Checkout = () => {
         ref: reference,
         cart: delivery,
         address: address,
+        city: city,
         phone: phone,
       };
       // to data base
@@ -92,7 +98,7 @@ const Checkout = () => {
       window.open(url, '_blank');
     },
   });
-  const { address, phone } = values;
+  const { address, city, phone } = values;
 
   return (
     <Fragment>
@@ -254,7 +260,7 @@ const Checkout = () => {
                       <FormText className="text-danger">
                         {errors.phone}
                       </FormText>
-                      <label className="my-0">Dirección de envío</label>
+                      <label className="my-0">Dirección</label>
                       <InputGroup className="myb-2">
                         <Input
                           placeholder="Dirección"
@@ -271,6 +277,19 @@ const Checkout = () => {
                       <FormText className="text-danger">
                         {errors.address}
                       </FormText>
+                      <label className="my-0">Ciudad</label>
+                      <InputGroup className="myb-2">
+                        <Input
+                          placeholder="Ciudad"
+                          type="text"
+                          id="city"
+                          name="city"
+                          onChange={handleChange}
+                          value={city}
+                          invalid={errors.city && touched.city ? true : false}
+                        />
+                      </InputGroup>
+                      <FormText className="text-danger">{errors.city}</FormText>
                       <h6 className="my-0 mb-4">
                         *A todo el país (aplican restricciones).
                       </h6>

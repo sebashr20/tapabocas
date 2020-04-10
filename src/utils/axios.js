@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const server = axios.create({
-  baseURL: 'https://api.tapabocasya.com/api/',
+export const server = axios.create({
+  // baseURL: 'https://api.tapabocasya.com/api/',
+  baseURL: 'http://localhost:5000/api/',
 });
 
-export default server;
+export const wompi = axios.create({
+  baseURL: 'https://production.wompi.co/v1/transactions/',
+});

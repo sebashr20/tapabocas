@@ -19,32 +19,42 @@ const Admin = () => {
 
   return (
     <Fragment>
-      <Table>
-        <thead>
-          <tr>
-            <th>Ref</th>
-            <th>Pedido</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order._id}>
-              <th scope="row">{order.ref}</th>
-              <td>
-                {order.cart.map((item) => (
-                  <p key={item._id} className="my-0">
-                    {item.id} => {item.quantity}
-                  </p>
-                ))}
-              </td>
-              <td>{order.address}</td>
-              <td>{order.phone}</td>
+      {orders.length === 0 ? (
+        <p className="text-center">Loading...</p>
+      ) : (
+        <Table>
+          <thead>
+            <tr>
+              <th>Ref</th>
+              <th>Estado</th>
+              <th>Pedido</th>
+              <th>Dirección</th>
+              <th>Ciudad</th>
+              <th>Teléfono</th>
+              <th>Fecha</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order._id}>
+                <th scope="row">{order.ref}</th>
+                <td>{order.status}</td>
+                <td>
+                  {order.cart.map((item) => (
+                    <p key={item._id} className="my-0">
+                      {item.id} => {item.quantity}
+                    </p>
+                  ))}
+                </td>
+                <td>{order.address}</td>
+                <td>{order.city}</td>
+                <td>{order.phone}</td>
+                <td>{order.createdAt}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
     </Fragment>
   );
 };
