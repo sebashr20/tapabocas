@@ -1,16 +1,11 @@
-import React, { Fragment } from "react";
-import qs from "query-string";
+import React, { Fragment } from 'react';
+import qs from 'query-string';
 
 // reactstrap components
-// import {
-//   Container,
-//   Row,
-//   Col,
-//   Button,
-// } from "reactstrap";
+import { Container } from 'reactstrap';
 
 // core components
-import { SimpleNavbar } from "components";
+import { SimpleNavbar } from 'components';
 
 const PayStatus = (props) => {
   const { location } = props;
@@ -19,7 +14,9 @@ const PayStatus = (props) => {
   return (
     <Fragment>
       <SimpleNavbar />
-      <h1>{id}</h1>
+      <Container>
+        <h3>Compra exitosa. Ref: {id}</h3>
+      </Container>
     </Fragment>
   );
 };

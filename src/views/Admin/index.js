@@ -1,44 +1,52 @@
-// import React from "react";
-// import db from "firebase";
-// // import { SpellInput } from "./SpellInput";
+import React, { Fragment, useState, useEffect } from 'react';
 
-// function Admin() {
-//   const [pedidos, setPedidos] = React.useState([]);
-//   //   const [newQuantity, setNewQuantity] = React.useState();
+// reactstrap components
+import { Table } from 'reactstrap';
 
-//   //   React.useEffect(() => {
-//   //     const fetchData = async () => {
-//   //       const data = await db.collection("pedidos").get();
-//   //       console.log(data);
-//   //       //   setPedidos(data.docs.map((doc) => console.log("DB", doc.data())));
-//   //     };
-//   //     fetchData();
-//   //   }, []);
+// actions
+import { getOrders } from 'actions/orders';
 
-//   //   const onCreate = () => {
-//   //     const db = firebase.firestore();
-//   //     db.collection("pedidos").add({ quantity: newQuantity });
-//   //   };
+const Admin = () => {
+  const [orders, setOrders] = useState([]);
 
-//   db.collection("pedidos")
-//     .get()
-//     .then((data) => {
-//       console.log(data);
-//     });
+  useEffect(() => {
+    async function fetchData() {
+      const orders = await getOrders();
+      await setOrders(orders);
+    }
+    fetchData();
+  }, []);
 
-//   return (
-//     <ul>
-//       hola
-//       {/* <input
-//         value={newQuantity}
-//         onChange={(e) => setNewQuantity(e.target.value)}
-//       />
-//       <button onClick={onCreate}>Creat</button> */}
-//       {/* {pedidos.map((pedido) => (
-//         <li key={pedido.id}>{pedido.id}</li>
-//       ))} */}
-//     </ul>
-//   );
-// }
+  return (
+    <Fragment>
+      <Table>
+        <thead>
+          <tr>
+            <th>Ref</th>
+            <th>Pedido</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <tr key={order._id}>
+              <th scope="row">{order.ref}</th>
+              <td>
+                {order.cart.map((item) => (
+                  <p key={item._id} className="my-0">
+                    {item.id} => {item.quantity}
+                  </p>
+                ))}
+              </td>
+              <td>{order.address}</td>
+              <td>{order.phone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Fragment>
+  );
+};
 
-// export default Admin;
+export default Admin;

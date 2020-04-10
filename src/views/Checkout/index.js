@@ -8,6 +8,9 @@ import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+// actions
+import { createOrder } from 'actions/orders';
+
 // reactstrap components
 import {
   Container,
@@ -51,13 +54,13 @@ const Checkout = () => {
 
   // wompi parameters
   const wompiData = {
-    // publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAez7HgGORGf",
-    publicKey: 'pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O',
+    publicKey: 'pub_test_Q5yDA9xoKdePzhSGeVe9HAez7HgGORGf',
+    // publicKey: 'pub_prod_EZzHWiChAZe3YIAZCJGAs1v84Sz62M9O',
     currency: 'COP',
     value: totalCost * 100,
     reference: randomCode({ length: 6 }),
-    // redirectUrl: "http://localhost:3000/checkout/status",
-    redirectUrl: 'https://tapabocasya.com/checkout/status',
+    redirectUrl: 'http://localhost:3000/checkout/status',
+    // redirectUrl: 'https://tapabocasya.com/checkout/status',
   };
   const { publicKey, currency, value, reference, redirectUrl } = wompiData;
   const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
@@ -84,8 +87,8 @@ const Checkout = () => {
         address: address,
         phone: phone,
       };
-      // to firebase
-      console.log('ADR', formData);
+      // to data base
+      await createOrder(formData);
       window.open(url, '_blank');
     },
   });

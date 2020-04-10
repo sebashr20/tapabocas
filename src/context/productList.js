@@ -2,7 +2,7 @@ import React from 'react';
 
 export const skus = [
   {
-    id: 't1_20,',
+    id: 't1_20',
     type: 't1',
     title: 'Tapabocas Tipo 1 x20',
     size: 'x20',
@@ -10,7 +10,7 @@ export const skus = [
     img: require('assets/img/t1_i1.jpeg'),
   },
   {
-    id: 't1_50,',
+    id: 't1_50',
     type: 't1',
     title: 'Tapabocas Tipo 1 x50',
     size: 'x50',
@@ -18,7 +18,7 @@ export const skus = [
     img: require('assets/img/t1_i1.jpeg'),
   },
   {
-    id: 't2_20,',
+    id: 't2_20',
     type: 't2',
     title: 'Tapabocas Tipo 2 x20',
     size: 'x20',
@@ -26,7 +26,7 @@ export const skus = [
     img: require('assets/img/t2_i1.jpeg'),
   },
   {
-    id: 't2_50,',
+    id: 't2_50',
     type: 't2',
     title: 'Tapabocas Tipo 2 x50',
     size: 'x50',
@@ -50,7 +50,7 @@ export const skus = [
   //   img: require('assets/img/t3_i1.jpeg'),
   // },
   {
-    id: 't4_20,',
+    id: 't4_20',
     type: 't4',
     title: 'Tapabocas Tipo 4 x20',
     size: 'x20',
@@ -58,7 +58,7 @@ export const skus = [
     img: require('assets/img/t4_i1.jpeg'),
   },
   {
-    id: 't4_50,',
+    id: 't4_50',
     type: 't4',
     title: 'Tapabocas Tipo 4 x50',
     size: 'x50',
