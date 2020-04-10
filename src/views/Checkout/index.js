@@ -8,6 +8,9 @@ import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+// actions
+import { createOrder } from 'actions/orders';
+
 // reactstrap components
 import {
   Container,
@@ -85,7 +88,7 @@ const Checkout = () => {
         phone: phone,
       };
       // to firebase
-      console.log('ADR', formData);
+      await createOrder(formData);
       window.open(url, '_blank');
     },
   });

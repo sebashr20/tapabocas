@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import qs from "query-string";
+import React, { Fragment } from 'react';
+import qs from 'query-string';
 
 // reactstrap components
 // import {
@@ -10,7 +10,7 @@ import qs from "query-string";
 // } from "reactstrap";
 
 // core components
-import { SimpleNavbar } from "components";
+import { SimpleNavbar } from 'components';
 
 const PayStatus = (props) => {
   const { location } = props;
@@ -19,7 +19,8 @@ const PayStatus = (props) => {
   return (
     <Fragment>
       <SimpleNavbar />
-      <h1>{id}</h1>
+      <h3>Compra exitos{id}</h3>
+      <h4>Ref: {id}</h4>
     </Fragment>
   );
 };
