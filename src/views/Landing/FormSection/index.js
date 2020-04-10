@@ -51,7 +51,7 @@ const FormSection = () => {
   };
 
   const sendMsg = (name, email, text) => {
-    const url = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
+    const url = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER_INST}&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
     window.open(url, '_blank');
   };
 

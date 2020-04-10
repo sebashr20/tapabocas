@@ -49,10 +49,10 @@ const ProductSection = ({ cartItemNumber }) => {
                     </CardTitle>
                     <CardBody
                       className="py-0 my-0 mb-2"
-                      style={{ height: '380px' }}
+                      style={{ height: '390px' }}
                     >
                       {product.description}
-                      {product.type === 't1' ? (
+                      {product.type === 't3' ? (
                         <Alert color="danger">Agotado</Alert>
                       ) : null}
                     </CardBody>
@@ -71,7 +71,7 @@ const ProductSection = ({ cartItemNumber }) => {
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
-                              disabled={product.type === 't1' ? true : false}
+                              disabled={product.type === 't3' ? true : false}
                             >
                               Agregar al carrito
                             </Button>
