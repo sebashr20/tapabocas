@@ -135,7 +135,7 @@ export const products = [
     description: (
       <div className="text-left">
         <p className="my-0 mb-2">
-          Dos capas de tela quirúrgica antifluida de 60gr c/u, ecológica,
+          Dos capas de tela no tejida antifluidos de 60gr c/u, ecológica,
           antialérgica, impermeable, antiestática, no-tóxica.
         </p>
         <p className="my-0 mb-2">

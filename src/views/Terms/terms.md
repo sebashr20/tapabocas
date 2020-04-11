@@ -144,7 +144,7 @@ Nos reservamos el derecho, a nuestra sola discreción, de actualizar, modificar 
 
 ### Sección 20 - Información de contacto
 
-Preguntas acerca de los Términos de Servicio deben ser enviadas a TapabocasYa.com@gmail.com.
+Preguntas acerca de los Términos de Servicio deben ser enviadas a info@tapabocasya.com.
 
 ---
 

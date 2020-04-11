@@ -68,7 +68,7 @@ Si nuestra tienda es adquirida o fusionada con otra empresa, tu información pue
 
 ### Preguntas e información de contacto
 
-Si quieres: acceder, corregir, enmendar o borrar cualquier información personal que poseamos sobre ti, registrar una queja, o simplemente quieres más información contacta a nuestro Oficial de Cumplimiento de Privacidad TapabocasYa.com@gmail.com.
+Si quieres: acceder, corregir, enmendar o borrar cualquier información personal que poseamos sobre ti, registrar una queja, o simplemente quieres más información contacta a nuestro Oficial de Cumplimiento de Privacidad info@tapabocasya.com.
 
 ---
 

@@ -24,7 +24,7 @@ const logo =
   'https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png';
 
 const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
-const urlSupplier = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Quisiera%20más%20información%20para%20ser%20proveedor.%20Gracias!`;
+const urlSupplier = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER_INST}&text=Hola!%20Quisiera%20más%20información%20para%20ser%20proveedor.%20Gracias!`;
 
 function MainNavbar({ cartItemNumber }) {
   const [navbarColor, setNavbarColor] = useState('navbar-transparent');

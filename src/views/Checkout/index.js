@@ -24,6 +24,7 @@ import {
   ListGroup,
   ListGroupItem,
   CardImg,
+  Alert,
 } from 'reactstrap';
 
 // core components
@@ -41,6 +42,9 @@ const CheckoutSchema = Yup.object().shape({
     .required('Requerido'),
   phone: Yup.number().required('Required'),
 });
+
+// Unique ref code
+const referenceCode = randomCode({ length: 6 });
 
 const Checkout = () => {
   // global contex
@@ -62,7 +66,7 @@ const Checkout = () => {
     publicKey: process.env.REACT_APP_WOMPI_PUBLIC_KEY,
     currency: 'COP',
     value: totalCost * 100,
-    reference: randomCode({ length: 6 }),
+    reference: referenceCode,
     redirectUrl: process.env.REACT_APP_WOMPI_REDIRECT_URL,
   };
   const { publicKey, currency, value, reference, redirectUrl } = wompiData;
@@ -75,6 +79,8 @@ const Checkout = () => {
     showQR: false,
   });
   const { payQR, showQR } = state;
+
+  const [create, setCreate] = useState(true);
 
   const handleShowQR = (click) => {
     if (click === 'other') {
@@ -108,7 +114,11 @@ const Checkout = () => {
         phone: phone,
       };
       // to data base
-      await createOrder(formData);
+      if (create) {
+        await createOrder(formData);
+        setCreate(false);
+      }
+      // QR or Wompi
       if (payQR) {
         setState({ ...state, showQR: true });
       } else {
@@ -122,6 +132,18 @@ const Checkout = () => {
   return (
     <Fragment>
       <SimpleNavbar />
+      {totalQuantity >= 10 ? (
+        <Alert color="info" className="text-center">
+          Solo puedes comprar máx. 10 items. Si requieres más,{' '}
+          <Button
+            to="/#institucionales"
+            tag={HashLink}
+            className="btn-link my-0 py-0 mx-0 px-0 btn-alert"
+          >
+            <strong>contáctanos.</strong>
+          </Button>
+        </Alert>
+      ) : null}
       <Container>
         <div className="section mt-1 pt-2">
           {cart.length <= 0 ? (
@@ -176,6 +198,9 @@ const Checkout = () => {
                                           this,
                                           cartItem
                                         )}
+                                        disabled={
+                                          totalQuantity >= 10 ? true : false
+                                        }
                                       >
                                         <FontAwesomeIcon
                                           icon={faPlus}
@@ -333,7 +358,7 @@ const Checkout = () => {
                         className="mb-4"
                         onClick={() => handleShowQR('qr')}
                       >
-                        Pagar con código QR
+                        Pagar con QR Bancolombia
                       </Button>
                       {showQR ? (
                         <CardImg

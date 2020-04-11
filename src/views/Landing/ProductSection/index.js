@@ -53,7 +53,7 @@ const ProductSection = ({ cartItemNumber }) => {
                     >
                       {product.description}
                       {product.type === 't3' ? (
-                        <Alert color="danger">Bajo pedido</Alert>
+                        <Alert color="danger">Agotado</Alert>
                       ) : null}
                     </CardBody>
                     <ListGroup flush>
@@ -63,15 +63,16 @@ const ProductSection = ({ cartItemNumber }) => {
                             <CardText className="py-0 my-0">
                               Caja {sku.size} und: $
                               <strong>
-                                {Intl.NumberFormat().format(sku.price)}
+                                {Intl.NumberFormat().format(sku.price)}{' '}
                               </strong>
+                              + Envío
                             </CardText>
                             <Button
                               color="info"
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
-                              // disabled={product.type === 't3' ? true : false}
+                              disabled={product.type === 't3' ? true : false}
                             >
                               Agregar al carrito
                             </Button>

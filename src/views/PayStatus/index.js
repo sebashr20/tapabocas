@@ -23,8 +23,18 @@ const PayStatus = (props) => {
   useEffect(() => {
     if (!env) {
       async function fetchData() {
-        const { reference: ref, status, created_at } = await getWompi(id);
-        await updateOrder(ref, { status: status, createdAt: created_at });
+        const {
+          reference: ref,
+          status,
+          created_at,
+          payment_method: { type: paymentMethod },
+        } = await getWompi(id);
+
+        await updateOrder(ref, {
+          status: status,
+          paymentMethod: paymentMethod,
+          createdAt: created_at,
+        });
         await setState({ status: status, ref: ref });
       }
       fetchData();

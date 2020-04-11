@@ -12,7 +12,7 @@ export const getOrders = async () => {
 export const createOrder = async (formData) => {
   try {
     const res = await server.post('/orders', formData);
-    return res;
+    return res.data;
   } catch (error) {
     console.log(error);
   }
