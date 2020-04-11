@@ -135,20 +135,19 @@ export const products = [
     description: (
       <div className="text-left">
         <p className="my-0 mb-2">
-          Dos capas de tela no tejida antifluidos de 60gr c/u, ecológica,
-          antialérgica, impermeable, antiestática, no-tóxica.
+          ✓ Dos capas de tela no tejida antifluida, de 60 gr c/u, ecológica,
+          antialérgica, impermeable, antiestática, no-tóxica
         </p>
         <p className="my-0 mb-2">
-          Tipo de agarre: elástico plano para ajustar en la oreja.
+          ✓ Tipo de agarre: elástico plano para ajustar en la oreja.
         </p>
+        <p className="my-0 mb-2">Sin adaptador nasal.</p>
         <p className="my-0 mb-2">
-          Las medidas de corte: 18x16cm. Medidas del producto terminado:
-          15,5x7,5cm.
+          ✓ Las medidas del producto terminado son 15,5 cm x 7,5 cm, tres
+          pliegues, terminación de doblés y fileteado
         </p>
-        <p className="my-0 mb-2">
-          Con tres pliegues y terminación de dobles y fileteado.
-        </p>
-        <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">✓ Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">✓ Registro INVIMA en proceso.</p>
         <p className="my-0 mb-2">
           <a
             href="https://res.cloudinary.com/sebashr20/image/upload/v1586551650/tapabocasya/product-data-sheet/pds_002.pdf"
@@ -185,17 +184,20 @@ export const products = [
     description: (
       <div className="text-left">
         <p className="my-0 mb-2">
-          Tela no tejida de fibras continuas 100% de polipropileno por proceso
-          Spundond, generando multifilamentos.
+          ✓ Tres capas de tela no tejida antifluida, de 40 gr c/u, ecológica,
+          antialérgica, impermeable, antiestática, no-tóxica y una capa
+          intermedia de filtro en Meltblown (repelente de olores).
         </p>
         <p className="my-0 mb-2">
-          Dos capas externas de Spundonded y una capa interna de Meltblow.
+          ✓ Tipo de agarre: elástico plano para ajustar en la oreja.
         </p>
+        <p className="my-0 mb-2">✓ Sin adaptador nasal.</p>
         <p className="my-0 mb-2">
-          Tipo de agarre: elástico para ajustar en la oreja.
+          ✓ Las medidas del producto terminado son 17,5 cm x 10,5 cm, tres
+          pliegues, terminación de doblés y fileteado.
         </p>
-        <p className="my-0 mb-2">Tipo copa, terminación con filete.</p>
-        <p className="my-0 mb-2">Un solo uso.</p>
+        <p className="my-0 mb-2">✓ Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">✓ Registro INVIMA en proceso.</p>
         <p className="my-0 mb-2">
           <a
             href="https://res.cloudinary.com/sebashr20/image/upload/v1586561163/tapabocasya/product-data-sheet/pds_003.pdf"
@@ -232,16 +234,20 @@ export const products = [
     description: (
       <div className="text-left">
         <p className="my-0 mb-2">
-          Dos capas (interna y experna) de tela no tejida de politex
-          antialérgica, antiestática, no-tóxica.
+          ✓ Dos capas (interna y externa) de tela no tejida de politex
+          antialérgica, antiestática, no-tóxica y una capa intermedia de filtro
+          sin fibra de vidrio.
         </p>
         <p className="my-0 mb-2">
-          Una capa intermedia de filtro (sin fibra de vidrio).
+          ✓ Tipo de agarre: elástico redondo para ajustar en la oreja.
         </p>
         <p className="my-0 mb-2">Adaptador nasal plástico</p>
-        <p className="my-0 mb-2">Un solo uso.</p>
         <p className="my-0 mb-2">
-          <strong>REGISTRO INVIMA</strong>
+          ✓ Las medidas del producto terminado son 18 cm x 9,5 cm, termosellado.
+        </p>
+        <p className="my-0 mb-2">✓ Un solo uso (aprox. 8 horas).</p>
+        <p className="my-0 mb-2">
+          <strong>✓ REGISTRO INVIMA VIGENTE</strong>
         </p>
         <p className="my-0 mb-2">
           <a
