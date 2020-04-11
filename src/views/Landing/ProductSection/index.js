@@ -34,7 +34,7 @@ const ProductSection = ({ cartItemNumber }) => {
             Nuestros tapabocas vienen en presentaciones de caja x20 y x50
             unidades. Pagos 100% en línea de forma rápida y segura, 24/7 con
             tarjetas de crédito, tarjetas débito (vía PSE) y QR Bancolombia.
-            Usamos pasrelas de pago con certificación PCI-DSS para garantizar
+            Usamos pasarelas de pago con certificación PCI-DSS para garantizar
             seguridad y validez de su compra.
           </h5>
           <br />
