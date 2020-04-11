@@ -6,7 +6,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 
 // core components
 const backgroundImage =
-  'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586486122/tapabocasya/background.jpg';
+  'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586632962/tapabocasya/background.jpg';
 
 const LandingPageHeader = () => {
   return (

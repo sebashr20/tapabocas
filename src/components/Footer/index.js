@@ -40,6 +40,8 @@ const MainFooter = () => {
               <span className="copyright">
                 © {new Date().getFullYear()}, TapabocasYa
               </span>
+              {' | '}
+              <span className="copyright">info@tapabocasya.com</span>
             </div>
           </Row>
         </Container>
