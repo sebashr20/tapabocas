@@ -37,6 +37,7 @@ const Admin = () => {
               <th>Ref</th>
               <th>Estado</th>
               <th>Método pago</th>
+              <th>Wompi ID</th>
               <th>Pedido</th>
               <th>Dirección</th>
               <th>Ciudad</th>
@@ -58,6 +59,7 @@ const Admin = () => {
                   ) : null}
                 </td>
                 <td>{order.paymentMethod}</td>
+                <td>{order.wompiId}</td>
                 <td>
                   {order.cart.map((item) => (
                     <p key={item._id} className="my-0">

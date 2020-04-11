@@ -13,6 +13,7 @@ import { getWompi, updateOrder } from 'actions/orders';
 const PayStatus = (props) => {
   const { location } = props;
   const { id, env } = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const wompiId = id;
 
   const [state, setState] = useState({
     status: '',
@@ -28,18 +29,19 @@ const PayStatus = (props) => {
           status,
           created_at,
           payment_method: { type: paymentMethod },
-        } = await getWompi(id);
+        } = await getWompi(wompiId);
 
         await updateOrder(ref, {
           status: status,
           paymentMethod: paymentMethod,
+          wompiId: wompiId,
           createdAt: created_at,
         });
         await setState({ status: status, ref: ref });
       }
       fetchData();
     }
-  }, [id, env]);
+  }, [wompiId, env]);
 
   const approved = () => {
     return (

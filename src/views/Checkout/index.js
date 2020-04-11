@@ -132,6 +132,12 @@ const Checkout = () => {
   return (
     <Fragment>
       <SimpleNavbar />
+      {totalQuantity > 0 ? (
+        <Alert color="info" className="text-center">
+          Cuando termines el pago, recuerda darle click al botón REGRESAR AL
+          COMERCIO para validar tu pedido y ver tu némero de orden.
+        </Alert>
+      ) : null}
       {totalQuantity >= 10 ? (
         <Alert color="info" className="text-center">
           Solo puedes comprar máx. 10 items. Si requieres más,{' '}
