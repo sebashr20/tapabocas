@@ -53,7 +53,7 @@ const ProductSection = ({ cartItemNumber }) => {
                     >
                       {product.description}
                       {product.type === 't3' ? (
-                        <Alert color="danger">Agotado</Alert>
+                        <Alert color="danger">Bajo pedido</Alert>
                       ) : null}
                     </CardBody>
                     <ListGroup flush>
@@ -71,7 +71,7 @@ const ProductSection = ({ cartItemNumber }) => {
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
-                              disabled={product.type === 't3' ? true : false}
+                              // disabled={product.type === 't3' ? true : false}
                             >
                               Agregar al carrito
                             </Button>
