@@ -25,64 +25,97 @@ const Admin = () => {
     await setOrders(orders);
   };
 
+  const [data, setData] = useState({
+    password: '',
+    show: false,
+  });
+  const { password, show } = data;
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setData({ ...data, password: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    if (password === process.env.REACT_APP_ADMIN_PASSWORD) {
+      setData({ ...data, show: true });
+    }
+  };
+
   return (
     <Fragment>
-      {orders.length === 0 ? (
-        <p className="text-center">Loading...</p>
+      {!show ? (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            name="password"
+            onChange={handleChange}
+            value={password}
+          />
+          <button type="submit">send</button>
+        </form>
       ) : (
-        <Table>
-          <thead>
-            <tr>
-              <th>Ref</th>
-              <th>Estado</th>
-              <th>Método pago</th>
-              <th>Wompi ID</th>
-              <th>Pedido</th>
-              <th>Dirección</th>
-              <th>Ciudad</th>
-              <th>Teléfono</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <th scope="row">{order.ref}</th>
-                <td>
-                  {order.status}
-                  {order.paymentMethod === 'QR_CODE' &&
-                  order.status === 'PENDING' ? (
-                    <Fragment>
-                      <button
-                        onClick={() => updatePayment(order.ref, 'APPROVED')}
-                      >
-                        confirm
-                      </button>
-                      <button
-                        onClick={() => updatePayment(order.ref, 'DECLINED')}
-                      >
-                        declined
-                      </button>
-                    </Fragment>
-                  ) : null}
-                </td>
-                <td>{order.paymentMethod}</td>
-                <td>{order.wompiId}</td>
-                <td>
-                  {order.cart.map((item) => (
-                    <p key={item._id} className="my-0">
-                      {item.id} => {item.quantity}
-                    </p>
-                  ))}
-                </td>
-                <td>{order.address}</td>
-                <td>{order.city}</td>
-                <td>{order.phone}</td>
-                <td>{order.createdAt}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Fragment>
+          {orders.length === 0 ? (
+            <p className="text-center">Loading...</p>
+          ) : (
+            <Table>
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Estado</th>
+                  <th>Método pago</th>
+                  <th>Wompi ID</th>
+                  <th>Pedido</th>
+                  <th>Dirección</th>
+                  <th>Ciudad</th>
+                  <th>Teléfono</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order._id}>
+                    <th scope="row">{order.ref}</th>
+                    <td>
+                      {order.status}
+                      {order.paymentMethod === 'QR_CODE' &&
+                      order.status === 'PENDING' ? (
+                        <Fragment>
+                          <button
+                            onClick={() => updatePayment(order.ref, 'APPROVED')}
+                          >
+                            confirm
+                          </button>
+                          <button
+                            onClick={() => updatePayment(order.ref, 'DECLINED')}
+                          >
+                            declined
+                          </button>
+                        </Fragment>
+                      ) : null}
+                    </td>
+                    <td>{order.paymentMethod}</td>
+                    <td>{order.wompiId}</td>
+                    <td>
+                      {order.cart.map((item) => (
+                        <p key={item._id} className="my-0">
+                          {item.id} => {item.quantity}
+                        </p>
+                      ))}
+                    </td>
+                    <td>{order.address}</td>
+                    <td>{order.city}</td>
+                    <td>{order.phone}</td>
+                    <td>{order.createdAt}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </Fragment>
       )}
     </Fragment>
   );
