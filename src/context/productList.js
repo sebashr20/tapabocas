@@ -234,9 +234,9 @@ export const products = [
     description: (
       <div className="text-left">
         <p className="my-0 mb-2">
-          ✓ Dos capas (interna y externa) de tela no tejida de politex
-          antialérgica, antiestática, no-tóxica y una capa intermedia de filtro
-          sin fibra de vidrio.
+          ✓ Tres capas: una capa interna y una externa de tela no tejida de
+          politex antialérgica, antiestática, no-tóxica y una capa intermedia de
+          filtro sin fibra de vidrio.
         </p>
         <p className="my-0 mb-2">
           ✓ Tipo de agarre: elástico redondo para ajustar en la oreja.

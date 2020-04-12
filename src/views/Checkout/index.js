@@ -32,17 +32,23 @@ import {
 // core components
 import { SimpleNavbar, Footer } from 'components';
 
+// discount cupon
+const discountCupon = process.env.REACT_APP_DISCOUNT_CUPON;
+
 // formik schema
 const CheckoutSchema = Yup.object().shape({
   address: Yup.string()
-    .min(10, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(10, 'Muy corto!')
+    .max(50, 'Muy largo!')
     .required('Requerido'),
   city: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(2, 'Muy corto!')
+    .max(50, 'Muy largo!')
     .required('Requerido'),
-  phone: Yup.number().required('Required'),
+  phone: Yup.number().required('Requerido'),
+  cupon: Yup.string().matches(discountCupon, {
+    message: 'Cupón incorrecto',
+  }),
 });
 
 // Unique ref code
@@ -62,18 +68,8 @@ const Checkout = () => {
   // costs
   const deliveryCost = 10000;
   const totalCost = totalAmount + deliveryCost;
-
-  // wompi parameters
-  const wompiData = {
-    publicKey: process.env.REACT_APP_WOMPI_PUBLIC_KEY,
-    currency: 'COP',
-    value: totalCost * 100,
-    reference: referenceCode,
-    redirectUrl: process.env.REACT_APP_WOMPI_REDIRECT_URL,
-  };
-  const { publicKey, currency, value, reference, redirectUrl } = wompiData;
-  const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
-  const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
+  const discount = totalAmount * 0.05;
+  const totalCostWithDiscount = totalCost - discount;
 
   // show QR logic
   const [state, setState] = useState({
@@ -109,16 +105,19 @@ const Checkout = () => {
       address: '',
       city: '',
       phone: '',
+      cupon: '',
     },
     validationSchema: CheckoutSchema,
     onSubmit: async ({ address, city, phone }) => {
       const delivery = [];
+
       await cart.map((item) => {
         return delivery.push({
           id: item.id,
           quantity: item.quantity,
         });
       });
+
       const formData = {
         ref: reference,
         cart: delivery,
@@ -126,9 +125,7 @@ const Checkout = () => {
         city: city,
         phone: phone,
       };
-      // to data base
 
-      // QR or Wompi
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
@@ -144,7 +141,20 @@ const Checkout = () => {
       }
     },
   });
-  const { address, city, phone } = values;
+  const { address, city, phone, cupon } = values;
+
+  // wompi parameters
+  const wompiData = {
+    publicKey: process.env.REACT_APP_WOMPI_PUBLIC_KEY,
+    currency: 'COP',
+    value:
+      cupon === discountCupon ? totalCostWithDiscount * 100 : totalCost * 100,
+    reference: referenceCode,
+    redirectUrl: process.env.REACT_APP_WOMPI_REDIRECT_URL,
+  };
+  const { publicKey, currency, value, reference, redirectUrl } = wompiData;
+  const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
+  const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
 
   return (
     <Fragment>
@@ -303,19 +313,54 @@ const Checkout = () => {
                             </p>
                           </Col>
                         </Row>
+                        {cupon === discountCupon ? (
+                          <Row>
+                            <Col xs="6">
+                              <p className="my-0">Dcto 5%</p>
+                            </Col>
+                            <Col xs="6">
+                              <p className="my-0 text-right">
+                                {Intl.NumberFormat().format(discount)}
+                              </p>
+                            </Col>
+                          </Row>
+                        ) : null}
                         <Row>
                           <Col xs="6">
-                            <p className="my-0">Costo total</p>
+                            <p className="my-0">
+                              <strong>Costo total</strong>
+                            </p>
                           </Col>
                           <Col xs="6">
                             <p className="my-0 text-right">
-                              ${Intl.NumberFormat().format(totalCost)}
+                              <strong>
+                                {cupon === discountCupon
+                                  ? Intl.NumberFormat().format(
+                                      totalCostWithDiscount
+                                    )
+                                  : Intl.NumberFormat().format(totalCost)}
+                              </strong>
                             </p>
                           </Col>
                         </Row>
                       </div>
-                      <label className="my-0">Teléfono de contacto</label>
-                      <InputGroup className="mb-2">
+                      <label className="my-0">Cupón de descuento</label>
+                      <InputGroup className="my-0">
+                        <Input
+                          placeholder="Cupón"
+                          type="text"
+                          id="cupon"
+                          name="cupon"
+                          onChange={handleChange}
+                          value={cupon}
+                          invalid={errors.cupon && touched.cupon ? true : false}
+                        />
+                      </InputGroup>
+                      <FormText className="text-danger my-0 ">
+                        {errors.cupon}
+                      </FormText>
+                      <label className="my-0 mt-2">Teléfono de contacto</label>
+                      <InputGroup className="my-0">
                         <Input
                           placeholder="Teléfono"
                           type="number"
@@ -326,11 +371,11 @@ const Checkout = () => {
                           invalid={errors.phone && touched.phone ? true : false}
                         />
                       </InputGroup>
-                      <FormText className="text-danger">
+                      <FormText className="text-danger my-0 ">
                         {errors.phone}
                       </FormText>
-                      <label className="my-0">Dirección</label>
-                      <InputGroup className="myb-2">
+                      <label className="my-0 mt-2">Dirección</label>
+                      <InputGroup className="my-0">
                         <Input
                           placeholder="Dirección"
                           type="text"
@@ -343,11 +388,11 @@ const Checkout = () => {
                           }
                         />
                       </InputGroup>
-                      <FormText className="text-danger">
+                      <FormText className="text-danger my-0 ">
                         {errors.address}
                       </FormText>
-                      <label className="my-0">Ciudad</label>
-                      <InputGroup className="myb-2">
+                      <label className="my-0 mt-2">Ciudad</label>
+                      <InputGroup className="my-0">
                         <Input
                           placeholder="Ciudad"
                           type="text"
@@ -358,7 +403,9 @@ const Checkout = () => {
                           invalid={errors.city && touched.city ? true : false}
                         />
                       </InputGroup>
-                      <FormText className="text-danger">{errors.city}</FormText>
+                      <FormText className="text-danger my-0 ">
+                        {errors.city}
+                      </FormText>
                       <h6 className="my-0 mb-4">
                         *A todo el país (aplican restricciones).
                       </h6>
