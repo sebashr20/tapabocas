@@ -33,7 +33,9 @@ import {
 import { SimpleNavbar, Footer } from 'components';
 
 // discount cupon
-const discountCupon = process.env.REACT_APP_DISCOUNT_CUPON;
+const discountCupon05 = process.env.REACT_APP_DISCOUNT_CUPON_05;
+const discountCupon10 = process.env.REACT_APP_DISCOUNT_CUPON_10;
+const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
 
 // formik schema
 const CheckoutSchema = Yup.object().shape({
@@ -46,11 +48,7 @@ const CheckoutSchema = Yup.object().shape({
     .max(50, 'Muy largo!')
     .required('Requerido'),
   phone: Yup.number().required('Requerido'),
-  cupon: Yup.string()
-    .matches(discountCupon, {
-      message: 'Cupón incorrecto',
-    })
-    .max(11, 'Cupón incorrecto'),
+  cupon: Yup.string().max(11, 'Cupón incorrecto'),
 });
 
 // Unique ref code
@@ -66,12 +64,6 @@ const Checkout = () => {
     removeProductFromCart,
     clearProductFromCart,
   } = useContext(ShopContext);
-
-  // costs
-  const deliveryCost = 10000;
-  const totalCost = totalAmount + deliveryCost;
-  const discount = totalAmount * 0.05;
-  const totalCostWithDiscount = totalCost - discount;
 
   // show QR logic
   const [state, setState] = useState({
@@ -145,12 +137,32 @@ const Checkout = () => {
   });
   const { address, city, phone, cupon } = values;
 
+  // costs and discounts
+  let discount;
+  switch (cupon) {
+    case discountCupon05:
+      discount = 0.05;
+      break;
+    case discountCupon10:
+      discount = 0.1;
+      break;
+    case discountCupon15:
+      discount = 0.15;
+      break;
+    default:
+      discount = 0;
+      break;
+  }
+  const deliveryCost = 10000;
+  const totalCost = totalAmount + deliveryCost;
+  const totalDiscount = totalAmount * discount;
+  const totalCostWithDiscount = totalCost - totalDiscount;
+
   // wompi parameters
   const wompiData = {
     publicKey: process.env.REACT_APP_WOMPI_PUBLIC_KEY,
     currency: 'COP',
-    value:
-      cupon === discountCupon ? totalCostWithDiscount * 100 : totalCost * 100,
+    value: totalCostWithDiscount * 100,
     reference: referenceCode,
     redirectUrl: process.env.REACT_APP_WOMPI_REDIRECT_URL,
   };
@@ -315,14 +327,16 @@ const Checkout = () => {
                             </p>
                           </Col>
                         </Row>
-                        {cupon === discountCupon ? (
+                        {cupon === discountCupon05 ||
+                        cupon === discountCupon10 ||
+                        cupon === discountCupon15 ? (
                           <Row>
                             <Col xs="6">
                               <p className="my-0">Dcto 5%</p>
                             </Col>
                             <Col xs="6">
                               <p className="my-0 text-right">
-                                {Intl.NumberFormat().format(discount)}
+                                {Intl.NumberFormat().format(totalDiscount)}
                               </p>
                             </Col>
                           </Row>
@@ -336,11 +350,9 @@ const Checkout = () => {
                           <Col xs="6">
                             <p className="my-0 text-right">
                               <strong>
-                                {cupon === discountCupon
-                                  ? Intl.NumberFormat().format(
-                                      totalCostWithDiscount
-                                    )
-                                  : Intl.NumberFormat().format(totalCost)}
+                                {Intl.NumberFormat().format(
+                                  totalCostWithDiscount
+                                )}
                               </strong>
                             </p>
                           </Col>
