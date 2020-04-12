@@ -8,6 +8,12 @@ import { getOrders, updateOrder } from 'actions/orders';
 
 const Admin = () => {
   const [orders, setOrders] = useState([]);
+  const [wompiId, setWompiId] = useState();
+  const [data, setData] = useState({
+    password: '',
+    show: false,
+  });
+  const { password, show } = data;
 
   useEffect(() => {
     async function fetchData() {
@@ -17,19 +23,23 @@ const Admin = () => {
     fetchData();
   }, []);
 
-  const updatePayment = async (ref, action) => {
+  const updatePayment = async (ref, newStatus, newWompiId) => {
     await updateOrder(ref, {
-      status: action,
+      status: newStatus,
+      wompiId: newWompiId,
     });
     const orders = await getOrders();
     await setOrders(orders);
   };
 
-  const [data, setData] = useState({
-    password: '',
-    show: false,
-  });
-  const { password, show } = data;
+  const handleChangeConfirmWompi = (e) => {
+    e.preventDefault();
+    setWompiId(e.target.value);
+  };
+
+  const handleConfirmWompi = () => {
+    window.open(`/checkout/status?id=${wompiId}`, '_blank');
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -66,6 +76,7 @@ const Admin = () => {
                 <tr>
                   <th>Ref</th>
                   <th>Estado</th>
+                  <th>Acción</th>
                   <th>Método pago</th>
                   <th>Wompi ID</th>
                   <th>Pedido</th>
@@ -79,8 +90,8 @@ const Admin = () => {
                 {orders.map((order) => (
                   <tr key={order._id}>
                     <th scope="row">{order.ref}</th>
+                    <td>{order.status}</td>
                     <td>
-                      {order.status}
                       {order.paymentMethod === 'QR_CODE' &&
                       order.status === 'PENDING' ? (
                         <Fragment>
@@ -91,6 +102,31 @@ const Admin = () => {
                           </button>
                           <button
                             onClick={() => updatePayment(order.ref, 'DECLINED')}
+                          >
+                            declined
+                          </button>
+                        </Fragment>
+                      ) : (
+                        'NA'
+                      )}
+                      {order.paymentMethod === 'WOMPI' &&
+                      order.status === 'PENDING' ? (
+                        <Fragment>
+                          <form onSubmit={handleConfirmWompi}>
+                            <input
+                              type="text"
+                              placeholder="wompi id"
+                              id="wompiId"
+                              name="wompiId"
+                              onChange={handleChangeConfirmWompi}
+                              value={wompiId}
+                            />
+                            <button type="submit">confirm</button>
+                          </form>
+                          <button
+                            onClick={() =>
+                              updatePayment(order.ref, 'DECLINED', 'NA')
+                            }
                           >
                             declined
                           </button>
