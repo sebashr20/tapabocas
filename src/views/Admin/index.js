@@ -106,9 +106,7 @@ const Admin = () => {
                             declined
                           </button>
                         </Fragment>
-                      ) : (
-                        'NA'
-                      )}
+                      ) : null}
                       {order.paymentMethod === 'WOMPI' &&
                       order.status === 'PENDING' ? (
                         <Fragment>
@@ -132,6 +130,7 @@ const Admin = () => {
                           </button>
                         </Fragment>
                       ) : null}
+                      {order.status !== 'PENDING' ? 'NA' : null}
                     </td>
                     <td>{order.paymentMethod}</td>
                     <td>{order.wompiId}</td>
