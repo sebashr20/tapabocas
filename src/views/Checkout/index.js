@@ -153,7 +153,16 @@ const Checkout = () => {
       discount = 0;
       break;
   }
-  const deliveryCost = 10000;
+
+  let deliveryCost;
+  if (totalQuantity >= 5 && totalQuantity < 7) {
+    deliveryCost = 13500;
+  } else if (totalQuantity >= 7) {
+    deliveryCost = 21000;
+  } else {
+    deliveryCost = 10000;
+  }
+
   const totalCost = totalAmount + deliveryCost;
   const totalDiscount = totalAmount * discount;
   const totalCostWithDiscount = totalCost - totalDiscount;
