@@ -7,7 +7,7 @@
       "REACT_APP_WOMPI_REDIRECT_URL": "@wompi-redirect-url",
       "REACT_APP_WAPP_NUMBER": "@wapp-number",
       "REACT_APP_WAPP_NUMBER_INST": "@wapp-number-inst",
-      "DISCOUNT_CUPON": "@discount-cupon"
+      "REACT_APP_DISCOUNT_CUPON": "@discount-cupon"
     }
   }
 }
