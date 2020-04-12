@@ -35,14 +35,12 @@ const PayStatus = (props) => {
         const {
           reference: ref,
           status,
-          created_at,
           payment_method: { type: paymentMethod },
         } = await getWompi(wompiId);
         updateOrder(ref, {
           status: status,
           paymentMethod: paymentMethod,
           wompiId: wompiId,
-          createdAt: created_at,
         });
         return setState({ status: status, ref: ref });
       }
