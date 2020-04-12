@@ -141,7 +141,7 @@ export const products = [
         <p className="my-0 mb-2">
           ✓ Tipo de agarre: elástico plano para ajustar en la oreja.
         </p>
-        <p className="my-0 mb-2">Sin adaptador nasal.</p>
+        <p className="my-0 mb-2">✓ Sin adaptador nasal.</p>
         <p className="my-0 mb-2">
           ✓ Las medidas del producto terminado son 15,5 cm x 7,5 cm, tres
           pliegues, terminación de doblés y fileteado
@@ -241,7 +241,7 @@ export const products = [
         <p className="my-0 mb-2">
           ✓ Tipo de agarre: elástico redondo para ajustar en la oreja.
         </p>
-        <p className="my-0 mb-2">Adaptador nasal plástico</p>
+        <p className="my-0 mb-2">✓ Adaptador nasal plástico</p>
         <p className="my-0 mb-2">
           ✓ Las medidas del producto terminado son 18 cm x 9,5 cm, termosellado.
         </p>

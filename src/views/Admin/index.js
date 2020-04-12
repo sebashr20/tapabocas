@@ -17,10 +17,9 @@ const Admin = () => {
     fetchData();
   }, []);
 
-  const confirmPayment = async (ref) => {
+  const updatePayment = async (ref, action) => {
     await updateOrder(ref, {
-      status: 'APPROVED',
-      createdAt: new Date().toISOString(),
+      status: action,
     });
     const orders = await getOrders();
     await setOrders(orders);
@@ -51,11 +50,20 @@ const Admin = () => {
                 <th scope="row">{order.ref}</th>
                 <td>
                   {order.status}
-                  {order.paymentMethod === 'BANCOLOMBIA_QR_CODE' &&
+                  {order.paymentMethod === 'QR_CODE' &&
                   order.status === 'PENDING' ? (
-                    <button onClick={() => confirmPayment(order.ref)}>
-                      confirm
-                    </button>
+                    <Fragment>
+                      <button
+                        onClick={() => updatePayment(order.ref, 'APPROVED')}
+                      >
+                        confirm
+                      </button>
+                      <button
+                        onClick={() => updatePayment(order.ref, 'DECLINED')}
+                      >
+                        declined
+                      </button>
+                    </Fragment>
                   ) : null}
                 </td>
                 <td>{order.paymentMethod}</td>

@@ -12,7 +12,9 @@ import { getWompi, updateOrder } from 'actions/orders';
 
 const PayStatus = (props) => {
   const { location } = props;
-  const { id, env } = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const { id, env, qrRef } = qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
   const wompiId = id;
 
   const [state, setState] = useState({
@@ -24,24 +26,29 @@ const PayStatus = (props) => {
   useEffect(() => {
     if (!env) {
       async function fetchData() {
+        if (qrRef) {
+          updateOrder(qrRef, {
+            wompiId: 'NA',
+          });
+          return setState({ status: 'PENDING', ref: qrRef });
+        }
         const {
           reference: ref,
           status,
           created_at,
           payment_method: { type: paymentMethod },
         } = await getWompi(wompiId);
-
-        await updateOrder(ref, {
+        updateOrder(ref, {
           status: status,
           paymentMethod: paymentMethod,
           wompiId: wompiId,
           createdAt: created_at,
         });
-        await setState({ status: status, ref: ref });
+        return setState({ status: status, ref: ref });
       }
       fetchData();
     }
-  }, [wompiId, env]);
+  }, [wompiId, env, qrRef]);
 
   const approved = () => {
     return (
@@ -70,6 +77,20 @@ const PayStatus = (props) => {
     );
   };
 
+  const qrPending = () => {
+    return (
+      <Fragment>
+        <h2 className="title">Tu transación está siendo validada</h2>
+        <h5 className="description">
+          Estamos confirmado la recepción del pago vía QR Bancolombia. Una vez
+          validado, crearemos tu orden y te mandaremos un correo con los
+          detalles del envío. El número de tu orden es: <strong>{ref}.</strong>{' '}
+          Si tienes alguna pregunta no dudes en contactarnos.
+        </h5>
+      </Fragment>
+    );
+  };
+
   return (
     <Fragment>
       <SimpleNavbar />
@@ -78,7 +99,9 @@ const PayStatus = (props) => {
           <p className="text-center">Loading...</p>
         ) : (
           <Container>
-            {status === 'APPROVED' ? approved() : declined()}
+            {status === 'APPROVED' ? approved() : null}
+            {status === 'DECLINED' ? declined() : null}
+            {qrRef ? qrPending() : null}
           </Container>
         )}
       </div>

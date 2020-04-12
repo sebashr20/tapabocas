@@ -25,6 +25,8 @@ import {
   ListGroupItem,
   CardImg,
   Alert,
+  FormGroup,
+  Label,
 } from 'reactstrap';
 
 // core components
@@ -80,7 +82,8 @@ const Checkout = () => {
   });
   const { payQR, showQR } = state;
 
-  const [create, setCreate] = useState(true);
+  const [create, setCreate] = useState(false);
+  const [check, setCheck] = useState(false);
 
   const handleShowQR = (click) => {
     if (click === 'other') {
@@ -88,6 +91,16 @@ const Checkout = () => {
     } else {
       setState({ ...state, payQR: true });
     }
+  };
+
+  const handleCheck = () => {
+    setCheck(!check);
+  };
+
+  const handleCreateOrderQR = async (ref) => {
+    setCreate(true);
+    await handleSubmit();
+    window.open(`/checkout/status?qrRef=${ref}`, '_self');
   };
 
   // fromik config
@@ -114,16 +127,20 @@ const Checkout = () => {
         phone: phone,
       };
       // to data base
-      if (create) {
-        await createOrder(formData);
-        setCreate(false);
-      }
+
       // QR or Wompi
       if (payQR) {
+        if (create) {
+          formData.paymentMethod = 'QR_CODE';
+          await createOrder(formData);
+          setCreate(false);
+        }
         setState({ ...state, showQR: true });
       } else {
+        formData.paymentMethod = 'WOMPI';
+        await createOrder(formData);
         setState({ payQR: false, showQR: false });
-        window.open(url, '_blank');
+        window.open(url, '_self');
       }
     },
   });
@@ -133,9 +150,11 @@ const Checkout = () => {
     <Fragment>
       <SimpleNavbar />
       {totalQuantity > 0 ? (
-        <Alert color="info" className="text-center">
-          Cuando termines el pago, recuerda darle click al botón REGRESAR AL
-          COMERCIO para validar tu pedido y ver tu némero de orden.
+        <Alert color="danger" className="text-center">
+          <p style={{ fontSize: '20px' }} className="my-0">
+            Al terminar tu pago, recuerda darle click al botón{' '}
+            <strong>REGRESAR AL COMERCIO</strong> para procesar tu orden.
+          </p>
         </Alert>
       ) : null}
       {totalQuantity >= 10 ? (
@@ -361,17 +380,42 @@ const Checkout = () => {
                         color="info"
                         type="submit"
                         style={{ width: '100%' }}
-                        className="mb-4"
+                        className={!showQR ? 'mb-4' : ''}
                         onClick={() => handleShowQR('qr')}
                       >
                         Pagar con QR Bancolombia
                       </Button>
                       {showQR ? (
-                        <CardImg
-                          src="https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586541323/tapabocasya/qr.png"
-                          alt="..."
-                          style={{ maxWidth: '20rem' }}
-                        />
+                        <Fragment>
+                          <CardImg
+                            src="https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586541323/tapabocasya/qr.png"
+                            alt="..."
+                            style={{ maxWidth: '20rem' }}
+                          />
+                          <FormGroup check>
+                            <Label check>
+                              <Input
+                                type="checkbox"
+                                name="check"
+                                value={check}
+                                onChange={handleCheck}
+                              />
+                              Ya realicé el pago.
+                              <span className="form-check-sign">
+                                <span className="check"></span>
+                              </span>
+                            </Label>
+                          </FormGroup>
+                          <Button
+                            color="info"
+                            style={{ width: '100%' }}
+                            className="mb-4"
+                            onClick={() => handleCreateOrderQR(reference)}
+                            disabled={!check}
+                          >
+                            Confirmar orden
+                          </Button>
+                        </Fragment>
                       ) : null}
                     </Form>
                   </Col>
