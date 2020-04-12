@@ -46,9 +46,11 @@ const CheckoutSchema = Yup.object().shape({
     .max(50, 'Muy largo!')
     .required('Requerido'),
   phone: Yup.number().required('Requerido'),
-  cupon: Yup.string().matches(discountCupon, {
-    message: 'Cupón incorrecto',
-  }),
+  cupon: Yup.string()
+    .matches(discountCupon, {
+      message: 'Cupón incorrecto',
+    })
+    .max(11, 'Cupón incorrecto'),
 });
 
 // Unique ref code
