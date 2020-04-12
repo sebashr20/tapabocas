@@ -150,7 +150,7 @@ export const products = [
         <p className="my-0 mb-2">✓ Registro INVIMA en proceso.</p>
         <p className="my-0 mb-2">
           <a
-            href="https://res.cloudinary.com/sebashr20/image/upload/v1586551650/tapabocasya/product-data-sheet/pds_002.pdf"
+            href="https://res.cloudinary.com/sebashr20/image/upload/v1586666936/tapabocasya/product-data-sheet/pds_2.pdf"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: '#51bcda' }}
@@ -200,7 +200,7 @@ export const products = [
         <p className="my-0 mb-2">✓ Registro INVIMA en proceso.</p>
         <p className="my-0 mb-2">
           <a
-            href="https://res.cloudinary.com/sebashr20/image/upload/v1586561163/tapabocasya/product-data-sheet/pds_003.pdf"
+            href="https://res.cloudinary.com/sebashr20/image/upload/v1586667006/tapabocasya/product-data-sheet/pds_3.pdf"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: '#51bcda' }}
@@ -251,7 +251,7 @@ export const products = [
         </p>
         <p className="my-0 mb-2">
           <a
-            href="https://res.cloudinary.com/sebashr20/image/upload/v1586551650/tapabocasya/product-data-sheet/pds_004.pdf"
+            href="https://res.cloudinary.com/sebashr20/image/upload/v1586667039/tapabocasya/product-data-sheet/pds_4.pdf"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: '#51bcda' }}
