@@ -1,32 +1,26 @@
-import React, { useReducer } from "react";
-import ShopContext from "./shop-context";
-import { products, skus } from "./productList";
+import React, { useReducer } from 'react';
+import ShopContext from './shop-context';
+import { products, skus } from 'utils/productList';
 import {
   shopReducer,
   ADD_PRODUCT,
   REMOVE_PRODUCT,
   CLEAR_PRODUCT,
-} from "./reducers";
+} from './reducers';
 
 const GlobalState = (props) => {
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
   const addProductToCart = (product) => {
-    setTimeout(() => {
-      dispatch({ type: ADD_PRODUCT, product: product });
-    }, 700);
+    dispatch({ type: ADD_PRODUCT, product: product });
   };
 
   const removeProductFromCart = (productId) => {
-    setTimeout(() => {
-      dispatch({ type: REMOVE_PRODUCT, productId: productId });
-    }, 700);
+    dispatch({ type: REMOVE_PRODUCT, productId: productId });
   };
 
   const clearProductFromCart = (productId) => {
-    setTimeout(() => {
-      dispatch({ type: CLEAR_PRODUCT, productId: productId });
-    }, 700);
+    dispatch({ type: CLEAR_PRODUCT, productId: productId });
   };
 
   const totals = (cart) => {
