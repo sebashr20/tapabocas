@@ -1,13 +1,11 @@
-import React, { Fragment, useContext } from "react";
-import ShopContext from "context/shop-context";
+import React, { Fragment, useContext } from 'react';
+import ShopContext from 'context/shop-context';
 
 // reactstrap components
 
 // core components
-import { Navbar, LandingPageHeader, Footer } from "components";
-import FormSection from "./FormSection";
-import HeroSection from "./HeroSection";
-import ProductSection from "./ProductSection";
+import { Navbar, Footer } from 'components';
+import { Header, HeroSection, ProductSection, FormSection } from './components';
 
 const LandingPage = () => {
   const { cart } = useContext(ShopContext);
@@ -20,7 +18,7 @@ const LandingPage = () => {
     <Fragment>
       <Navbar cartItemNumber={itemCounter} />
       <div className="main">
-        <LandingPageHeader />
+        <Header />
         <HeroSection />
         <ProductSection cartItemNumber={itemCounter} />
         <FormSection />

@@ -1,206 +1,49 @@
-import React, { Fragment, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useContext } from 'react';
 import { HashLink } from 'react-router-hash-link';
-import randomCode from 'crypto-random-string';
 import ShopContext from 'context/shop-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 // actions
-import { createOrder } from 'actions/orders';
 
 // reactstrap components
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  InputGroup,
-  Input,
-  Form,
-  FormText,
-  ListGroup,
-  ListGroupItem,
-  CardImg,
-  Alert,
-  FormGroup,
-  Label,
-} from 'reactstrap';
+import { Container, Row, Button } from 'reactstrap';
 
 // core components
-import { SimpleNavbar, Footer } from 'components';
-
-// discount cupon
-const discountCupon05 = process.env.REACT_APP_DISCOUNT_CUPON_05;
-const discountCupon10 = process.env.REACT_APP_DISCOUNT_CUPON_10;
-const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
-
-// formik schema
-const CheckoutSchema = Yup.object().shape({
-  address: Yup.string()
-    .min(10, 'Muy corto!')
-    .max(50, 'Muy largo!')
-    .required('Requerido'),
-  city: Yup.string()
-    .min(2, 'Muy corto!')
-    .max(50, 'Muy largo!')
-    .required('Requerido'),
-  phone: Yup.number().required('Requerido'),
-  cupon: Yup.string().max(11, 'Cupón incorrecto'),
-});
-
-// Unique ref code
-const referenceCode = randomCode({ length: 6 });
+import { SimpleNavbar, Footer, MainAlert } from 'components';
+import { Cart, Summary } from './components';
 
 const Checkout = () => {
-  // global contex
-  const {
-    cart,
-    totalAmount,
-    totalQuantity,
-    addProductToCart,
-    removeProductFromCart,
-    clearProductFromCart,
-  } = useContext(ShopContext);
-
-  // show QR logic
-  const [state, setState] = useState({
-    payQR: false,
-    showQR: false,
-  });
-  const { payQR, showQR } = state;
-
-  const [create, setCreate] = useState(false);
-  const [check, setCheck] = useState(false);
-
-  const handleShowQR = (click) => {
-    if (click === 'other') {
-      setState({ ...state, payQR: false });
-    } else {
-      setState({ ...state, payQR: true });
-    }
-  };
-
-  const handleCheck = () => {
-    setCheck(!check);
-  };
-
-  const handleCreateOrderQR = async (ref) => {
-    setCreate(true);
-    await handleSubmit();
-    window.open(`/checkout/status?qrRef=${ref}`, '_self');
-  };
-
-  // fromik config
-  const { values, handleSubmit, handleChange, errors, touched } = useFormik({
-    initialValues: {
-      address: '',
-      city: '',
-      phone: '',
-      cupon: '',
-    },
-    validationSchema: CheckoutSchema,
-    onSubmit: async ({ address, city, phone }) => {
-      const delivery = [];
-
-      await cart.map((item) => {
-        return delivery.push({
-          id: item.id,
-          quantity: item.quantity,
-        });
-      });
-
-      const formData = {
-        ref: reference,
-        cart: delivery,
-        address: address,
-        city: city,
-        phone: phone,
-      };
-
-      if (payQR) {
-        if (create) {
-          formData.paymentMethod = 'QR_CODE';
-          await createOrder(formData);
-          setCreate(false);
-        }
-        setState({ ...state, showQR: true });
-      } else {
-        formData.paymentMethod = 'WOMPI';
-        await createOrder(formData);
-        setState({ payQR: false, showQR: false });
-        window.open(url, '_self');
-      }
-    },
-  });
-  const { address, city, phone, cupon } = values;
-
-  // costs and discounts
-  let discount;
-  switch (cupon) {
-    case discountCupon05:
-      discount = 0.05;
-      break;
-    case discountCupon10:
-      discount = 0.1;
-      break;
-    case discountCupon15:
-      discount = 0.15;
-      break;
-    default:
-      discount = 0;
-      break;
-  }
-
-  let deliveryCost;
-  if (totalQuantity >= 5 && totalQuantity < 7) {
-    deliveryCost = 13500;
-  } else if (totalQuantity >= 7) {
-    deliveryCost = 21000;
-  } else {
-    deliveryCost = 10000;
-  }
-
-  const totalCost = totalAmount + deliveryCost;
-  const totalDiscount = totalAmount * discount;
-  const totalCostWithDiscount = totalCost - totalDiscount;
-
-  // wompi parameters
-  const wompiData = {
-    publicKey: process.env.REACT_APP_WOMPI_PUBLIC_KEY,
-    currency: 'COP',
-    value: totalCostWithDiscount * 100,
-    reference: referenceCode,
-    redirectUrl: process.env.REACT_APP_WOMPI_REDIRECT_URL,
-  };
-  const { publicKey, currency, value, reference, redirectUrl } = wompiData;
-  const newRedirectUrl = redirectUrl.replace(/:/g, '%3A').replace(/\//g, '%2F');
-  const url = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${value}&reference=${reference}&redirect-url=${newRedirectUrl}`;
-
+  const { cart, totalQuantity } = useContext(ShopContext);
   return (
     <Fragment>
       <SimpleNavbar />
       {totalQuantity > 0 ? (
-        <Alert color="danger" className="text-center">
-          <p style={{ fontSize: '20px' }} className="my-0">
-            Al terminar tu pago, recuerda darle click al botón{' '}
-            <strong>REGRESAR AL COMERCIO</strong> para procesar tu orden.
-          </p>
-        </Alert>
+        <MainAlert
+          text={
+            <span>
+              Al terminar tu pago, recuerda darle click al botón{' '}
+              <strong>REGRESAR AL COMERCIO</strong> para procesar tu orden.
+            </span>
+          }
+          color={'danger'}
+        />
       ) : null}
       {totalQuantity >= 10 ? (
-        <Alert color="info" className="text-center">
-          Solo puedes comprar máx. 10 items. Si requieres más,{' '}
-          <Button
-            to="/#institucionales"
-            tag={HashLink}
-            className="btn-link my-0 py-0 mx-0 px-0 btn-alert"
-          >
-            <strong>contáctanos.</strong>
-          </Button>
-        </Alert>
+        <MainAlert
+          text={
+            <span>
+              Solo puedes comprar máx. 10 items. Si requieres más,{' '}
+              <Button
+                to="/#institucionales"
+                tag={HashLink}
+                className="btn-link my-0 py-0 mx-0 px-0 btn-alert"
+                style={{ fontSize: '20px' }}
+              >
+                <strong>contáctanos.</strong>
+              </Button>
+            </span>
+          }
+          color={'info'}
+        />
       ) : null}
       <Container>
         <div className="section mt-1 pt-2">
@@ -216,279 +59,9 @@ const Checkout = () => {
           ) : (
             <Fragment>
               <Container>
-                <Row className="">
-                  <Col xs="12" md="9" className="px-2 my-2">
-                    {cart.map((cartItem) => (
-                      <ListGroup flush key={cartItem.id}>
-                        <ListGroupItem className="px-0">
-                          <Row>
-                            <Col xs="3">
-                              <Row>
-                                <Col>
-                                  <img
-                                    alt="..."
-                                    style={{ width: '100%' }}
-                                    src={cartItem.img}
-                                  />
-                                </Col>
-                              </Row>
-                            </Col>
-                            <Col xs="9">
-                              <Row>
-                                <Col xs="12" md="5">
-                                  <h5 className="my-0 mx-0">
-                                    <strong>{cartItem.title}</strong>
-                                  </h5>
-                                </Col>
-                                <Col xs="12" md="3">
-                                  <h5 className="my-0 mx-0">
-                                    $
-                                    {Intl.NumberFormat().format(cartItem.price)}
-                                  </h5>
-                                </Col>
-                                <Col xs="12" md="4">
-                                  <Row>
-                                    <Col xs="3">
-                                      <Button
-                                        color="neutral"
-                                        className="px-0 py-0 mx-0 my-0"
-                                        onClick={addProductToCart.bind(
-                                          this,
-                                          cartItem
-                                        )}
-                                        disabled={
-                                          totalQuantity >= 10 ? true : false
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          icon={faPlus}
-                                          style={{ color: '#51bcda' }}
-                                        />
-                                      </Button>
-                                    </Col>
-                                    <Col xs="3">
-                                      <h5 className="my-0 mx-0">
-                                        {cartItem.quantity}
-                                      </h5>
-                                    </Col>
-                                    <Col xs="3">
-                                      <Button
-                                        color="neutral"
-                                        className="px-0 py-0 mx-0 my-0"
-                                        onClick={removeProductFromCart.bind(
-                                          this,
-                                          cartItem.id
-                                        )}
-                                      >
-                                        <FontAwesomeIcon
-                                          icon={faMinus}
-                                          style={{ color: '#51bcda' }}
-                                        />
-                                      </Button>
-                                    </Col>
-                                    <Col xs="3">
-                                      <Button
-                                        color="neutral"
-                                        className="px-0 py-0 mx-0 my-0"
-                                        onClick={clearProductFromCart.bind(
-                                          this,
-                                          cartItem.id
-                                        )}
-                                      >
-                                        <FontAwesomeIcon
-                                          icon={faTimes}
-                                          style={{ color: '#51bcda' }}
-                                        />
-                                      </Button>
-                                    </Col>
-                                  </Row>
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </ListGroupItem>
-                      </ListGroup>
-                    ))}
-                  </Col>
-                  <Col xs="12" md="3" className="px-0">
-                    <Form onSubmit={handleSubmit} className="px-4 py-1 shadow">
-                      <h3 className="mb-4">
-                        <strong>Resumen</strong>
-                      </h3>
-                      <div className="mb-4">
-                        <Row>
-                          <Col xs="6">
-                            <p className="my-0">{totalQuantity} items</p>
-                          </Col>
-                          <Col xs="6">
-                            <p className="my-0 text-right">
-                              ${Intl.NumberFormat().format(totalAmount)}
-                            </p>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs="6">
-                            <p className="my-0">Envío*</p>
-                          </Col>
-                          <Col xs="6">
-                            <p className="my-0 text-right">
-                              ${Intl.NumberFormat().format(deliveryCost)}
-                            </p>
-                          </Col>
-                        </Row>
-                        {cupon === discountCupon05 ||
-                        cupon === discountCupon10 ||
-                        cupon === discountCupon15 ? (
-                          <Row>
-                            <Col xs="6">
-                              <p className="my-0">Dcto 5%</p>
-                            </Col>
-                            <Col xs="6">
-                              <p className="my-0 text-right">
-                                {Intl.NumberFormat().format(totalDiscount)}
-                              </p>
-                            </Col>
-                          </Row>
-                        ) : null}
-                        <Row>
-                          <Col xs="6">
-                            <p className="my-0">
-                              <strong>Costo total</strong>
-                            </p>
-                          </Col>
-                          <Col xs="6">
-                            <p className="my-0 text-right">
-                              <strong>
-                                {Intl.NumberFormat().format(
-                                  totalCostWithDiscount
-                                )}
-                              </strong>
-                            </p>
-                          </Col>
-                        </Row>
-                      </div>
-                      <label className="my-0">Cupón de descuento</label>
-                      <InputGroup className="my-0">
-                        <Input
-                          placeholder="Cupón"
-                          type="text"
-                          id="cupon"
-                          name="cupon"
-                          onChange={handleChange}
-                          value={cupon}
-                          invalid={errors.cupon && touched.cupon ? true : false}
-                        />
-                      </InputGroup>
-                      <FormText className="text-danger my-0 ">
-                        {errors.cupon}
-                      </FormText>
-                      <label className="my-0 mt-2">Teléfono de contacto</label>
-                      <InputGroup className="my-0">
-                        <Input
-                          placeholder="Teléfono"
-                          type="number"
-                          id="phone"
-                          name="phone"
-                          onChange={handleChange}
-                          value={phone}
-                          invalid={errors.phone && touched.phone ? true : false}
-                        />
-                      </InputGroup>
-                      <FormText className="text-danger my-0 ">
-                        {errors.phone}
-                      </FormText>
-                      <label className="my-0 mt-2">Dirección</label>
-                      <InputGroup className="my-0">
-                        <Input
-                          placeholder="Dirección"
-                          type="text"
-                          id="address"
-                          name="address"
-                          onChange={handleChange}
-                          value={address}
-                          invalid={
-                            errors.address && touched.address ? true : false
-                          }
-                        />
-                      </InputGroup>
-                      <FormText className="text-danger my-0 ">
-                        {errors.address}
-                      </FormText>
-                      <label className="my-0 mt-2">Ciudad</label>
-                      <InputGroup className="my-0">
-                        <Input
-                          placeholder="Ciudad"
-                          type="text"
-                          id="city"
-                          name="city"
-                          onChange={handleChange}
-                          value={city}
-                          invalid={errors.city && touched.city ? true : false}
-                        />
-                      </InputGroup>
-                      <FormText className="text-danger my-0 ">
-                        {errors.city}
-                      </FormText>
-                      <h6 className="my-0 mb-4">
-                        *A todo el país (aplican restricciones).
-                      </h6>
-                      <h6 className="my-0 mb-4">
-                        Al enviarnos tu solicitud estás aceptando nuestros{' '}
-                        <Link to="/terminos">términos y condiciones</Link> y{' '}
-                        <Link to="/privacidad">políticas de privacidad.</Link>
-                      </h6>
-                      <Button
-                        color="info"
-                        type="submit"
-                        style={{ width: '100%' }}
-                        className="mb-4"
-                        onClick={() => handleShowQR('other')}
-                      >
-                        Otros medios de pago
-                      </Button>
-                      <Button
-                        color="info"
-                        type="submit"
-                        style={{ width: '100%' }}
-                        className={!showQR ? 'mb-4' : ''}
-                        onClick={() => handleShowQR('qr')}
-                      >
-                        Pagar con QR Bancolombia
-                      </Button>
-                      {showQR ? (
-                        <Fragment>
-                          <CardImg
-                            src="https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586541323/tapabocasya/qr.png"
-                            alt="..."
-                            style={{ maxWidth: '20rem' }}
-                          />
-                          <FormGroup check>
-                            <Label check>
-                              <Input
-                                type="checkbox"
-                                name="check"
-                                value={check}
-                                onChange={handleCheck}
-                              />
-                              Ya realicé el pago.
-                              <span className="form-check-sign">
-                                <span className="check"></span>
-                              </span>
-                            </Label>
-                          </FormGroup>
-                          <Button
-                            color="info"
-                            style={{ width: '100%' }}
-                            className="mb-4"
-                            onClick={() => handleCreateOrderQR(reference)}
-                            disabled={!check}
-                          >
-                            Confirmar orden
-                          </Button>
-                        </Fragment>
-                      ) : null}
-                    </Form>
-                  </Col>
+                <Row>
+                  <Cart />
+                  <Summary />
                 </Row>
               </Container>
             </Fragment>

@@ -1,4 +1,5 @@
-import { server, wompi } from 'utils/axios';
+import { axios } from 'utils';
+const { server, wompi } = axios;
 
 export const getOrders = async () => {
   try {

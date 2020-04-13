@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import ShopContext from './shop-context';
-import { products, skus } from 'utils/productList';
+import { productList } from 'utils';
 import {
   shopReducer,
   ADD_PRODUCT,
@@ -9,6 +9,7 @@ import {
 } from './reducers';
 
 const GlobalState = (props) => {
+  const { products, skus } = productList;
   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
 
   const addProductToCart = (product) => {

@@ -8,7 +8,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 const backgroundImage =
   'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586632962/tapabocasya/background.jpg';
 
-const LandingPageHeader = () => {
+const header = () => {
   return (
     <Fragment>
       <div
@@ -48,4 +48,4 @@ const LandingPageHeader = () => {
   );
 };
 
-export default LandingPageHeader;
+export default header;

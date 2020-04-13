@@ -1,24 +1,6 @@
 import React from 'react';
 
-export const skus = [
-  // {
-  //   id: 't1_20',
-  //   type: 't1',
-  //   title: 'Tapabocas Tipo 1 x20',
-  //   size: 'x20',
-  //   price: 80000,
-  //   img:
-  //     'https://res.cloudinary.com/sebashr20/image/upload/c_scale,h_705,q_auto:low/v1586555454/tapabocasya/products/002/umc7n5yloksptof7hyrg.jpg',
-  // },
-  // {
-  //   id: 't1_50',
-  //   type: 't1',
-  //   title: 'Tapabocas Tipo 1 x50',
-  //   size: 'x50',
-  //   price: 197000,
-  //   img:
-  //     'https://res.cloudinary.com/sebashr20/image/upload/c_scale,h_705,q_auto:low/v1586555454/tapabocasya/products/002/umc7n5yloksptof7hyrg.jpg',
-  // },
+const skus = [
   {
     id: 't2_20',
     type: 't2',
@@ -75,60 +57,7 @@ export const skus = [
   },
 ];
 
-export const products = [
-  // {
-  //   type: 't1',
-  //   title: 'Tapabocas Tipo 1',
-  //   description: (
-  //     <div className="text-left">
-  //       <p className="my-0 mb-2">Cintas elásticas: elastómero color blanco.</p>
-  //       <p className="my-0 mb-2">
-  //         Tela interna: 100% filamento de poliéster, con secado rápido y
-  //         absorción.
-  //       </p>
-  //       <p className="my-0 mb-2">
-  //         Tela externa: tela no tejida 100% poliéster.
-  //       </p>
-  //       <p className="my-0 mb-2">Color: blanco.</p>
-  //       <p className="my-0 mb-2">Tamaño: 20x9cm.</p>
-  //       <p className="my-0 mb-2">Lavable (hasta 3 veces).</p>
-  //       <p className="my-0 mb-2">
-  //         <a
-  //           href="https://res.cloudinary.com/sebashr20/image/upload/v1586540710/tapabocasya/product-data-sheet/ud1eqq4n2lku4vcnmd9v.pdf"
-  //           target="_blank"
-  //           rel="noopener noreferrer"
-  //           style={{ color: '#51bcda' }}
-  //         >
-  //           Descargar ficha técnica.
-  //         </a>
-  //       </p>
-  //     </div>
-  //   ),
-  //   button: 'Comprar',
-  //   carousel: [
-  //     {
-  //       src:
-  //         'https://res.cloudinary.com/sebashr20/image/upload/c_scale,h_705,q_auto:low/v1586554438/tapabocasya/products/004/uxn5b53n69hspdogyaog.jpg',
-  //       altText: '',
-  //       caption: '',
-  //       key: 't1_i1',
-  //     },
-  //     {
-  //       src:
-  //         'https://res.cloudinary.com/sebashr20/image/upload/c_scale,h_705,q_auto:low/v1586554438/tapabocasya/products/004/yigcsalvwwgvjvarrsaq.jpg',
-  //       altText: '',
-  //       caption: '',
-  //       key: 't1_i2',
-  //     },
-  //     {
-  //       src:
-  //         'https://res.cloudinary.com/sebashr20/image/upload/c_scale,h_705,q_auto:low/v1586554438/tapabocasya/products/004/vycy62gcr5vxkrsmk7un.jpg',
-  //       altText: '',
-  //       caption: '',
-  //       key: 't1_i3',
-  //     },
-  //   ],
-  // },
+const products = [
   {
     type: 't2',
     title: 'Tapabocas Tipo 2',
@@ -243,7 +172,8 @@ export const products = [
         </p>
         <p className="my-0 mb-2">✓ Adaptador nasal plástico</p>
         <p className="my-0 mb-2">
-          ✓ Las medidas del producto terminado son 18 cm x 9,5 cm, termosellado.
+          ✓ Las medidas del producto terminado son 18 cm x 9,5 cm,{' '}
+          <strong>TERMOSELLADO.</strong>
         </p>
         <p className="my-0 mb-2">✓ Un solo uso (aprox. 8 horas).</p>
         <p className="my-0 mb-2">
@@ -287,3 +217,5 @@ export const products = [
     ],
   },
 ];
+
+export default { products, skus };
