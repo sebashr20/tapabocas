@@ -9,8 +9,14 @@ const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_
 const MainFooter = () => {
   return (
     <Fragment>
-      <footer className="footer footer-white section-dark">
-        <Container>
+      <footer className="footer footer-white section-light">
+        <Container
+          style={{
+            borderTopStyle: 'solid',
+            borderWidth: '0.1px',
+            borderTopColor: '#C0C0C0',
+          }}
+        >
           <Row>
             <nav className="footer-nav">
               <ul>

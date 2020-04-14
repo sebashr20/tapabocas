@@ -140,9 +140,12 @@ const Summary = () => {
     deliveryCost = 10000;
   }
 
-  const totalCost = totalAmount + deliveryCost;
-  const totalDiscount = totalAmount * discount;
-  const totalCostWithDiscount = totalCost - totalDiscount;
+  // costs
+  const totalCostWithoutTax = Math.round(totalAmount / 1.19);
+  const totalDiscount = Math.round(totalCostWithoutTax * discount);
+  const tax = Math.round((totalCostWithoutTax - totalDiscount) * 0.19);
+  const totalCostWithDiscount =
+    totalCostWithoutTax + tax + deliveryCost - totalDiscount;
 
   // wompi parameters
   const wompiData = {
@@ -169,17 +172,7 @@ const Summary = () => {
             </Col>
             <Col xs="6">
               <p className="my-0 text-right">
-                ${Intl.NumberFormat().format(totalAmount)}
-              </p>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6">
-              <p className="my-0">Envío*</p>
-            </Col>
-            <Col xs="6">
-              <p className="my-0 text-right">
-                ${Intl.NumberFormat().format(deliveryCost)}
+                ${Intl.NumberFormat().format(totalCostWithoutTax)}
               </p>
             </Col>
           </Row>
@@ -188,7 +181,7 @@ const Summary = () => {
           cupon === discountCupon15 ? (
             <Row>
               <Col xs="6">
-                <p className="my-0">Dcto 5%</p>
+                <p className="my-0">Dcto {discount * 100}%*</p>
               </Col>
               <Col xs="6">
                 <p className="my-0 text-right">
@@ -199,6 +192,26 @@ const Summary = () => {
           ) : null}
           <Row>
             <Col xs="6">
+              <p className="my-0">IVA 19%</p>
+            </Col>
+            <Col xs="6">
+              <p className="my-0 text-right">
+                ${Intl.NumberFormat().format(tax)}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="6">
+              <p className="my-0">Envío**</p>
+            </Col>
+            <Col xs="6">
+              <p className="my-0 text-right">
+                ${Intl.NumberFormat().format(deliveryCost)}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="6">
               <p className="my-0">
                 <strong>Costo total</strong>
               </p>
@@ -206,7 +219,7 @@ const Summary = () => {
             <Col xs="6">
               <p className="my-0 text-right">
                 <strong>
-                  {Intl.NumberFormat().format(totalCostWithDiscount)}
+                  ${Intl.NumberFormat().format(totalCostWithDiscount)}
                 </strong>
               </p>
             </Col>
@@ -224,6 +237,7 @@ const Summary = () => {
             invalid={errors.cupon && touched.cupon ? true : false}
           />
         </InputGroup>
+        <h6 className="my-0">*Aplica sobre el total antes de IVA.</h6>
         <FormText className="text-danger my-0 ">{errors.cupon}</FormText>
         <label className="my-0 mt-2">Teléfono de contacto</label>
         <InputGroup className="my-0">
@@ -264,8 +278,8 @@ const Summary = () => {
           />
         </InputGroup>
         <FormText className="text-danger my-0 ">{errors.city}</FormText>
-        <h6 className="my-0 mb-4">*A todo el país (aplican restricciones).</h6>
-        <h6 className="my-0 mb-4">
+        <h6 className="my-0 mb-3">**A todo el país (aplican restricciones).</h6>
+        <h6 className="my-0 mb-3">
           Al enviarnos tu solicitud estás aceptando nuestros{' '}
           <Link to="/terminos">términos y condiciones</Link> y{' '}
           <Link to="/privacidad">políticas de privacidad.</Link>
