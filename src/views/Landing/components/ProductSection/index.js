@@ -64,11 +64,13 @@ const ProductSection = ({ cartItemNumber }) => {
                         product.type === sku.type ? (
                           <ListGroupItem key={sku.id}>
                             <CardText className="py-0 my-0">
-                              Caja {sku.size} und: $
+                              Caja {sku.size} und:
+                            </CardText>
+                            <CardText className="py-0 my-0 mb-1">
                               <strong>
-                                {Intl.NumberFormat().format(sku.price)}{' '}
+                                $ {Intl.NumberFormat().format(sku.price)}{' '}
                               </strong>
-                              + Envío
+                              (IVA incluído) + Envío
                             </CardText>
                             <Button
                               color="info"

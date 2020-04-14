@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 // context
 import ShopContext from 'context/shop-context';
@@ -57,7 +57,7 @@ const Cart = () => {
                         >
                           <FontAwesomeIcon
                             icon={faPlus}
-                            style={{ color: '#51bcda' }}
+                            style={{ color: '#51bcda', fontSize: '1.3em' }}
                           />
                         </Button>
                       </Col>
@@ -75,7 +75,7 @@ const Cart = () => {
                         >
                           <FontAwesomeIcon
                             icon={faMinus}
-                            style={{ color: '#51bcda' }}
+                            style={{ color: '#51bcda', fontSize: '1.3em' }}
                           />
                         </Button>
                       </Col>
@@ -86,8 +86,8 @@ const Cart = () => {
                           onClick={clearProductFromCart.bind(this, cartItem.id)}
                         >
                           <FontAwesomeIcon
-                            icon={faTimes}
-                            style={{ color: '#51bcda' }}
+                            icon={faTrashAlt}
+                            style={{ color: '#51bcda', fontSize: '1.3em' }}
                           />
                         </Button>
                       </Col>

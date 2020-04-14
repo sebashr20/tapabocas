@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // reactstrap components
 import { Row, Container, Button } from 'reactstrap';
 
-const url = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
+const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Acabo%20de%20leer%20la%20información%20de%20la%20página%20web%20y%20necesito%20información%20adicional.%20Mi%20nombre%20es:%20`;
 
 const MainFooter = () => {
   return (
@@ -27,7 +27,7 @@ const MainFooter = () => {
                 <li className="mx-0 px-0 my-0 py-0">
                   <Button
                     color="link"
-                    href={url}
+                    href={urlContact}
                     target="_blank"
                     rel="noopener"
                   >

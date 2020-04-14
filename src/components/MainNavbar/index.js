@@ -23,8 +23,8 @@ import {
 const logo =
   'https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png';
 
-const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Quisiera%20más%20información%20sobre%20los%20tapabocas.%20Gracias!`;
-const urlSupplier = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER_INST}&text=Hola!%20Quisiera%20más%20información%20para%20ser%20proveedor.%20Gracias!`;
+const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Acabo%20de%20leer%20la%20información%20de%20la%20página%20web%20y%20necesito%20información%20adicional.%20Mi%20nombre%20es:%20`;
+const urlSupplier = 'https://bit.ly/Distribuidor_TapabocasYa';
 
 function MainNavbar({ cartItemNumber }) {
   const [navbarColor, setNavbarColor] = useState('navbar-transparent');
@@ -86,36 +86,6 @@ function MainNavbar({ cartItemNumber }) {
         </div>
         <Collapse className="justify-content-end" navbar>
           <Nav navbar>
-            {/* <NavItem>
-              <NavLink
-                to="#garantia"
-                tag={HashLink}
-                smooth
-                style={{ color: 'rgb(30, 25, 75)' }}
-              >
-                Garantía
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                to="#productos"
-                tag={HashLink}
-                smooth
-                style={{ color: 'rgb(30, 25, 75)' }}
-              >
-                Productos
-              </NavLink>
-            </NavItem> */}
-            <NavItem>
-              <NavLink
-                to="#institucionales"
-                tag={HashLink}
-                smooth
-                style={{ color: 'rgb(30, 25, 75)' }}
-              >
-                Ventas Institucionales
-              </NavLink>
-            </NavItem>
             <NavItem>
               <NavLink
                 href={urlSupplier}
@@ -124,6 +94,16 @@ function MainNavbar({ cartItemNumber }) {
                 style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Conviértete en proveedor
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                to="#institucionales"
+                tag={HashLink}
+                smooth
+                style={{ color: 'rgb(30, 25, 75)' }}
+              >
+                Ventas Institucionales
               </NavLink>
             </NavItem>
             <NavItem>
