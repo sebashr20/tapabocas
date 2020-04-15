@@ -5,7 +5,13 @@ import ShopContext from 'context/shop-context';
 
 // core components
 import { Navbar, Footer } from 'components';
-import { Header, HeroSection, ProductSection, FormSection } from './components';
+import {
+  Header,
+  HeroSection,
+  ProductSection,
+  FormSection,
+  VideoSection,
+} from './components';
 
 const LandingPage = () => {
   const { cart } = useContext(ShopContext);
@@ -21,6 +27,7 @@ const LandingPage = () => {
         <Header />
         <HeroSection />
         <ProductSection cartItemNumber={itemCounter} />
+        <VideoSection />
         <FormSection />
       </div>
       <Footer />

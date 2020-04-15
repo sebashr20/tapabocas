@@ -57,7 +57,7 @@ const FormSection = () => {
 
   return (
     <Fragment>
-      <div className="section landing-section" id="institucionales">
+      <div className="section section-dark" id="institucionales">
         <Container>
           <Row>
             <Col className="ml-auto mr-auto" md="9">
@@ -65,7 +65,7 @@ const FormSection = () => {
               <Form className="contact-form" onSubmit={handleSubmit}>
                 <Row>
                   <Col md="4">
-                    <label>Nombre</label>
+                    <label style={{ color: 'white' }}>Nombre</label>
                     <InputGroup>
                       <Input
                         placeholder="Nombre"
@@ -80,7 +80,7 @@ const FormSection = () => {
                     <FormText className="text-danger">{errors.name}</FormText>
                   </Col>
                   <Col md="4">
-                    <label>Email</label>
+                    <label style={{ color: 'white' }}>Email</label>
                     <InputGroup>
                       <Input
                         placeholder="Email"
@@ -95,7 +95,7 @@ const FormSection = () => {
                     <FormText className="text-danger">{errors.email}</FormText>
                   </Col>
                   <Col md="4">
-                    <label>Celular</label>
+                    <label style={{ color: 'white' }}>Celular</label>
                     <InputGroup>
                       <Input
                         placeholder="Celular"
@@ -110,7 +110,7 @@ const FormSection = () => {
                     <FormText className="text-danger">{errors.phone}</FormText>
                   </Col>
                 </Row>
-                <label>Mensaje</label>
+                <label style={{ color: 'white' }}>Mensaje</label>
                 <Input
                   placeholder="Cuéntanos el requerimiento que tienes..."
                   type="textarea"
@@ -122,7 +122,7 @@ const FormSection = () => {
                   invalid={errors.text && touched.text ? true : false}
                 />
                 <FormText className="text-danger">{errors.text}</FormText>
-                <p className="mt-3">
+                <p className="mt-3" style={{ color: 'white' }}>
                   Al enviarnos tu solicitud estás aceptando nuestros{' '}
                   <Link to="/terminos">términos y condiciones</Link> y{' '}
                   <Link to="/privacidad">políticas de privacidad.</Link>
