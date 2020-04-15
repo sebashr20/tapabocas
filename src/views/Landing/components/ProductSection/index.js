@@ -70,7 +70,7 @@ const ProductSection = ({ cartItemNumber }) => {
                               <strong>
                                 $ {Intl.NumberFormat().format(sku.price)}{' '}
                               </strong>
-                              (IVA incluído) + Envío
+                              + Envío
                             </CardText>
                             <Button
                               color="info"

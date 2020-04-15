@@ -141,9 +141,10 @@ const Summary = () => {
   }
 
   // costs
-  const totalCostWithoutTax = Math.round(totalAmount / 1.19);
+  const totalCostWithoutTax = totalAmount;
   const totalDiscount = Math.round(totalCostWithoutTax * discount);
-  const tax = Math.round((totalCostWithoutTax - totalDiscount) * 0.19);
+  // const tax = Math.round((totalCostWithoutTax - totalDiscount) * 0.19);
+  const tax = 0;
   const totalCostWithDiscount =
     totalCostWithoutTax + tax + deliveryCost - totalDiscount;
 
@@ -181,7 +182,7 @@ const Summary = () => {
           cupon === discountCupon15 ? (
             <Row>
               <Col xs="6">
-                <p className="my-0">Dcto {discount * 100}%*</p>
+                <p className="my-0">Dcto {discount * 100}%</p>
               </Col>
               <Col xs="6">
                 <p className="my-0 text-right">
@@ -192,7 +193,7 @@ const Summary = () => {
           ) : null}
           <Row>
             <Col xs="6">
-              <p className="my-0">IVA 19%</p>
+              <p className="my-0">IVA 0%</p>
             </Col>
             <Col xs="6">
               <p className="my-0 text-right">
@@ -202,7 +203,7 @@ const Summary = () => {
           </Row>
           <Row>
             <Col xs="6">
-              <p className="my-0">Envío**</p>
+              <p className="my-0">Envío*</p>
             </Col>
             <Col xs="6">
               <p className="my-0 text-right">
@@ -237,7 +238,7 @@ const Summary = () => {
             invalid={errors.cupon && touched.cupon ? true : false}
           />
         </InputGroup>
-        <h6 className="my-0">*Aplica sobre el total antes de IVA.</h6>
+        {/* <h6 className="my-0">*Aplica sobre el total antes de IVA.</h6> */}
         <FormText className="text-danger my-0 ">{errors.cupon}</FormText>
         <label className="my-0 mt-2">Teléfono de contacto</label>
         <InputGroup className="my-0">
@@ -278,7 +279,7 @@ const Summary = () => {
           />
         </InputGroup>
         <FormText className="text-danger my-0 ">{errors.city}</FormText>
-        <h6 className="my-0 mb-3">**A todo el país (aplican restricciones).</h6>
+        <h6 className="my-0 mb-3">*A todo el país (aplican restricciones).</h6>
         <h6 className="my-0 mb-3">
           Al enviarnos tu solicitud estás aceptando nuestros{' '}
           <Link to="/terminos">términos y condiciones</Link> y{' '}

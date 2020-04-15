@@ -6,7 +6,7 @@ const skus = [
     type: 't2',
     title: 'Tapabocas Tipo 2 x20',
     size: 'x20',
-    price: 39000,
+    price: 33000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560084/tapabocasya/products/002/epvh4qwapq9ddpelty96.jpg',
   },
@@ -15,7 +15,7 @@ const skus = [
     type: 't2',
     title: 'Tapabocas Tipo 2 x50',
     size: 'x50',
-    price: 95000,
+    price: 80000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560084/tapabocasya/products/002/epvh4qwapq9ddpelty96.jpg',
   },
@@ -24,7 +24,7 @@ const skus = [
     type: 't3',
     title: 'Tapabocas Tipo 3 x20',
     size: 'x20',
-    price: 51000,
+    price: 43000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560433/tapabocasya/products/003/bda76ta1osbtfyfyx4wq.jpg',
   },
@@ -33,7 +33,7 @@ const skus = [
     type: 't3',
     title: 'Tapabocas Tipo 3 x50',
     size: 'x50',
-    price: 124000,
+    price: 104000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560433/tapabocasya/products/003/bda76ta1osbtfyfyx4wq.jpg',
   },
@@ -42,7 +42,7 @@ const skus = [
     type: 't4',
     title: 'Tapabocas Tipo 4 x20',
     size: 'x20',
-    price: 63000,
+    price: 53000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586559691/tapabocasya/products/004/eqyhmud63ledu328czwr.jpg',
   },
@@ -51,7 +51,7 @@ const skus = [
     type: 't4',
     title: 'Tapabocas Tipo 4 x50',
     size: 'x50',
-    price: 154000,
+    price: 129000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586559691/tapabocasya/products/004/eqyhmud63ledu328czwr.jpg',
   },
