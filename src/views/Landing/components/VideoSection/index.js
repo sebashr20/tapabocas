@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 import { Container, Row, Col } from 'reactstrap';
 
 // core components
-const videoUrl = 'https://youtu.be/K8RhdEClG2E';
+const videoUrl = 'https://youtu.be/H8qJHeXfWIA';
 
 const VideoSection = () => {
   return (
