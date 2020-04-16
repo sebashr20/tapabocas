@@ -18,7 +18,8 @@ const VideoSection = () => {
               <h5 className="description">
                 Aseguramos los altos estándares de nuestros productos, para ello
                 realizamos y ponemos a tu disposicion nuestras pruebas de
-                calidad.
+                calidad. Esta es una prueba de porosidad y de restricción de
+                flujo de partículas aéreas.
               </h5>
             </Col>
           </Row>
