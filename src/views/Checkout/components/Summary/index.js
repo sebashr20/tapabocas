@@ -104,8 +104,8 @@ const Summary = () => {
       } else {
         formData.paymentMethod = 'WOMPI';
         createOrder(formData).then((res) => {
-          window.open(url, '_blank');
           setState({ payQR: false, showQR: false, redirectWompi: res.ref });
+          window.open(url, '_self');
         });
       }
     },

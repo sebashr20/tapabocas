@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import qs from 'query-string';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 // reactstrap components
 import { Container } from 'reactstrap';
@@ -95,13 +96,16 @@ const PayStatus = (props) => {
   const wompiPending = () => {
     return (
       <Fragment>
-        <h2 className="title">Tu transación en Wompi está en proceso</h2>
+        <h2 className="title">
+          Un momento por favor, te estamos redirigiendo a nuestra pasarela de
+          pagos...
+        </h2>
+        <BeatLoader loading={true} />
         <h5 className="description">
           Al terminar tu pago, recuerda darle click al botón{' '}
           <strong>REGRESAR AL COMERCIO</strong> para contnuar. Una vez validado
           el pago, crearemos tu orden y te mandaremos un mensaje con los
-          detalles del envío. El número de tu orden es: <strong>{ref}.</strong>{' '}
-          Si tienes alguna pregunta no dudes en contactarnos.
+          detalles del envío.
         </h5>
       </Fragment>
     );
