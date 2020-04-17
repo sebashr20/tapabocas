@@ -87,66 +87,72 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <th scope="row">{order.ref}</th>
-                    <td>{order.status}</td>
-                    <td>
-                      {order.paymentMethod === 'QR_CODE' &&
-                      order.status === 'PENDING' ? (
-                        <Fragment>
-                          <button
-                            onClick={() => updatePayment(order.ref, 'APPROVED')}
-                          >
-                            confirm
-                          </button>
-                          <button
-                            onClick={() => updatePayment(order.ref, 'DECLINED')}
-                          >
-                            declined
-                          </button>
-                        </Fragment>
-                      ) : null}
-                      {order.paymentMethod === 'WOMPI' &&
-                      order.status === 'PENDING' ? (
-                        <Fragment>
-                          <form onSubmit={handleConfirmWompi}>
-                            <input
-                              type="text"
-                              placeholder="wompi id"
-                              id="wompiId"
-                              name="wompiId"
-                              onChange={handleChangeConfirmWompi}
-                              value={wompiId}
-                            />
-                            <button type="submit">confirm</button>
-                          </form>
-                          <button
-                            onClick={() =>
-                              updatePayment(order.ref, 'DECLINED', 'NA')
-                            }
-                          >
-                            declined
-                          </button>
-                        </Fragment>
-                      ) : null}
-                      {order.status !== 'PENDING' ? 'NA' : null}
-                    </td>
-                    <td>{order.paymentMethod}</td>
-                    <td>{order.wompiId}</td>
-                    <td>
-                      {order.cart.map((item) => (
-                        <p key={item._id} className="my-0">
-                          {item.id} => {item.quantity}
-                        </p>
-                      ))}
-                    </td>
-                    <td>{order.address}</td>
-                    <td>{order.city}</td>
-                    <td>{order.phone}</td>
-                    <td>{order.createdAt}</td>
-                  </tr>
-                ))}
+                {orders.map((order) =>
+                  order.status === 'DECLINED' ? null : (
+                    <tr key={order._id}>
+                      <th scope="row">{order.ref}</th>
+                      <td>{order.status}</td>
+                      <td>
+                        {order.paymentMethod === 'QR_CODE' &&
+                        order.status === 'PENDING' ? (
+                          <Fragment>
+                            <button
+                              onClick={() =>
+                                updatePayment(order.ref, 'APPROVED')
+                              }
+                            >
+                              confirm
+                            </button>
+                            <button
+                              onClick={() =>
+                                updatePayment(order.ref, 'DECLINED')
+                              }
+                            >
+                              declined
+                            </button>
+                          </Fragment>
+                        ) : null}
+                        {order.paymentMethod === 'WOMPI' &&
+                        order.status === 'PENDING' ? (
+                          <Fragment>
+                            <form onSubmit={handleConfirmWompi}>
+                              <input
+                                type="text"
+                                placeholder="wompi id"
+                                id="wompiId"
+                                name="wompiId"
+                                onChange={handleChangeConfirmWompi}
+                                value={wompiId}
+                              />
+                              <button type="submit">confirm</button>
+                            </form>
+                            <button
+                              onClick={() =>
+                                updatePayment(order.ref, 'DECLINED', 'NA')
+                              }
+                            >
+                              declined
+                            </button>
+                          </Fragment>
+                        ) : null}
+                        {order.status !== 'PENDING' ? 'NA' : null}
+                      </td>
+                      <td>{order.paymentMethod}</td>
+                      <td>{order.wompiId}</td>
+                      <td>
+                        {order.cart.map((item) => (
+                          <p key={item._id} className="my-0">
+                            {item.id} => {item.quantity}
+                          </p>
+                        ))}
+                      </td>
+                      <td>{order.address}</td>
+                      <td>{order.city}</td>
+                      <td>{order.phone}</td>
+                      <td>{order.createdAt}</td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </Table>
           )}
