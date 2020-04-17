@@ -1,6 +1,8 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import randomCode from 'crypto-random-string';
+import BarLoader from 'react-spinners/BarLoader';
+import { css } from '@emotion/core';
 import { useFormik } from 'formik';
 
 // context
@@ -96,16 +98,18 @@ const Summary = () => {
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
-          createOrder(formData).then((res) => {
-            setState({ ...state, create: false, redirectRef: res.ref });
+          createOrder(formData).then(() => {
+            setState({ ...state, create: false, redirectRef: reference });
           });
         }
         setState({ ...state, showQR: true });
       } else {
         formData.paymentMethod = 'WOMPI';
-        createOrder(formData).then((res) => {
-          setState({ payQR: false, showQR: false, redirectWompi: res.ref });
-          window.open(url, '_self');
+        createOrder(formData).then(() => {
+          setState({ payQR: false, showQR: false, redirectWompi: true });
+          setTimeout(() => {
+            window.open(url, '_self');
+          }, 4000);
         });
       }
     },
@@ -289,16 +293,23 @@ const Summary = () => {
           color="info"
           type="submit"
           style={{ width: '100%' }}
-          className="mb-4"
+          className=""
           onClick={() => handleShowQR('other')}
         >
           Otros medios de pago
         </Button>
+        <BarLoader
+          loading={redirectWompi}
+          size={15}
+          css={css`
+            width: 100%;
+          `}
+        />
         <Button
           color="info"
           type="submit"
           style={{ width: '100%' }}
-          className={!showQR ? 'mb-4' : ''}
+          className={!showQR ? 'my-4' : 'mt-4'}
           onClick={() => handleShowQR('qr')}
         >
           Pagar con QR Bancolombia
