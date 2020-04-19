@@ -27,7 +27,10 @@ const header = () => {
                   <h1 style={{ marginTop: '1.8em' }}>
                     Proteje tu vida y la de tu familia en todo momento.
                   </h1>
-                  <h3>Usa solo tapabocas de alta calidad.</h3>
+                  <h3>
+                    Usa sólo tapabocas de alta calidad y que te brinden una
+                    protección <strong>real.</strong>
+                  </h3>
                 </Col>
               </Row>
             </span>
@@ -39,7 +42,7 @@ const header = () => {
               to="#garantia"
               size="lg"
             >
-              Conoce nuestros productos
+              Conoce nuestra garantía
             </Button>
           </div>
         </Container>
