@@ -1,6 +1,6 @@
 import React from 'react';
 
-const skus = [
+export const skus = [
   {
     id: 't2_20',
     type: 't2',
@@ -57,7 +57,7 @@ const skus = [
   },
 ];
 
-const products = [
+export const products = [
   {
     type: 't2',
     title: 'Tapabocas Tipo 2',
@@ -217,5 +217,3 @@ const products = [
     ],
   },
 ];
-
-export default { products, skus };

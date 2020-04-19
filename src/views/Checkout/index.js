@@ -1,6 +1,8 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import ShopContext from 'context/shop-context';
+import { totals } from 'utils/totals';
 
 // actions
 
@@ -11,8 +13,11 @@ import { Container, Row, Button } from 'reactstrap';
 import { SimpleNavbar, Footer, MainAlert } from 'components';
 import { Cart, Summary } from './components';
 
-const Checkout = () => {
-  const { cart, totalQuantity } = useContext(ShopContext);
+const Checkout = (props) => {
+  const { cart } = props;
+
+  const totalQuantity = totals(cart).qty;
+
   return (
     <Fragment>
       <SimpleNavbar />
@@ -73,4 +78,10 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+  };
+};
+
+export default connect(mapStateToProps, null)(withRouter(Checkout));

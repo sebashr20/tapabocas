@@ -1,0 +1,4 @@
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
+export const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
+export const CREATE_ORDER = 'CREATE_ORDER';

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const checkoutSchema = Yup.object().shape({
+export const checkoutSchema = Yup.object().shape({
   address: Yup.string()
     .min(10, 'Muy corto!')
     .max(50, 'Muy largo!')
@@ -12,5 +12,3 @@ const checkoutSchema = Yup.object().shape({
   phone: Yup.number().required('Requerido'),
   cupon: Yup.string().max(11, 'Cupón incorrecto'),
 });
-
-export default checkoutSchema;

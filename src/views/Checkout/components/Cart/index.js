@@ -1,21 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { totals } from 'utils/totals';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
-// context
-import ShopContext from 'context/shop-context';
+import {
+  addProductToCart,
+  removeProductFromCart,
+  clearProductFromCart,
+} from 'redux/actions/cart';
 
 // reactstrap components
 import { Row, Col, Button, ListGroup, ListGroupItem } from 'reactstrap';
 
-const Cart = () => {
+const Cart = (props) => {
   const {
     cart,
-    totalQuantity,
     addProductToCart,
     removeProductFromCart,
     clearProductFromCart,
-  } = useContext(ShopContext);
+  } = props;
+
+  const totalQuantity = totals(cart).qty;
 
   return (
     <Col xs="12" md="9" className="px-2 my-2">
@@ -103,4 +109,18 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductToCart: (product) => dispatch(addProductToCart(product)),
+    removeProductFromCart: (id) => dispatch(removeProductFromCart(id)),
+    clearProductFromCart: (id) => dispatch(clearProductFromCart(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Cart));

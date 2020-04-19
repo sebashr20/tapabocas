@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import GlobalState from 'context/GlobalState';
+import { Provider } from 'react-redux';
+import store from 'store';
 
 // styles
 import 'assets/css/bootstrap.min.css';
@@ -15,7 +16,7 @@ require('dotenv-flow').config();
 const App = () => {
   return (
     <BrowserRouter>
-      <GlobalState>
+      <Provider store={store}>
         <Switch>
           <Route path="/terminos" render={(props) => <Terms {...props} />} />
           <Route
@@ -31,7 +32,7 @@ const App = () => {
           <Route path="/" render={(props) => <Landing {...props} />} />
           <Redirect to="/" />
         </Switch>
-      </GlobalState>
+      </Provider>
     </BrowserRouter>
   );
 };

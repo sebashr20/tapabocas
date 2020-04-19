@@ -1,6 +1,5 @@
-import React, { Fragment, useContext } from 'react';
-import ShopContext from 'context/shop-context';
-
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 // reactstrap components
 
 // core components
@@ -13,20 +12,16 @@ import {
   VideoSection,
 } from './components';
 
-const LandingPage = () => {
-  const { cart } = useContext(ShopContext);
-
-  const itemCounter = cart.reduce((count, curItem) => {
-    return count + curItem.quantity;
-  }, 0);
+const LandingPage = (props) => {
+  const { cartItemCount } = props;
 
   return (
     <Fragment>
-      <Navbar cartItemNumber={itemCounter} />
+      <Navbar cartItemNumber={cartItemCount} />
       <div className="main">
         <Header />
         <HeroSection />
-        <ProductSection cartItemNumber={itemCounter} />
+        <ProductSection />
         <VideoSection />
         <FormSection />
       </div>
@@ -35,4 +30,12 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+const mapStateToProps = (state) => {
+  return {
+    cartItemCount: state.cart.cart.reduce((count, curItem) => {
+      return count + curItem.quantity;
+    }, 0),
+  };
+};
+
+export default connect(mapStateToProps, null)(LandingPage);
