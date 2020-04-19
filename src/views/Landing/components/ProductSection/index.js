@@ -17,7 +17,6 @@ import {
   ListGroup,
   ListGroupItem,
   UncontrolledCarousel,
-  Alert,
 } from 'reactstrap';
 
 // core components
@@ -55,9 +54,6 @@ const ProductSection = ({ cartItemNumber }) => {
                       style={{ height: '510px' }}
                     >
                       {product.description}
-                      {product.type === 't3' ? (
-                        <Alert color="danger">Agotado</Alert>
-                      ) : null}
                     </CardBody>
                     <ListGroup flush>
                       {skus.map((sku) =>
@@ -73,13 +69,23 @@ const ProductSection = ({ cartItemNumber }) => {
                               + Envío
                             </CardText>
                             <Button
-                              color="info"
+                              color={
+                                product.type === 't3' || sku.id === 't4_20'
+                                  ? 'default'
+                                  : 'info'
+                              }
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
-                              disabled={product.type === 't3' ? true : false}
+                              disabled={
+                                product.type === 't3' || sku.id === 't4_20'
+                                  ? true
+                                  : false
+                              }
                             >
-                              Agregar al carrito
+                              {product.type === 't3' || sku.id === 't4_20'
+                                ? 'Agotado'
+                                : 'Agregar al carrito'}
                             </Button>
                           </ListGroupItem>
                         ) : null

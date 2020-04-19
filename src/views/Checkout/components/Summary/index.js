@@ -135,11 +135,11 @@ const Summary = () => {
 
   let deliveryCost;
   if (totalQuantity >= 5 && totalQuantity < 7) {
-    deliveryCost = 13500;
+    deliveryCost = 16500;
   } else if (totalQuantity >= 7) {
-    deliveryCost = 21000;
+    deliveryCost = 24000;
   } else {
-    deliveryCost = 10000;
+    deliveryCost = 13000;
   }
 
   // costs
