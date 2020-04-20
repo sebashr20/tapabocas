@@ -95,7 +95,7 @@ const Admin = (props) => {
               </thead>
               <tbody>
                 {orders.map((order) =>
-                  order.status === 'TEST' ? null : (
+                  order.status === 'DECLINED' ? null : (
                     <tr key={order._id}>
                       <th scope="row">{order.ref}</th>
                       <td>{order.status}</td>
