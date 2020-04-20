@@ -1,13 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 // reactstrap components
 import { Table } from 'reactstrap';
 
 // actions
-import { getOrders, updateOrder } from 'actions/orders';
+import { getOrders, updateOrder, getWompi } from 'redux/actions/order';
 
-const Admin = () => {
-  const [orders, setOrders] = useState([]);
+const Admin = (props) => {
+  const { orders, getOrders, updateOrder } = props;
+
   const [wompiId, setWompiId] = useState();
   const [data, setData] = useState({
     password: '',
@@ -16,20 +19,14 @@ const Admin = () => {
   const { password, show } = data;
 
   useEffect(() => {
-    async function fetchData() {
-      const orders = await getOrders();
-      await setOrders(orders);
-    }
-    fetchData();
-  }, []);
+    getOrders();
+  }, [getOrders]);
 
   const updatePayment = async (ref, newStatus, newWompiId) => {
     await updateOrder(ref, {
       status: newStatus,
       wompiId: newWompiId,
     });
-    const orders = await getOrders();
-    await setOrders(orders);
   };
 
   const handleChangeConfirmWompi = (e) => {
@@ -37,8 +34,18 @@ const Admin = () => {
     setWompiId(e.target.value);
   };
 
-  const handleConfirmWompi = () => {
-    window.open(`/checkout/status?id=${wompiId}`, '_blank');
+  const handleConfirmWompi = async (e) => {
+    e.preventDefault();
+    const {
+      reference: ref,
+      status,
+      payment_method: { type: paymentMethod },
+    } = await getWompi(wompiId);
+    await updateOrder(ref, {
+      status: status,
+      paymentMethod: paymentMethod,
+      wompiId: wompiId,
+    });
   };
 
   const handleChange = (e) => {
@@ -88,7 +95,7 @@ const Admin = () => {
               </thead>
               <tbody>
                 {orders.map((order) =>
-                  order.status === 'DECLINED' ? null : (
+                  order.status === 'TEST' ? null : (
                     <tr key={order._id}>
                       <th scope="row">{order.ref}</th>
                       <td>{order.status}</td>
@@ -123,6 +130,7 @@ const Admin = () => {
                                 name="wompiId"
                                 onChange={handleChangeConfirmWompi}
                                 value={wompiId}
+                                required
                               />
                               <button type="submit">confirm</button>
                             </form>
@@ -162,4 +170,17 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+const mapStateToProps = (state) => {
+  return {
+    orders: state.order.orders,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getOrders: () => dispatch(getOrders()),
+    updateOrder: (ref, formData) => dispatch(updateOrder(ref, formData)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Admin));

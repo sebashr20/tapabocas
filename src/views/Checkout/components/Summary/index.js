@@ -1,15 +1,14 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import randomCode from 'crypto-random-string';
 import BarLoader from 'react-spinners/BarLoader';
 import { css } from '@emotion/core';
 import { useFormik } from 'formik';
 
-// context
-import ShopContext from 'context/shop-context';
-
 // actions
-import { createOrder } from 'actions/orders';
+import { createOrder } from 'redux/actions/order';
+import { totals } from 'utils/totals';
 
 // reactstrap components
 import {
@@ -26,8 +25,10 @@ import {
 } from 'reactstrap';
 
 // core components
-import { checkoutSchema } from 'utils';
 // import { ModalBeforPay } from '../../components';
+
+// utils
+import { checkoutSchema } from 'utils/checkoutSchema';
 
 // constants
 const discountCupon05 = process.env.REACT_APP_DISCOUNT_CUPON_05;
@@ -35,9 +36,11 @@ const discountCupon10 = process.env.REACT_APP_DISCOUNT_CUPON_10;
 const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
 const referenceCode = randomCode({ length: 6 });
 
-const Summary = () => {
-  // global contex
-  const { cart, totalAmount, totalQuantity } = useContext(ShopContext);
+const Summary = (props) => {
+  const { cart, createOrder } = props;
+
+  const totalAmount = totals(cart).amount;
+  const totalQuantity = totals(cart).qty;
 
   // show and pay qr logic
   const [state, setState] = useState({
@@ -98,17 +101,15 @@ const Summary = () => {
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
-          createOrder(formData).then(() => {
-            setState({ ...state, create: false, redirectRef: reference });
-          });
+          createOrder(formData);
+          return setState({ ...state, create: false, redirectRef: reference });
         }
-        setState({ ...state, showQR: true });
+        return setState({ ...state, showQR: true });
       } else {
         formData.paymentMethod = 'WOMPI';
-        createOrder(formData).then(() => {
-          setState({ payQR: false, showQR: false, redirectWompi: true });
-          window.open(url, '_self');
-        });
+        createOrder(formData);
+        setState({ payQR: false, showQR: false, redirectWompi: reference });
+        return window.open(url, '_self');
       }
     },
   });
@@ -349,4 +350,19 @@ const Summary = () => {
   );
 };
 
-export default withRouter(Summary);
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createOrder: (newOrder) => dispatch(createOrder(newOrder)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Summary));

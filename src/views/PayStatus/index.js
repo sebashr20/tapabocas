@@ -1,4 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import qs from 'query-string';
 import BeatLoader from 'react-spinners/BeatLoader';
 
@@ -9,10 +11,10 @@ import { Container } from 'reactstrap';
 import { SimpleNavbar, Footer } from 'components';
 
 // actions
-import { getWompi, updateOrder } from 'actions/orders';
+import { updateOrder, getWompi } from 'redux/actions/order';
 
 const PayStatus = (props) => {
-  const { location } = props;
+  const { location, updateOrder } = props;
   const { id, env, qr_ref, wompi_ref } = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
@@ -50,7 +52,7 @@ const PayStatus = (props) => {
       }
       fetchData();
     }
-  }, [wompiId, env, qr_ref, wompi_ref]);
+  }, [wompiId, env, qr_ref, wompi_ref, updateOrder]);
 
   const approved = () => {
     return (
@@ -131,4 +133,10 @@ const PayStatus = (props) => {
   );
 };
 
-export default PayStatus;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateOrder: (ref, formData) => dispatch(updateOrder(ref, formData)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(PayStatus));

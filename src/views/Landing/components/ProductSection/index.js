@@ -1,8 +1,10 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import ShopContext from 'context/shop-context';
+import { connect } from 'react-redux';
+import { addProductToCart } from 'redux/actions/cart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { skus, products } from 'utils/productList';
 
 // reactstrap components
 import {
@@ -21,8 +23,8 @@ import {
 
 // core components
 
-const ProductSection = ({ cartItemNumber }) => {
-  const { cart, products, skus, addProductToCart } = useContext(ShopContext);
+const ProductSection = (props) => {
+  const { cart, addProductToCart, cartItemCount } = props;
 
   return (
     <Fragment>
@@ -101,7 +103,7 @@ const ProductSection = ({ cartItemNumber }) => {
           <div className="mt-4">
             <Button color="danger" to="/checkout" tag={Link}>
               <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
-              Ir al carrito <strong>{`[ ${cartItemNumber} ]`}</strong>
+              Ir al carrito <strong>{`[ ${cartItemCount} ]`}</strong>
             </Button>
           </div>
         ) : null}
@@ -110,4 +112,19 @@ const ProductSection = ({ cartItemNumber }) => {
   );
 };
 
-export default ProductSection;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+    cartItemCount: state.cart.cart.reduce((count, curItem) => {
+      return count + curItem.quantity;
+    }, 0),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductToCart: (product) => dispatch(addProductToCart(product)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductSection);
