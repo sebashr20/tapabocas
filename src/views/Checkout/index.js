@@ -4,8 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { totals } from 'utils/totals';
 
-// actions
-
 // reactstrap components
 import { Container, Row, Button } from 'reactstrap';
 

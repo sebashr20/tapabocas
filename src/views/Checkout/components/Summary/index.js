@@ -25,8 +25,10 @@ import {
 } from 'reactstrap';
 
 // core components
-import { checkoutSchema } from 'utils/checkoutSchema';
 // import { ModalBeforPay } from '../../components';
+
+// utils
+import { checkoutSchema } from 'utils/checkoutSchema';
 
 // constants
 const discountCupon05 = process.env.REACT_APP_DISCOUNT_CUPON_05;
@@ -35,7 +37,6 @@ const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
 const referenceCode = randomCode({ length: 6 });
 
 const Summary = (props) => {
-  // global contex
   const { cart, createOrder } = props;
 
   const totalAmount = totals(cart).amount;
@@ -79,7 +80,7 @@ const Summary = (props) => {
       cupon: '',
     },
     validationSchema: checkoutSchema,
-    onSubmit: async ({ address, city, phone }) => {
+    onSubmit: ({ address, city, phone }) => {
       const delivery = [];
 
       cart.map((item) => {
@@ -100,21 +101,19 @@ const Summary = (props) => {
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
-          await createOrder(formData);
-          await setState({ ...state, create: false, redirectRef: reference });
+          createOrder(formData);
+          return setState({ ...state, create: false, redirectRef: reference });
         }
-        setState({ ...state, showQR: true });
+        return setState({ ...state, showQR: true });
       } else {
         formData.paymentMethod = 'WOMPI';
-        await createOrder(formData);
-        await setState({ payQR: false, showQR: false, redirectWompi: true });
-        window.open(url, '_self');
+        createOrder(formData);
+        setState({ payQR: false, showQR: false, redirectWompi: reference });
+        return window.open(url, '_self');
       }
     },
   });
   const { address, city, phone, cupon } = values;
-
-  console.log('REF', redirectRef);
 
   if (redirectRef) {
     return <Redirect push to={`/checkout/status?qr_ref=${redirectRef}`} />;
