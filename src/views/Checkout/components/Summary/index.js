@@ -7,7 +7,8 @@ import { css } from '@emotion/core';
 import { useFormik } from 'formik';
 
 // actions
-import { createOrder } from 'redux/actions/order';
+// import { createOrder } from 'redux/actions/order';
+import { createOrder } from 'actions/orders';
 import { totals } from 'utils/totals';
 
 // reactstrap components
@@ -37,7 +38,7 @@ const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
 const referenceCode = randomCode({ length: 6 });
 
 const Summary = (props) => {
-  const { cart, createOrder } = props;
+  const { cart } = props;
 
   const totalAmount = totals(cart).amount;
   const totalQuantity = totals(cart).qty;
@@ -49,7 +50,7 @@ const Summary = (props) => {
     create: false,
     check: false,
     redirectRef: '',
-    redirectWompi: false,
+    redirectWompi: '',
   });
   const { payQR, showQR, create, check, redirectRef, redirectWompi } = state;
 
@@ -101,32 +102,29 @@ const Summary = (props) => {
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
-          return payWithQR(formData, reference);
+          createOrder(formData).then(async () => {
+            await setState({
+              ...state,
+              create: false,
+              redirectRef: reference,
+            });
+          });
         }
         return setState({ ...state, showQR: true });
       } else {
         formData.paymentMethod = 'WOMPI';
-        return payWithWompi(formData, reference);
+        createOrder(formData).then(async () => {
+          await setState({
+            payQR: false,
+            showQR: false,
+            redirectWompi: reference,
+          });
+          await window.open(url, '_self');
+        });
       }
     },
   });
   const { address, city, phone, cupon } = values;
-
-  const payWithQR = async (formData, reference) => {
-    createOrder(formData);
-    setState({
-      ...state,
-      create: false,
-      redirectRef: reference,
-    });
-  };
-  const payWithWompi = async (formData, reference) => {
-    createOrder(formData);
-    setState({ payQR: false, showQR: false, redirectWompi: reference });
-    return setTimeout(() => {
-      window.open(url, '_self');
-    }, 2000);
-  };
 
   if (redirectRef) {
     return <Redirect push to={`/checkout/status?qr_ref=${redirectRef}`} />;
@@ -369,13 +367,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createOrder: (newOrder) => dispatch(createOrder(newOrder)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     createOrder: (newOrder) => dispatch(createOrder(newOrder)),
+//   };
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Summary));
+export default connect(mapStateToProps, null)(withRouter(Summary));
