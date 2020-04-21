@@ -101,21 +101,32 @@ const Summary = (props) => {
       if (payQR) {
         if (create) {
           formData.paymentMethod = 'QR_CODE';
-          createOrder(formData);
-          return setState({ ...state, create: false, redirectRef: reference });
+          return payWithQR(formData, reference);
         }
         return setState({ ...state, showQR: true });
       } else {
         formData.paymentMethod = 'WOMPI';
-        createOrder(formData);
-        setState({ payQR: false, showQR: false, redirectWompi: reference });
-        return setTimeout(() => {
-          window.open(url, '_self');
-        }, 1500);
+        return payWithWompi(formData, reference);
       }
     },
   });
   const { address, city, phone, cupon } = values;
+
+  const payWithQR = async (formData, reference) => {
+    createOrder(formData);
+    setState({
+      ...state,
+      create: false,
+      redirectRef: reference,
+    });
+  };
+  const payWithWompi = async (formData, reference) => {
+    createOrder(formData);
+    setState({ payQR: false, showQR: false, redirectWompi: reference });
+    return setTimeout(() => {
+      window.open(url, '_self');
+    }, 2000);
+  };
 
   if (redirectRef) {
     return <Redirect push to={`/checkout/status?qr_ref=${redirectRef}`} />;
