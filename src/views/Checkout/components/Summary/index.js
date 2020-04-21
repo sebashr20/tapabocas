@@ -109,7 +109,9 @@ const Summary = (props) => {
         formData.paymentMethod = 'WOMPI';
         createOrder(formData);
         setState({ payQR: false, showQR: false, redirectWompi: reference });
-        return window.open(url, '_self');
+        return setTimeout(() => {
+          window.open(url, '_self');
+        }, 1500);
       }
     },
   });
