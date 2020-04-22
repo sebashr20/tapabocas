@@ -39,4 +39,8 @@ export const distributorSchema = Yup.object().shape({
     .min(2, 'Muy corto!')
     .max(50, 'Muy largo!')
     .required('Requerido'),
+  agent: Yup.string().required('Requerido'),
+  source: Yup.string().required('Requerido'),
+  type: Yup.string().required('Requerido'),
+  file: Yup.string().required('Requerido'),
 });
