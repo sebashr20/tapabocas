@@ -125,7 +125,7 @@ export const products = [
           ✓ Las medidas del producto terminado son 17,5 cm x 10,5 cm, tres
           pliegues, terminación de doblés y fileteado.
         </p>
-        <p className="my-0 mb-2">✓ Lavable (hasta 3 veces).</p>
+        <p className="my-0 mb-2">✓ Un solo uso (aprox. 8 horas).</p>
         <p className="my-0 mb-2">✓ Registro INVIMA en proceso.</p>
         <p className="my-0 mb-2">
           <a
