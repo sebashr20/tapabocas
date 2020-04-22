@@ -8,7 +8,15 @@ import 'assets/css/bootstrap.min.css';
 import 'assets/scss/paper-kit.scss';
 
 // pages
-import { Landing, Checkout, Terms, DataPolicy, PayStatus, Admin } from 'views';
+import {
+  Landing,
+  Checkout,
+  Terms,
+  DataPolicy,
+  PayStatus,
+  Admin,
+  DistributorForm,
+} from 'views';
 
 // .evn
 require('dotenv-flow').config();
@@ -18,6 +26,10 @@ const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
+          <Route
+            path="/distributor"
+            render={(props) => <DistributorForm {...props} />}
+          />
           <Route path="/terminos" render={(props) => <Terms {...props} />} />
           <Route
             path="/privacidad"

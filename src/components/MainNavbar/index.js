@@ -24,7 +24,7 @@ const logo =
   'https://res.cloudinary.com/sebashr20/image/upload/v1586397563/tapabocasya/logo.png';
 
 const urlContact = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER}&text=Hola!%20Acabo%20de%20leer%20la%20información%20de%20la%20página%20web%20y%20necesito%20información%20adicional.%20Mi%20nombre%20es:%20`;
-const urlSupplier = 'https://bit.ly/Distribuidor_TapabocasYa';
+// const urlSupplier = 'https://bit.ly/Distribuidor_TapabocasYa';
 
 function MainNavbar({ cartItemNumber }) {
   const [navbarColor, setNavbarColor] = useState('navbar-transparent');
@@ -88,9 +88,8 @@ function MainNavbar({ cartItemNumber }) {
           <Nav navbar>
             <NavItem>
               <NavLink
-                href={urlSupplier}
-                target="_blank"
-                rel="noopener"
+                to="/distributor"
+                tag={Link}
                 style={{ color: 'rgb(30, 25, 75)' }}
               >
                 Conviértete en proveedor

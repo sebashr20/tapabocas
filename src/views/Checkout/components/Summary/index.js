@@ -29,7 +29,7 @@ import {
 // import { ModalBeforPay } from '../../components';
 
 // utils
-import { checkoutSchema } from 'utils/checkoutSchema';
+import { checkoutSchema } from 'utils/formikSchema';
 
 // constants
 const discountCupon05 = process.env.REACT_APP_DISCOUNT_CUPON_05;
