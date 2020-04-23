@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 // reactstrap components
@@ -19,6 +19,9 @@ import {
 
 // core components
 import { SimpleNavbar, Footer } from 'components';
+
+// actions
+import { sendEmail } from 'redux/actions/email';
 
 // utils
 import { distributorSchema } from 'utils/formikSchema';
@@ -44,9 +47,17 @@ const sources = [
   'Whatsapp',
 ];
 
-const DistributorForm = () => {
+const DistributorForm = ({ sendEmail }) => {
   // fromik config
-  const { values, handleSubmit, handleChange, errors, touched } = useFormik({
+  const {
+    values,
+    handleSubmit,
+    handleChange,
+    errors,
+    touched,
+    isSubmitting,
+    isValid,
+  } = useFormik({
     initialValues: {
       name: '',
       phone: '',
@@ -57,52 +68,24 @@ const DistributorForm = () => {
       plusInfo: '',
       agent: '',
       source: '',
-      type: [],
-      file: undefined,
+      products: [],
+      file: '',
     },
     validationSchema: distributorSchema,
-    onSubmit: ({
-      name,
-      phone,
-      email,
-      city,
-      capacity,
-      price,
-      plusInfo,
-      agent,
-      source,
-      type,
-      file,
-    }) => {
-      const formData = {
-        name,
-        phone,
-        email,
-        city,
-        capacity,
-        price,
-        plusInfo,
-        agent,
-        source,
-        type,
-        file,
-      };
-      console.log('FORM', formData);
+    onSubmit: (values) => {
+      sendEmail(values);
     },
   });
-  const { name, phone, email, city, capacity, price, plusInfo } = values;
+  const { name, phone, email, city, capacity, price, plusInfo, file } = values;
+
+  if (isSubmitting && isValid) {
+    return <Redirect push to={'/'} />;
+  }
 
   return (
     <Fragment>
       <SimpleNavbar />
-      {/* <MainAlert
-          text={
-            <span>
-              Tus datos han sido enviados con éxito.
-            </span>
-          }
-          color={'danger'}
-        /> */}
+      {/* {alert && <MainAlert text={<span>{alert}</span>} color={'success'} />} */}
       <Container>
         <div className="section mt-1 pt-2">
           <Row>
@@ -129,6 +112,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Fuente</Label>
                   <Input
@@ -150,6 +134,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Nombre</Label>
                   <InputGroup className="my-0">
@@ -169,6 +154,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Teléfono de contacto</Label>
                   <InputGroup className="my-0">
@@ -188,6 +174,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Email</Label>
                   <InputGroup className="my-0">
@@ -207,6 +194,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Ciudad</Label>
                   <InputGroup className="my-0">
@@ -234,34 +222,43 @@ const DistributorForm = () => {
                   <div className="ml-4">
                     <Input
                       type="checkbox"
-                      id="type"
-                      name="type"
+                      id="products"
+                      name="products"
                       onChange={handleChange}
-                      value={'type1'}
+                      value={'Tapabocas dos capas sin INVIMA'}
                     />{' '}
-                    Tipo 1
+                    Tapabocas dos capas sin INVIMA
                     <br />
                     <Input
                       type="checkbox"
-                      id="type"
-                      name="type"
+                      id="products"
+                      name="products"
                       onChange={handleChange}
-                      value={'type2'}
+                      value={'Tapabocas tres capas sin INVIMA'}
                     />{' '}
-                    Tipo 2
+                    Tapabocas tres capas sin INVIMA
                     <br />
                     <Input
                       type="checkbox"
-                      id="type"
-                      name="type"
+                      id="products"
+                      name="products"
                       onChange={handleChange}
-                      value={'type3'}
+                      value={'Tapabocas dos capas con INVIMA'}
                     />{' '}
-                    Tipo 3
+                    Tapabocas dos capas con INVIMA
+                    <br />
+                    <Input
+                      type="checkbox"
+                      id="products"
+                      name="products"
+                      onChange={handleChange}
+                      value={'Tapabocas tres capas con INVIMA'}
+                    />{' '}
+                    Tapabocas tres capas con INVIMA
                   </div>
-                  {touched.type && (
+                  {touched.products && (
                     <FormText className="text-danger my-0">
-                      {errors.type}
+                      {errors.products}
                     </FormText>
                   )}
                 </FormGroup>
@@ -287,6 +284,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Precios ofrecidos</Label>
                   <InputGroup className="my-0">
@@ -306,6 +304,7 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
                   <Label className="my-0">Observaciones generales</Label>
                   <InputGroup className="my-0">
@@ -327,7 +326,30 @@ const DistributorForm = () => {
                     </FormText>
                   )}
                 </FormGroup>
+
                 <FormGroup>
+                  <Label className="my-0">
+                    Link con fotos, videos, documentos, etc.
+                  </Label>
+                  <InputGroup className="my-0">
+                    <Input
+                      placeholder="WeTransfer, Google Drive, Dropbox..."
+                      type="text"
+                      id="file"
+                      name="file"
+                      onChange={handleChange}
+                      value={file}
+                      invalid={errors.file && touched.file ? true : false}
+                    />
+                  </InputGroup>
+                  {touched.file && (
+                    <FormText className="text-danger my-0">
+                      {errors.file}
+                    </FormText>
+                  )}
+                </FormGroup>
+
+                {/* <FormGroup>
                   <Label className="my-0">File</Label>
                   <Input
                     type="file"
@@ -344,7 +366,7 @@ const DistributorForm = () => {
                       {errors.file}
                     </FormText>
                   )}
-                </FormGroup>
+                </FormGroup> */}
 
                 <Button
                   color="info"
@@ -366,8 +388,14 @@ const DistributorForm = () => {
 
 // const mapStateToProps = (state) => {
 //   return {
-//     cart: state.cart.cart,
+//     orders: state.order.orders,
 //   };
 // };
 
-export default connect(null, null)(withRouter(DistributorForm));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendEmail: (formData) => dispatch(sendEmail(formData)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(DistributorForm));
