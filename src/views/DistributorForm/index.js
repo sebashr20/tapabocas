@@ -85,7 +85,6 @@ const DistributorForm = ({ sendEmail }) => {
   return (
     <Fragment>
       <SimpleNavbar />
-      {/* {alert && <MainAlert text={<span>{alert}</span>} color={'success'} />} */}
       <Container>
         <div className="section mt-1 pt-2">
           <Row>

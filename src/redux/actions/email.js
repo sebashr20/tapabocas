@@ -1,22 +1,26 @@
-// import { EMAIL_SENT } from './types';
 import { server } from 'utils/axios';
 
 export const sendEmail = (values) => {
   return async (dispatch) => {
     try {
       const formData = {
-        to: 'sebhernandezram@gmail.com',
+        to: 'info@tapabocasya.com',
         from: values.email,
         subject: 'Distributor',
         body: values,
         type: 'distributor',
       };
-      const { data } = await server.post('/users/email', formData);
-      return data;
-      //   return dispatch({
-      //     type: EMAIL_SENT,
-      //     payload: res.data,
-      //   });
+      const msgToCustomer = {
+        to: values.email,
+        from: 'info@tapabocasya.com',
+        subject: 'Formulario para ser distribuidor',
+        body:
+          'Tu formulario ha sido enviado con éxito. En breve nos pondremos en contacto contigo.',
+        type: 'contact',
+      };
+      server.post('/users/email', formData);
+      server.post('/users/email', msgToCustomer);
+      return null;
     } catch (error) {
       console.log(error);
     }
