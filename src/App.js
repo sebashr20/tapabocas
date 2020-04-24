@@ -15,7 +15,7 @@ import {
   DataPolicy,
   PayStatus,
   Admin,
-  DistributorForm,
+  ProviderForm,
 } from 'views';
 
 // .evn
@@ -27,8 +27,8 @@ const App = () => {
       <Provider store={store}>
         <Switch>
           <Route
-            path="/distributor"
-            render={(props) => <DistributorForm {...props} />}
+            path="/provider"
+            render={(props) => <ProviderForm {...props} />}
           />
           <Route path="/terminos" render={(props) => <Terms {...props} />} />
           <Route

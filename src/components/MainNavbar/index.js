@@ -88,7 +88,7 @@ function MainNavbar({ cartItemNumber }) {
           <Nav navbar>
             <NavItem>
               <NavLink
-                to="/distributor"
+                to="/provider"
                 tag={Link}
                 style={{ color: 'rgb(30, 25, 75)' }}
               >

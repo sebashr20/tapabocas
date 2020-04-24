@@ -13,7 +13,7 @@ export const checkoutSchema = Yup.object().shape({
   cupon: Yup.string().max(11, 'Cupón incorrecto'),
 });
 
-export const distributorSchema = Yup.object().shape({
+export const providerSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Muy corto!')
     .max(50, 'Muy largo!')

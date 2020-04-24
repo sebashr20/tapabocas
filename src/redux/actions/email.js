@@ -6,9 +6,9 @@ export const sendEmail = (values) => {
       const formData = {
         to: 'info@tapabocasya.com',
         from: values.email,
-        subject: 'Distributor',
+        subject: 'Provider',
         body: values,
-        type: 'distributor',
+        type: 'provider',
       };
       const msgToCustomer = {
         to: values.email,

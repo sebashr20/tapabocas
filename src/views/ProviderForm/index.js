@@ -24,7 +24,7 @@ import { SimpleNavbar, Footer } from 'components';
 import { sendEmail } from 'redux/actions/email';
 
 // utils
-import { distributorSchema } from 'utils/formikSchema';
+import { providerSchema } from 'utils/formikSchema';
 const agents = [
   'Próspero Alberto Hernández',
   'Andrea Rubio',
@@ -47,7 +47,7 @@ const sources = [
   'Whatsapp',
 ];
 
-const DistributorForm = ({ sendEmail }) => {
+const ProviderForm = ({ sendEmail }) => {
   // fromik config
   const {
     values,
@@ -71,7 +71,7 @@ const DistributorForm = ({ sendEmail }) => {
       products: [],
       file: '',
     },
-    validationSchema: distributorSchema,
+    validationSchema: providerSchema,
     onSubmit: (values) => {
       sendEmail(values);
     },
@@ -397,4 +397,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(DistributorForm));
+export default connect(null, mapDispatchToProps)(withRouter(ProviderForm));
