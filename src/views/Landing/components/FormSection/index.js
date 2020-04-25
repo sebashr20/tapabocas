@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+// actions
+import { sendEmail } from 'redux/actions/email';
 
 import {
   Button,
@@ -27,7 +32,7 @@ const FormSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const FormSection = () => {
+const FormSection = ({ sendEmail }) => {
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
       name: '',
@@ -36,24 +41,29 @@ const FormSection = () => {
       text: '',
     },
     validationSchema: FormSchema,
-    onSubmit: (values) => {
-      const { name, email, text } = values;
-      const newName = replaceSpace(name);
-      const newText = replaceSpace(text);
-      sendMsg(newName, email, newText);
+    onSubmit: (values, { resetForm }) => {
+      sendEmail(values, {
+        toAdmin: 'institutional',
+        toCustomer: 'Formulario para ventas institucionales',
+      });
+      resetForm();
+      // const { name, email, text } = values;
+      // const newName = replaceSpace(name);
+      // const newText = replaceSpace(text);
+      // sendMsg(newName, email, newText);
     },
   });
 
   const { name, email, phone, text } = values;
 
-  const replaceSpace = (text) => {
-    return text.replace(/ /g, '%20');
-  };
+  // const replaceSpace = (text) => {
+  //   return text.replace(/ /g, '%20');
+  // };
 
-  const sendMsg = (name, email, text) => {
-    const url = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER_INST}&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
-    window.open(url, '_blank');
-  };
+  // const sendMsg = (name, email, text) => {
+  //   const url = `https://api.whatsapp.com/send?phone=${process.env.REACT_APP_WAPP_NUMBER_INST}&text=Hola!%20Quisiera%20más%20información%20sobre%20las%20ventas%20institucionales.%20Nombre:%20${name},%20Correo:%20${email},%20Mensaje:%20${text}`;
+  //   window.open(url, '_blank');
+  // };
 
   return (
     <Fragment>
@@ -148,4 +158,10 @@ const FormSection = () => {
   );
 };
 
-export default FormSection;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendEmail: (values, type) => dispatch(sendEmail(values, type)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(FormSection));

@@ -1,19 +1,19 @@
 import { server } from 'utils/axios';
 
-export const sendEmail = (values) => {
+export const sendEmail = (values, type) => {
   return async (dispatch) => {
     try {
       const formData = {
         to: 'info@tapabocasya.com',
         from: values.email,
-        subject: 'Provider',
+        subject: type.toAdmin,
         body: values,
-        type: 'provider',
+        type: type.toAdmin,
       };
       const msgToCustomer = {
         to: values.email,
         from: 'info@tapabocasya.com',
-        subject: 'Formulario para ser distribuidor',
+        subject: type.toCustomer,
         body:
           'Tu formulario ha sido enviado con éxito. En breve nos pondremos en contacto contigo.',
         type: 'contact',

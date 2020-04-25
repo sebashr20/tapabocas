@@ -53,7 +53,10 @@ const ProviderForm = ({ sendEmail }) => {
     },
     validationSchema: providerSchema,
     onSubmit: (values) => {
-      sendEmail(values);
+      sendEmail(values, {
+        toAdmin: 'provider',
+        toCustomer: 'Formulario para ser distribuidor',
+      });
     },
   });
   const { name, phone, email, city, capacity, price, plusInfo, file } = values;
@@ -367,7 +370,7 @@ const ProviderForm = ({ sendEmail }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendEmail: (formData) => dispatch(sendEmail(formData)),
+    sendEmail: (values, type) => dispatch(sendEmail(values, type)),
   };
 };
 
