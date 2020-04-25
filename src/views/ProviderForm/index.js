@@ -25,27 +25,7 @@ import { sendEmail } from 'redux/actions/email';
 
 // utils
 import { providerSchema } from 'utils/formikSchema';
-const agents = [
-  'Próspero Alberto Hernández',
-  'Andrea Rubio',
-  'Carlos Alberto Úsuga',
-  'Guillermo Gómez',
-  'Juan Camilo Jaramillo',
-  'Julio César Molina',
-  'Lorena Vargas',
-  'Remberto Luis Rhenals',
-  'Samir Rave',
-  'Sebastián Hernández',
-  'Página beb',
-];
-const sources = [
-  'Contacto personal',
-  'Facebook',
-  'Instagram',
-  'Página web',
-  'Referidos',
-  'Whatsapp',
-];
+import { agents, sources } from 'utils/providerData';
 
 const ProviderForm = ({ sendEmail }) => {
   // fromik config
@@ -384,12 +364,6 @@ const ProviderForm = ({ sendEmail }) => {
     </Fragment>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     orders: state.order.orders,
-//   };
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
