@@ -1,18 +1,27 @@
-import { CREATE_ORDER, GET_ORDERS, UPDATE_ORDER } from './types';
+import { GET_ORDERS, UPDATE_ORDER } from './types';
 import { server, wompi } from 'utils/axios';
 
-export const createOrder = (formData) => {
-  return async (dispatch) => {
-    try {
-      const res = await server.post('/orders', formData);
-      return dispatch({
-        type: CREATE_ORDER,
-        payload: res.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+// export const createOrder = (formData) => {
+//   return async (dispatch) => {
+//     try {
+//       const res = await server.post('/orders', formData);
+//       return dispatch({
+//         type: CREATE_ORDER,
+//         payload: res.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
+export const createOrder = async (formData) => {
+  try {
+    const res = await server.post('/orders', formData);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getOrders = () => {

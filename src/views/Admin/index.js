@@ -7,9 +7,10 @@ import { Table } from 'reactstrap';
 
 // actions
 import { getOrders, updateOrder, getWompi } from 'redux/actions/order';
+import { sendEmail } from 'redux/actions/email';
 
 const Admin = (props) => {
-  const { orders, getOrders, updateOrder } = props;
+  const { orders, getOrders, updateOrder, getWompi, sendEmail } = props;
 
   const [wompiId, setWompiId] = useState();
   const [data, setData] = useState({
@@ -22,11 +23,21 @@ const Admin = (props) => {
     getOrders();
   }, [getOrders]);
 
-  const updatePayment = async (ref, newStatus, newWompiId) => {
-    await updateOrder(ref, {
+  const updatePayment = (ref, newStatus, newWompiId) => {
+    updateOrder(ref, {
       status: newStatus,
       wompiId: newWompiId,
     });
+    sendEmail(
+      { ref },
+      {
+        toAdmin: 'order',
+        toCustomer: 'Compobante de compra',
+        msg: `Hola! Tu compra ha sido exitosa. Gracias por cuidarte y confiar en nosotros. 
+        Procederemos a envíar tu pedido y nos comunicaremos contigo vía WhatsApp para darte el número de guía de la transportadora. 
+        El número de tu orden es ${ref}. Si tienes alguna pregunta no dudes en contactarnos! Sé sano y sé próspera persona.`,
+      }
+    );
   };
 
   const handleChangeConfirmWompi = (e) => {
@@ -41,11 +52,20 @@ const Admin = (props) => {
       status,
       payment_method: { type: paymentMethod },
     } = await getWompi(wompiId);
-    await updateOrder(ref, {
+    updateOrder(ref, {
       status: status,
       paymentMethod: paymentMethod,
       wompiId: wompiId,
     });
+    sendEmail(
+      { ref },
+      {
+        toAdmin: 'order',
+        toCustomer: 'Compobante de compra',
+        msg: `Hola! Gracias por confiar en nosotros. El número de tu orden es: ${ref}. Recuerda que el envío toma un (1) día hábil. Si tienes alguna pregunta no dudes en
+            contactarnos.`,
+      }
+    );
   };
 
   const handleChange = (e) => {
@@ -180,6 +200,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getOrders: () => dispatch(getOrders()),
     updateOrder: (ref, formData) => dispatch(updateOrder(ref, formData)),
+    sendEmail: (values, type) => dispatch(sendEmail(values, type)),
+    getWompi: (wompiId) => getWompi(wompiId),
   };
 };
 

@@ -56,6 +56,8 @@ const ProviderForm = ({ sendEmail }) => {
       sendEmail(values, {
         toAdmin: 'provider',
         toCustomer: 'Formulario para ser distribuidor',
+        msg:
+          'Tu formulario ha sido enviado con éxito. En breve nos pondremos en contacto contigo.',
       });
     },
   });

@@ -45,6 +45,8 @@ const FormSection = ({ sendEmail }) => {
       sendEmail(values, {
         toAdmin: 'institutional',
         toCustomer: 'Formulario para ventas institucionales',
+        msg:
+          'Tu formulario ha sido enviado con éxito. En breve nos pondremos en contacto contigo.',
       });
       resetForm();
       // const { name, email, text } = values;

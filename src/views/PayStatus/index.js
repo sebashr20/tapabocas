@@ -12,9 +12,10 @@ import { SimpleNavbar, Footer } from 'components';
 
 // actions
 import { updateOrder, getWompi } from 'redux/actions/order';
+import { sendEmail } from 'redux/actions/email';
 
 const PayStatus = (props) => {
-  const { location, updateOrder } = props;
+  const { location, updateOrder, getWompi, sendEmail } = props;
   const { id, env, qr_ref, wompi_ref } = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
@@ -48,11 +49,21 @@ const PayStatus = (props) => {
           paymentMethod: paymentMethod,
           wompiId: wompiId,
         });
+        sendEmail(
+          { ref },
+          {
+            toAdmin: 'order',
+            toCustomer: 'Compobante de compra',
+            msg: `Hola! Tu compra ha sido exitosa. Gracias por cuidarte y confiar en nosotros. 
+            Procederemos a envíar tu pedido y nos comunicaremos contigo vía WhatsApp para darte el número de guía de la transportadora. 
+            El número de tu orden es ${ref}. Si tienes alguna pregunta no dudes en contactarnos! Sé sano y sé próspera persona.`,
+          }
+        );
         return setState({ status: status, ref: ref });
       }
       fetchData();
     }
-  }, [wompiId, env, qr_ref, wompi_ref, updateOrder]);
+  }, [wompiId, env, qr_ref, wompi_ref, updateOrder, getWompi, sendEmail]);
 
   const approved = () => {
     return (
@@ -136,6 +147,8 @@ const PayStatus = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateOrder: (ref, formData) => dispatch(updateOrder(ref, formData)),
+    sendEmail: (values, type) => dispatch(sendEmail(values, type)),
+    getWompi: (wompiId) => getWompi(wompiId),
   };
 };
 

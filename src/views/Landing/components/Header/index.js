@@ -39,10 +39,10 @@ const header = () => {
               color="info"
               tag={HashLink}
               smooth
-              to="#garantia"
+              to="#productos"
               size="lg"
             >
-              Conoce nuestra garantía
+              Conoce nuestros productos
             </Button>
           </div>
         </Container>

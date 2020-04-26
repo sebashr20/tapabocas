@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export const checkoutSchema = Yup.object().shape({
+  email: Yup.string().email().required('Requerido'),
   address: Yup.string()
     .min(10, 'Muy corto!')
     .max(50, 'Muy largo!')

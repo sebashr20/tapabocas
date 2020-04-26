@@ -7,8 +7,7 @@ import { css } from '@emotion/core';
 import { useFormik } from 'formik';
 
 // actions
-// import { createOrder } from 'redux/actions/order';
-import { createOrder } from 'actions/orders';
+import { createOrder } from 'redux/actions/order';
 import { totals } from 'utils/totals';
 
 // reactstrap components
@@ -38,7 +37,7 @@ const discountCupon15 = process.env.REACT_APP_DISCOUNT_CUPON_15;
 const referenceCode = randomCode({ length: 6 });
 
 const Summary = (props) => {
-  const { cart } = props;
+  const { cart, createOrder } = props;
 
   const totalAmount = totals(cart).amount;
   const totalQuantity = totals(cart).qty;
@@ -75,13 +74,14 @@ const Summary = (props) => {
   // fromik config
   const { values, handleSubmit, handleChange, errors, touched } = useFormik({
     initialValues: {
+      email: '',
       address: '',
       city: '',
       phone: '',
       cupon: '',
     },
     validationSchema: checkoutSchema,
-    onSubmit: ({ address, city, phone }) => {
+    onSubmit: ({ email, address, city, phone }) => {
       const delivery = [];
 
       cart.map((item) => {
@@ -94,6 +94,7 @@ const Summary = (props) => {
       const formData = {
         ref: reference,
         cart: delivery,
+        email: email,
         address: address,
         city: city,
         phone: phone,
@@ -124,7 +125,7 @@ const Summary = (props) => {
       }
     },
   });
-  const { address, city, phone, cupon } = values;
+  const { email, address, city, phone, cupon } = values;
 
   if (redirectRef) {
     return <Redirect push to={`/checkout/status?qr_ref=${redirectRef}`} />;
@@ -240,6 +241,7 @@ const Summary = (props) => {
             </Col>
           </Row>
         </div>
+
         <label className="my-0">Cupón de descuento</label>
         <InputGroup className="my-0">
           <Input
@@ -252,8 +254,22 @@ const Summary = (props) => {
             invalid={errors.cupon && touched.cupon ? true : false}
           />
         </InputGroup>
-        {/* <h6 className="my-0">*Aplica sobre el total antes de IVA.</h6> */}
         <FormText className="text-danger my-0 ">{errors.cupon}</FormText>
+
+        <label className="my-0 mt-2">Email</label>
+        <InputGroup className="my-0">
+          <Input
+            placeholder="Email"
+            type="text"
+            id="email"
+            name="email"
+            onChange={handleChange}
+            value={email}
+            invalid={errors.email && touched.email ? true : false}
+          />
+        </InputGroup>
+        <FormText className="text-danger my-0 ">{errors.email}</FormText>
+
         <label className="my-0 mt-2">Teléfono de contacto</label>
         <InputGroup className="my-0">
           <Input
@@ -267,6 +283,7 @@ const Summary = (props) => {
           />
         </InputGroup>
         <FormText className="text-danger my-0 ">{errors.phone}</FormText>
+
         <label className="my-0 mt-2">Dirección</label>
         <InputGroup className="my-0">
           <Input
@@ -280,6 +297,7 @@ const Summary = (props) => {
           />
         </InputGroup>
         <FormText className="text-danger my-0 ">{errors.address}</FormText>
+
         <label className="my-0 mt-2">Ciudad</label>
         <InputGroup className="my-0">
           <Input
@@ -294,11 +312,13 @@ const Summary = (props) => {
         </InputGroup>
         <FormText className="text-danger my-0 ">{errors.city}</FormText>
         <h6 className="my-0 mb-3">*A todo el país (aplican restricciones).</h6>
+
         <h6 className="my-0 mb-3">
           Al enviarnos tu solicitud estás aceptando nuestros{' '}
           <Link to="/terminos">términos y condiciones</Link> y{' '}
           <Link to="/privacidad">políticas de privacidad.</Link>
         </h6>
+
         <Button
           color="info"
           type="submit"
@@ -315,6 +335,7 @@ const Summary = (props) => {
             width: 100%;
           `}
         />
+
         <Button
           color="info"
           type="submit"
@@ -324,6 +345,7 @@ const Summary = (props) => {
         >
           Pagar con QR Bancolombia
         </Button>
+
         {showQR ? (
           <Fragment>
             <CardImg
@@ -367,10 +389,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     createOrder: (newOrder) => dispatch(createOrder(newOrder)),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createOrder: (newOrder) => createOrder(newOrder),
+  };
+};
 
-export default connect(mapStateToProps, null)(withRouter(Summary));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Summary));
