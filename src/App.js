@@ -16,6 +16,7 @@ import {
   PayStatus,
   Admin,
   ProviderForm,
+  Product,
 } from 'views';
 
 // .evn
@@ -26,6 +27,7 @@ const App = () => {
     <BrowserRouter>
       <Provider store={store}>
         <Switch>
+          <Route path="/tipo4" render={(props) => <Product {...props} />} />
           <Route
             path="/provider"
             render={(props) => <ProviderForm {...props} />}

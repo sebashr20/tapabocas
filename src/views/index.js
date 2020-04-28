@@ -5,3 +5,4 @@ export { default as Checkout } from './Checkout';
 export { default as PayStatus } from './PayStatus';
 export { default as Admin } from './Admin';
 export { default as ProviderForm } from './ProviderForm';
+export { default as Product } from './Product';
