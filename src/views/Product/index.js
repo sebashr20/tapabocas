@@ -8,6 +8,7 @@ import { Container, Row, Button, Col, UncontrolledCarousel } from 'reactstrap';
 
 // core components
 import { SimpleNavbar, Footer } from 'components';
+import { VideoSection } from '../Landing/components';
 
 const Product = () => {
   const handleClick = async () => {
@@ -18,18 +19,18 @@ const Product = () => {
     <Fragment>
       <SimpleNavbar />
       <Container>
-        <div className="section mt-1 pt-2">
+        <div className="section mt-1 pb-0">
           <Row className="mb-4">
             <Col xs="12" md="6">
-              <h2 className="title mb-0">Tapabocas Tipo 4</h2>
+              <h2 className="title mb-2">Tapabocas Tipo 4</h2>
               <UncontrolledCarousel items={products[2].carousel} />
             </Col>
             <Col xs="12" md="6">
-              <h3 className="mt-4">Características</h3>
-              <p className="mt-3">{products[2].description}</p>
+              <h3 className="mt-4 pt-2 mb-1">Características</h3>
+              {products[2].description}
 
-              <h3 className="mt-4">Precio</h3>
-              <p className="mt-2">
+              <h3 className="mt-4 mb-1">Precio</h3>
+              <p className="my-0">
                 <strong>$ {Intl.NumberFormat().format(skus[5].price)} </strong>+
                 $13,000 (envío nacional)
               </p>
@@ -46,16 +47,11 @@ const Product = () => {
             </Col>
           </Row>
         </div>
+        <VideoSection />
       </Container>
       <Footer />
     </Fragment>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     cart: state.cart.cart,
-//   };
-// };
 
 export default connect(null, null)(withRouter(Product));
