@@ -123,6 +123,13 @@ export const products = [
         caption: '',
         key: 't2_i2',
       },
+      {
+        src:
+          'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1588130996/tapabocasya/products/002/hse0yjwfhuxsui2d3fpb.jpg',
+        altText: '',
+        caption: '',
+        key: 't2_i3',
+      },
     ],
   },
   {
@@ -172,6 +179,20 @@ export const products = [
         altText: '',
         caption: '',
         key: 't3_i2',
+      },
+      {
+        src:
+          'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1588131043/tapabocasya/products/003/fhr7yr8upqfbie5wzhjh.jpg',
+        altText: '',
+        caption: '',
+        key: 't3_i3',
+      },
+      {
+        src:
+          'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1588131043/tapabocasya/products/003/ghmfj82nzyutzepwo9oo.jpg',
+        altText: '',
+        caption: '',
+        key: 't3_i4',
       },
     ],
   },
@@ -231,6 +252,13 @@ export const products = [
         altText: '',
         caption: '',
         key: 't4_i3',
+      },
+      {
+        src:
+          'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1588131097/tapabocasya/products/004/is1kb7ydr53yrvsfsdve.jpg',
+        altText: '',
+        caption: '',
+        key: 't4_i4',
       },
     ],
   },
