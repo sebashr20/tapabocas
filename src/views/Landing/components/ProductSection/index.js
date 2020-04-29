@@ -32,7 +32,7 @@ const ProductSection = (props) => {
         <Container>
           <h2 className="title">Nuestros Productos</h2>
           <h5 className="description">
-            Nuestros tapabocas vienen en presentaciones de caja x20 y x50
+            Nuestros tapabocas vienen en presentaciones de caja x10, x20 y x50
             unidades. Pagos 100% en línea de forma rápida y segura, 24/7 con
             tarjetas de crédito, tarjetas débito (vía PSE) y QR Bancolombia.
             Usamos pasarelas de pago con certificación PCI-DSS para garantizar
@@ -53,7 +53,7 @@ const ProductSection = (props) => {
                     </CardTitle>
                     <CardBody
                       className="py-0 my-0 mb-2"
-                      style={{ height: '510px' }}
+                      style={{ height: '460px' }}
                     >
                       {product.description}
                     </CardBody>

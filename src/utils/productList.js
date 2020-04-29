@@ -2,6 +2,15 @@ import React from 'react';
 
 export const skus = [
   {
+    id: 't2_10',
+    type: 't2',
+    title: 'Tapabocas Tipo 2 x10',
+    size: 'x10',
+    price: 17500,
+    img:
+      'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560084/tapabocasya/products/002/epvh4qwapq9ddpelty96.jpg',
+  },
+  {
     id: 't2_20',
     type: 't2',
     title: 'Tapabocas Tipo 2 x20',
@@ -18,6 +27,15 @@ export const skus = [
     price: 80000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560084/tapabocasya/products/002/epvh4qwapq9ddpelty96.jpg',
+  },
+  {
+    id: 't3_10,',
+    type: 't3',
+    title: 'Tapabocas Tipo 3 x10',
+    size: 'x10',
+    price: 24000,
+    img:
+      'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560433/tapabocasya/products/003/bda76ta1osbtfyfyx4wq.jpg',
   },
   {
     id: 't3_20,',
