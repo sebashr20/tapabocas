@@ -42,7 +42,7 @@ export const skus = [
     type: 't3',
     title: 'Tapabocas Tipo 3 x20',
     size: 'x20',
-    price: 43000,
+    price: 44000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560433/tapabocasya/products/003/bda76ta1osbtfyfyx4wq.jpg',
   },
@@ -51,7 +51,7 @@ export const skus = [
     type: 't3',
     title: 'Tapabocas Tipo 3 x50',
     size: 'x50',
-    price: 104000,
+    price: 105000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586560433/tapabocasya/products/003/bda76ta1osbtfyfyx4wq.jpg',
   },
@@ -69,7 +69,7 @@ export const skus = [
     type: 't4',
     title: 'Tapabocas Tipo 4 x50',
     size: 'x50',
-    price: 129000,
+    price: 130000,
     img:
       'https://res.cloudinary.com/sebashr20/image/upload/q_auto:low/v1586559691/tapabocasya/products/004/eqyhmud63ledu328czwr.jpg',
   },

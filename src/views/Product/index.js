@@ -31,7 +31,7 @@ const Product = () => {
 
               <h3 className="mt-4 mb-1">Precio</h3>
               <p className="my-0">
-                <strong>$ {Intl.NumberFormat().format(skus[5].price)} </strong>+
+                <strong>$ {Intl.NumberFormat().format(skus[7].price)} </strong>+
                 $13,000 (envío nacional)
               </p>
 
