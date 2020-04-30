@@ -12,7 +12,7 @@ import { VideoSection } from '../Landing/components';
 
 const Product = () => {
   const handleClick = async () => {
-    window.open('https://checkout.wompi.co/l/IM4Upb', '_self');
+    window.open('https://checkout.wompi.co/l/wQzKei', '_self');
   };
 
   return (
@@ -31,7 +31,7 @@ const Product = () => {
 
               <h3 className="mt-4 mb-1">Precio</h3>
               <p className="my-0">
-                <strong>$ {Intl.NumberFormat().format(skus[7].price)} </strong>+
+                <strong>$ {Intl.NumberFormat().format(skus[6].price)} </strong>+
                 $13,000 (envío nacional)
               </p>
 
