@@ -71,13 +71,21 @@ const ProductSection = (props) => {
                               + Envío
                             </CardText>
                             <Button
-                              color={sku.id === 't4_20' ? 'default' : 'info'}
+                              color={
+                                sku.type === 't2' || sku.type === 't4'
+                                  ? 'default'
+                                  : 'info'
+                              }
                               size="lg"
                               onClick={addProductToCart.bind(this, sku)}
                               className="mb-2"
-                              disabled={sku.id === 't4_20' ? true : false}
+                              disabled={
+                                sku.type === 't2' || sku.type === 't4'
+                                  ? true
+                                  : false
+                              }
                             >
-                              {sku.id === 't4_20'
+                              {sku.type === 't2' || sku.type === 't4'
                                 ? 'Agotado'
                                 : 'Agregar al carrito'}
                             </Button>
