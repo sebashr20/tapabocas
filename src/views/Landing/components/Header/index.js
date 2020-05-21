@@ -25,7 +25,7 @@ const header = () => {
               <Row>
                 <Col xs="12" md="7">
                   <h1 style={{ marginTop: '1.8em' }}>
-                    Proteje tu vida y la de tu familia en todo momento.
+                    Protege tu vida y la de tu familia en todo momento.
                   </h1>
                   <h3>
                     Usa sólo tapabocas de alta calidad y que te brinden una
